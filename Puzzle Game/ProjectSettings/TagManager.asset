@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Statue
+  - TileHighlight
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Ground
+    uniqueID: 1105703525
+    locked: 0
+  - name: Overlay
+    uniqueID: 3385070397
+    locked: 0
+  - name: Shadow
+    uniqueID: 4123887497
+    locked: 0
+  - name: 1st Floor
+    uniqueID: 2267439633
+    locked: 0
+  - name: 2nd Floor
+    uniqueID: 1956365697
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
