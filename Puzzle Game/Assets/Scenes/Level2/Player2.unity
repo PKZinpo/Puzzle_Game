@@ -276,7 +276,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1105703525
-  m_SortingLayer: -5
+  m_SortingLayer: -7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -594,24 +594,24 @@ Tilemap:
   - m_RefCount: 0
     m_Data:
       e00: -1.084227e-19
-      e01: 5.6026068e-18
-      e02: 5.602243e-18
-      e03: 5.602243e-18
-      e10: 6.03e-43
-      e11: 9.1e-44
-      e12: 9.1e-44
-      e13: 9.1e-44
-      e20: 0.000000014121852
-      e21: -1.5853611e+29
-      e22: 4.1183662
-      e23: -1.5853611e+29
+      e01: 1.4430194e+26
+      e02: 1.4429383e+26
+      e03: 1.4429383e+26
+      e10: 8.28e-43
+      e11: 1.4e-43
+      e12: 1.4e-43
+      e13: 1.4e-43
+      e20: -197.61157
+      e21: -1.6036038e+29
+      e22: 7.2084236
+      e23: -1.6036038e+29
       e30: 4.5905e-41
-      e31: 6.04e-43
-      e32: 6.03e-43
-      e33: 6.04e-43
+      e31: 8.3e-43
+      e32: 8.28e-43
+      e33: 8.3e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: -1.5852221e+29, g: -1.5852221e+29, b: -1.5852221e+29, a: -1.5852221e+29}
+    m_Data: {r: -1.6034648e+29, g: -1.6034648e+29, b: -1.6034648e+29, a: -1.6034648e+29}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -674,7 +674,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2027527663
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -937,7 +937,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2027527663
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7ee458a4a776a4f4ba4de5ba6afb7911, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1299,3 +1299,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e35b471ce6036e4093c37e0974dca4c, type: 3}
+--- !u!1001 &7701866425657431744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7701866424884117621, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_Name
+      value: TileMoving Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: currentWall
+      value: 
+      objectReference: {fileID: 305478332}
+    - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: currentGround
+      value: 
+      objectReference: {fileID: 234287850}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.3116149
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.19403812
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 123.17687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117623, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}

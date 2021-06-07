@@ -46,14 +46,20 @@ TagManager:
   - name: Overlay
     uniqueID: 3385070397
     locked: 0
-  - name: Shadow
+  - name: Ground Shadow
     uniqueID: 4123887497
     locked: 0
   - name: 1st Floor
     uniqueID: 2267439633
     locked: 0
+  - name: 1st Floor Shadow
+    uniqueID: 4143796889
+    locked: 0
   - name: 2nd Floor
     uniqueID: 1956365697
+    locked: 0
+  - name: 2nd Floor Shadow
+    uniqueID: 3016069909
     locked: 0
   - name: Default
     uniqueID: 0

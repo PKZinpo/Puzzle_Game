@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
 public class GMPlayer : MonoBehaviour {
-    // Start is called before the first frame update
 
     #region GeneralVariables
 
@@ -21,7 +20,6 @@ public class GMPlayer : MonoBehaviour {
     public static int highlightVal;
     public static int stepVal;
     private Vector3Int direction;
-
 
     public GameObject tileHighlightPrefab;
     public static GameObject tileHighlight;
@@ -76,11 +74,6 @@ public class GMPlayer : MonoBehaviour {
 
         if (StatueData.statueUIList.Count > 0) {
             if (highlightVal != stepVal) {
-                if (GameObject.Find("TileHighlight(Clone)")) {
-                    foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                        Destroy(tile);
-                    }
-                }
                 if (stepVal != StatueData.statueUIList.Count) {
                     AddTileHighlight();
                 }
@@ -111,6 +104,11 @@ public class GMPlayer : MonoBehaviour {
             Debug.Log("All Statues Have Been Activated");
         }
         else {
+            if (GameObject.Find("TileHighlight(Clone)")) {
+                foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                    Destroy(tile);
+                }
+            }
             foreach (var item in StatueData.statueList) {
                 if (StatueData.statueUIList[stepVal] == item.Key) {
                     ChooseStatue(item.Value.type);
@@ -123,7 +121,7 @@ public class GMPlayer : MonoBehaviour {
     public void ChooseStatue(string type) {
         switch (type) {
             case "3Line":
-                PlaceTile(ThreeLine());
+                TileMoving.MoveTiles(ThreeLine());
                 break;
 
             case "Ice3Line":
@@ -177,7 +175,15 @@ public class GMPlayer : MonoBehaviour {
                     case "3Line":
                         for (int i = 0; i < ThreeLine().Length; i++) {
                             tileHighlight = Instantiate(tileHighlightPrefab);
-                            tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine()[i]);
+                            var wallCheck = new Vector3Int(ThreeLine()[i].x + 1, ThreeLine()[i].y + 1, 0);
+                            if (currentWall.HasTile(wallCheck)) {
+                                tileHighlight.transform.position = currentWall.CellToWorld(wallCheck);
+                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor Shadow";
+                            }
+                            else {
+                                tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine()[i]);
+                            }
+                            
                         }
                         break;
 

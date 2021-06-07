@@ -4,16 +4,16 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -910289023394899383
-    second: PuzzleGameTileSheet_0
+    second: Isometric Tile
   - first:
       213: -6354176811738736130
-    second: PuzzleGameTileSheet_1
+    second: Isometric Wall
   - first:
       213: -3713598501678062076
-    second: PuzzleGameTileSheet_2
+    second: Isometric Wall 2
   - first:
       213: 380484026992474176
-    second: PuzzleGameTileSheet_3
+    second: Isometric Tile Highlight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,7 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PuzzleGameTileSheet_0
+      name: Isometric Tile
       rect:
         serializedVersion: 2
         x: 0
@@ -148,7 +148,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PuzzleGameTileSheet_1
+      name: Isometric Wall
       rect:
         serializedVersion: 2
         x: 32
@@ -169,7 +169,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PuzzleGameTileSheet_2
+      name: Isometric Wall 2
       rect:
         serializedVersion: 2
         x: 64
@@ -190,7 +190,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PuzzleGameTileSheet_3
+      name: Isometric Tile Highlight
       rect:
         serializedVersion: 2
         x: 96

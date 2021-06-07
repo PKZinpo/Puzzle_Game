@@ -23,6 +23,7 @@ public class StatueType : MonoBehaviour {
         if (yAxis) {
             yAxis = !yAxis;
         }
+        StatueData.PopulateStatueList();
     }
 
     public void SwitchAxis() {
