@@ -73,11 +73,13 @@ public class GMPlayer : MonoBehaviour {
 
 
         if (StatueData.statueUIList.Count > 0) {
-            if (highlightVal != stepVal) {
-                if (stepVal != StatueData.statueUIList.Count) {
-                    AddTileHighlight();
+            if (!TileMoving.isMoving) {
+                if (highlightVal != stepVal) {
+                    if (stepVal != StatueData.statueUIList.Count) {
+                        AddTileHighlight();
+                    }
+                    highlightVal = stepVal;
                 }
-                highlightVal = stepVal;
             }
         }
 
@@ -95,30 +97,28 @@ public class GMPlayer : MonoBehaviour {
         SceneManager.LoadScene(nextlevelScene);
         StatueData.statueList.Clear();
     }
-    public void ResetLevel() {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
     public void NextStep() {
-        if (stepVal > StatueData.statueUIList.Count - 1) {
-            Debug.Log("All Statues Have Been Activated");
-        }
-        else {
-            if (GameObject.Find("TileHighlight(Clone)")) {
-                foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                    Destroy(tile);
-                }
+        if (!TileMoving.isMoving) {
+            if (stepVal > StatueData.statueUIList.Count - 1) {
+                Debug.Log("All Statues Have Been Activated");
             }
-            foreach (var item in StatueData.statueList) {
-                if (StatueData.statueUIList[stepVal] == item.Key) {
-                    ChooseStatue(item.Value.type);
-                    stepVal++;
-                    break;
+            else {
+                if (GameObject.Find("TileHighlight(Clone)")) {
+                    foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                        Destroy(tile);
+                    }
+                }
+                foreach (var item in StatueData.statueList) {
+                    if (StatueData.statueUIList[stepVal] == item.Key) {
+                        ChooseType(item.Value.type);
+                        stepVal++;
+                        break;
+                    }
                 }
             }
         }
     }
-    public void ChooseStatue(string type) {
+    public void ChooseType(string type) {
         switch (type) {
             case "3Line":
                 TileMoving.MoveTiles(ThreeLine());
@@ -149,25 +149,6 @@ public class GMPlayer : MonoBehaviour {
 
 
     }
-    public void PlaceTile(Vector3Int[] tilePlace) {
-        for (int i = 0; i < tilePlace.Length; i++) {
-            var wallPos = new Vector3Int(tilePlace[i].x + 1, tilePlace[i].y + 1, 0);
-            if (currentMap.HasTile(tilePlace[i]) && !currentWall.HasTile(wallPos)) {
-                currentWall.SetTile(wallPos, wallTile);
-                PlayerMovement.MovePlayerUp(tilePlace[i], wallPos);
-                Debug.Log("Placed Wall");
-            }
-            else if (!currentMap.HasTile(tilePlace[i])) {
-                currentMap.SetTile(tilePlace[i], groundTile);
-                Debug.Log("Placed Ground");
-            }
-            else {
-                currentWall.SetTile(wallPos, null);
-                currentMap.SetTile(tilePlace[i], null);
-                Debug.Log("Removed Wall and Ground");
-            }
-        }
-    }
     private void AddTileHighlight() {
         foreach (var item in StatueData.statueList) {
             if (StatueData.statueUIList[stepVal] == item.Key) {
@@ -193,5 +174,9 @@ public class GMPlayer : MonoBehaviour {
                 }
             }
         }
+    }
+    public static void ResetLevel() {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }

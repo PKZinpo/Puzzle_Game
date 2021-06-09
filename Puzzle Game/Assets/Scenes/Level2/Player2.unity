@@ -594,24 +594,24 @@ Tilemap:
   - m_RefCount: 0
     m_Data:
       e00: -1.084227e-19
-      e01: 1.4430194e+26
-      e02: 1.4429383e+26
-      e03: 1.4429383e+26
-      e10: 8.28e-43
-      e11: 1.4e-43
-      e12: 1.4e-43
-      e13: 1.4e-43
-      e20: -197.61157
-      e21: -1.6036038e+29
-      e22: 7.2084236
-      e23: -1.6036038e+29
+      e01: -0.000034026976
+      e02: -0.000034023775
+      e03: -0.000034023775
+      e10: 7.96e-43
+      e11: 1.12e-43
+      e12: 1.12e-43
+      e13: 1.12e-43
+      e20: 1.8000111e-27
+      e21: 7.206e-41
+      e22: 7.5718117
+      e23: 7.206e-41
       e30: 4.5905e-41
-      e31: 8.3e-43
-      e32: 8.28e-43
-      e33: 8.3e-43
+      e31: 7.99e-43
+      e32: 7.96e-43
+      e33: 7.99e-43
   m_TileColorArray:
   - m_RefCount: 0
-    m_Data: {r: -1.6034648e+29, g: -1.6034648e+29, b: -1.6034648e+29, a: -1.6034648e+29}
+    m_Data: {r: 7.1029e-41, g: 7.1029e-41, b: 7.1029e-41, a: 7.1029e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1310,6 +1310,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileMoving Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1086189196}
+    - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: wallTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 05e6cd22fea07fd4fb93e9c1ac3502d1, type: 2}
+    - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
+      propertyPath: groundTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 38a7a78d713a99643b08e8fb333a2205, type: 2}
     - target: {fileID: 7701866424884117622, guid: 9a9839c8aec3b344ab13ee699a84f831, type: 3}
       propertyPath: currentWall
       value: 

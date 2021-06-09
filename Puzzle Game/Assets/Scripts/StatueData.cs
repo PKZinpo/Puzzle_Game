@@ -46,7 +46,6 @@ public class StatueData : MonoBehaviour {
             }
         }
     }
-
     public static Vector3[] GetStatuePositions() {
         Vector3[] tempPos = new Vector3[statueList.Count];
         int i = 0;
@@ -56,7 +55,6 @@ public class StatueData : MonoBehaviour {
         }
         return tempPos;
     }
-
     private void LoadAllResources() {
         Sprite[] iconData = Resources.LoadAll<Sprite>("Icons");
         for (int i = 0; i < iconData.Length; i++) {

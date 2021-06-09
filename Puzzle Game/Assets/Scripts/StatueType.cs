@@ -25,13 +25,11 @@ public class StatueType : MonoBehaviour {
         }
         StatueData.PopulateStatueList();
     }
-
     public void SwitchAxis() {
         yAxis = !yAxis;
         turn = !turn;
         StatueData.PopulateStatueList();
     }
-
     public string GetStatueType() {
         return statueType;
     }

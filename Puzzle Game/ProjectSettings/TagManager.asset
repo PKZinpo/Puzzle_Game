@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Statue
   - TileHighlight
+  - Tile
+  - TileTemp
   layers:
   - Default
   - TransparentFX

@@ -45,11 +45,9 @@ public class SelectionManager : MonoBehaviour {
     public void AddHighlight() {
         highlight = Instantiate(highlightPrefab);
     }
-
     public static void RemoveHighlight() {
         Destroy(highlight.gameObject);
     }
-
     public static void TurnStatue() {
         if (selected) {
             objecttoMove.GetComponent<StatueType>().ToTurn();
