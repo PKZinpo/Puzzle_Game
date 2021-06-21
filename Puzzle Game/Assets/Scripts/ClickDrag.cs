@@ -61,6 +61,11 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         transform.SetParent(returnTo);
         if (GMPlayer.stepVal == 0) {
             transform.SetSiblingIndex(temp.transform.GetSiblingIndex());
+            if (GameObject.Find("TileHighlight(Clone)")) {
+                foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                    Destroy(tile);
+                }
+            }
         }
         else {
             transform.SetSiblingIndex(prevPos);

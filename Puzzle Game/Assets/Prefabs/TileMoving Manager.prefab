@@ -45,5 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentGround: {fileID: 0}
   currentWall: {fileID: 0}
+  groundTile: {fileID: 11400000, guid: 38a7a78d713a99643b08e8fb333a2205, type: 2}
+  wallTile: {fileID: 11400000, guid: 05e6cd22fea07fd4fb93e9c1ac3502d1, type: 2}
   tilePrefab: {fileID: 1981314452336253485, guid: b67a5761ade541e4b9651b58c532e494, type: 3}
+  player: {fileID: 0}
   tileSpeed: 0.5

@@ -117,7 +117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 373.9, y: 53.4}
+  m_AnchoredPosition: {x: 295, y: 80}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1556064437
@@ -263,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4111567238742513331, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: Canvas StatueVariant
       objectReference: {fileID: 0}
     - target: {fileID: 4111567238742513334, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
       propertyPath: m_Camera

@@ -39,12 +39,15 @@ public class StatueData : MonoBehaviour {
                     isTurned = Statues[i].GetComponent<StatueType>().yAxis
                 });
             }
-            if (statueUIList.Count == 0) {
-                foreach (var item in statueList) {
-                    statueUIList.Add(item.Key);
-                }
-            }
         }
+    }
+    public static void PopulateStatueUIList() {
+        //statueUIList.Clear();
+        //foreach (var item in statueList) {
+        //    if (GMStatue.GetActivatorPositions().Contains(item.Key)) {
+        //        statueUIList.Add(item.Key);
+        //    }
+        //}
     }
     public static Vector3[] GetStatuePositions() {
         Vector3[] tempPos = new Vector3[statueList.Count];

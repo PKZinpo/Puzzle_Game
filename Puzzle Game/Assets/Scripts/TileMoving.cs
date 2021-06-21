@@ -23,7 +23,7 @@ public class TileMoving : MonoBehaviour {
     private static float tileDistance;
 
     private List<Vector3> destinations = new List<Vector3>();
-    private float fadeSpeed = 5f;
+    private float fadeSpeed = 3f;
 
 
     void Awake() {
@@ -58,6 +58,11 @@ public class TileMoving : MonoBehaviour {
                         }
                         else {
                             item.transform.position = Vector3.MoveTowards(item.transform.position, destinations[i], tileSpeed * Time.deltaTime);
+                        }
+                        var color = item.GetComponent<SpriteRenderer>().color;
+                        if (color.a < 1) {
+                            color.a += fadeSpeed * Time.deltaTime;
+                            item.GetComponent<SpriteRenderer>().color = color;
                         }
                         if (i == GameObject.FindGameObjectsWithTag("Tile").Length - 1) {
                             if (item.transform.position == destinations[i]) {
@@ -136,6 +141,9 @@ public class TileMoving : MonoBehaviour {
                         temp.transform.position = ground.CellToWorld(tilePos[i]);
                         tile.transform.position = new Vector3(temp.transform.position.x, temp.transform.position.y - tileDistance, 0);
                         tile.GetComponent<SpriteRenderer>().sprite = item;
+                        var color = tile.GetComponent<SpriteRenderer>().color;
+                        color.a = 0;
+                        tile.GetComponent<SpriteRenderer>().color = color;
                         break;
                     }
                 }

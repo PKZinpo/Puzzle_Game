@@ -46,12 +46,6 @@ public class GMPlayer : MonoBehaviour {
     void Start() {
         #region Level1
 
-        if (currentMap.name == "lvl1Ground") {
-            lvl1tilePlace = GMStatue.LVL1activator();
-            for (int i = 0; i < 3; i++) {
-                tilePositions[i] = new Vector3Int(lvl1tilePlace.x, lvl1tilePlace.y + 1 - i, 0);
-            }
-        }
         #endregion
     }
 
@@ -59,18 +53,8 @@ public class GMPlayer : MonoBehaviour {
 
         #region Level1
 
-        if (currentMap.name == "lvl1Ground") {
-            if (lvl1Path && !currentMap.HasTile(tilePositions[0])) {
-                for (int i = 0; i < tilePositions.Length; i++) {
-                    if (!currentMap.HasTile(tilePositions[i])) {
-                        currentMap.SetTile(tilePositions[i], groundTile);
-                    }
-                }
-            }
-        }
 
         #endregion
-
 
         if (StatueData.statueUIList.Count > 0) {
             if (!TileMoving.isMoving) {
@@ -96,6 +80,8 @@ public class GMPlayer : MonoBehaviour {
     private void ToNextLevel() {
         SceneManager.LoadScene(nextlevelScene);
         StatueData.statueList.Clear();
+        StatueData.statueUIList.Clear();
+        GMStatue.ClearActivatorPositions();
     }
     public void NextStep() {
         if (!TileMoving.isMoving) {

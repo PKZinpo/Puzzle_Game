@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class GMStatue : MonoBehaviour {
 
@@ -12,24 +13,40 @@ public class GMStatue : MonoBehaviour {
 
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
+    private static int numStatue;
     private static GameObject moveObject;
     private static bool movetoDest = false;
     private static Vector3 destination;
 
-    static private GameObject[] Statues;
+    private static GameObject[] Statues;
+    private static List<Vector3> activatorPosition = new List<Vector3>();
 
     #endregion
 
     #region Level1Variables
 
-    public GameObject lvl1Statue;
-    public GameObject lvl1Activator;
-    
-    private static Vector3Int lvl1activatorgridPos;
 
     #endregion
 
     void Awake() {
+
+        foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
+            foreach (var position in activatorPosition) {
+                if (item.transform.position == position) {
+                    numStatue++;
+                }
+            }
+        }
+
+        #region Alignment
+
+        if (GameObject.FindGameObjectsWithTag("Statue").Length != 0) {
+            foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
+                if (statue.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(statue.transform.position))) {
+                    statue.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(statue.transform.position));
+                }
+            }
+        }
         if (StatueData.GetStatuePositions() == null || StatueData.GetStatuePositions().Length < 1) {
             StatueData.PopulateStatueList();
         }
@@ -43,15 +60,28 @@ public class GMStatue : MonoBehaviour {
                 i++;
             }
         }
+        if (GameObject.FindGameObjectsWithTag("Activator").Length != 0) {
+            foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+                if (activator.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position))) {
+                    activator.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position));
+                }
+            }
+            if (activatorPosition.Count == 0) {
+                foreach (var item in GameObject.FindGameObjectsWithTag("Activator")) {
+                    var pos = new Vector3(item.transform.position.x, item.transform.position.y, 0);
+                    activatorPosition.Add(pos);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
     void Start() {
         #region Level1
 
-        if (currentMap.name == "lvl1Ground") {
-            lvl1activatorgridPos = currentMap.WorldToCell(lvl1Activator.transform.position);
-            lvl1activatorgridPos = new Vector3Int(lvl1activatorgridPos.x, lvl1activatorgridPos.y, 0);
-        }
+        
 
         #endregion
     }
@@ -60,11 +90,7 @@ public class GMStatue : MonoBehaviour {
 
         #region Level1
 
-        if (currentMap.name == "lvl1Ground") {
-            if (currentMap.WorldToCell(lvl1Statue.transform.position) == lvl1activatorgridPos) {
-                LVL1makePath();
-            }
-        }
+        
 
         #endregion
 
@@ -73,28 +99,71 @@ public class GMStatue : MonoBehaviour {
             if (movetoDest) {
                 moveObject.transform.position = Vector3.MoveTowards(moveObject.transform.position, destination, movementSpeed * Time.deltaTime);
                 if (moveObject.transform.position == destination) {
-
+                    
                     #region Set New Position in Statue Array
 
                     StatueData.PopulateStatueList();
-                    Vector3[] tempStatue = new Vector3[GameObject.FindGameObjectsWithTag("Statue").Length];
-                    for (int i = 0; i < tempStatue.Length; i++) {
-                        tempStatue[i] = GameObject.FindGameObjectsWithTag("Statue")[i].transform.position;
-                    }
-                    for (int i = 0; i < StatueData.statueUIList.Count; i++) {
-                        if (!StatueData.statueList.ContainsKey(StatueData.statueUIList[i])) {
-                            foreach (var item in tempStatue) {
-                                if (!StatueData.statueUIList.Contains(item)) {
-                                    StatueData.statueUIList[i] = item;
-                                }
+                    //StatueData.PopulateStatueUIList();
+
+                    var newnumStatue = 0;
+                    foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
+                        foreach (var position in activatorPosition) {
+                            if (item.transform.position == position) {
+                                newnumStatue++;
                             }
-                            break;
                         }
                     }
+
+                    List<Vector3> tempStatue = new List<Vector3>();
+                    foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
+                        foreach (var position in activatorPosition) {
+                            if (item.transform.position == position) {
+                                if (numStatue == newnumStatue) {
+
+                                }
+                                else if (numStatue < newnumStatue) {
+                                    tempStatue.Add(position);
+                                }
+                                
+
+                            }
+                        }
+                    }
+
+                    if (GameObject.FindGameObjectsWithTag("Statue").Length != 0) {
+                        
+                        //for (int i = 0; i < GameObject.FindGameObjectsWithTag("Statue").Length; i++) {
+                        //    tempStatue.Add(GameObject.FindGameObjectsWithTag("Statue")[i].transform.position);
+                        //}
+                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                            if (!StatueData.statueList.ContainsKey(StatueData.statueUIList[i])) {
+                                foreach (var item in tempStatue) {
+                                    if (!StatueData.statueUIList.Contains(item)) {
+                                        StatueData.statueUIList[i] = item;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                    
+                    
 
                     #endregion
 
                     movetoDest = false;
+
+                    foreach (var item in activatorPosition) {
+                        if (moveObject.transform.position == item) {
+                            if (!StatueData.statueUIList.Contains(moveObject.transform.position)) {
+                                StatueData.statueUIList.Add(moveObject.transform.position);
+                            }
+                        }
+                    }
+
+                    foreach (var asjk in StatueData.statueUIList) {
+                        Debug.Log(asjk);
+                    }
                 }
             }
         }
@@ -150,14 +219,6 @@ public class GMStatue : MonoBehaviour {
 
     #region Level1
 
-    public static Vector3Int LVL1activator() {
-        return lvl1activatorgridPos;
-    }
-
-    private void LVL1makePath() {
-        GMPlayer.lvl1Path = true;
-    }
-
     #endregion
 
     public void ToPlayerScene() {
@@ -167,5 +228,11 @@ public class GMStatue : MonoBehaviour {
             SelectionManager.selected = false;
         }
         SceneManager.LoadScene(playerScene);
+    }
+    public static List<Vector3> GetActivatorPositions() {
+        return activatorPosition;
+    }
+    public static void ClearActivatorPositions() {
+        activatorPosition.Clear();
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - TileHighlight
   - Tile
   - TileTemp
+  - Activator
+  - StatueIcon
   layers:
   - Default
   - TransparentFX
