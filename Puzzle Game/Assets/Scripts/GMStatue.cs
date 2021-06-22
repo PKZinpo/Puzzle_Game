@@ -105,61 +105,49 @@ public class GMStatue : MonoBehaviour {
                     StatueData.PopulateStatueList();
                     //StatueData.PopulateStatueUIList();
 
-                    var newnumStatue = 0;
-                    foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
-                        foreach (var position in activatorPosition) {
-                            if (item.transform.position == position) {
-                                newnumStatue++;
-                            }
-                        }
-                    }
-
                     List<Vector3> tempStatue = new List<Vector3>();
                     foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
                         foreach (var position in activatorPosition) {
                             if (item.transform.position == position) {
-                                if (numStatue == newnumStatue) {
-
-                                }
-                                else if (numStatue < newnumStatue) {
-                                    tempStatue.Add(position);
-                                }
+                                tempStatue.Add(position);
                                 
-
                             }
                         }
                     }
 
-                    if (GameObject.FindGameObjectsWithTag("Statue").Length != 0) {
-                        
-                        //for (int i = 0; i < GameObject.FindGameObjectsWithTag("Statue").Length; i++) {
-                        //    tempStatue.Add(GameObject.FindGameObjectsWithTag("Statue")[i].transform.position);
-                        //}
-                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
-                            if (!StatueData.statueList.ContainsKey(StatueData.statueUIList[i])) {
-                                foreach (var item in tempStatue) {
-                                    if (!StatueData.statueUIList.Contains(item)) {
-                                        StatueData.statueUIList[i] = item;
+                    if (activatorPosition.Contains(moveObject.transform.position)) {
+                        if (numStatue < tempStatue.Count) {
+                            StatueData.statueUIList.Add(moveObject.transform.position);
+                            numStatue++;
+                            Debug.Log("Added position " + moveObject.transform.position);
+                        }
+                        else {
+                            for (int i = 0; i < tempStatue.Count; i++) {
+                                if (!tempStatue.Contains(StatueData.statueUIList[i])) {
+                                    for (int j = 0; j < tempStatue.Count; j++) {
+                                        if (!StatueData.statueUIList.Contains(tempStatue[j])) {
+                                            Debug.Log("Switched position " + StatueData.statueUIList[i] + " to " + tempStatue[j]);
+                                            StatueData.statueUIList[i] = tempStatue[j];
+                                            
+                                        }
                                     }
                                 }
+                            }
+                        }
+                    }
+                    else {
+                        foreach (var item in StatueData.statueUIList) {
+                            if (!tempStatue.Contains(item)) {
+                                Debug.Log("Removed position " + item);
+                                StatueData.statueUIList.Remove(item);
+                                numStatue--;
                                 break;
                             }
                         }
                     }
-                    
-                    
-
                     #endregion
 
                     movetoDest = false;
-
-                    foreach (var item in activatorPosition) {
-                        if (moveObject.transform.position == item) {
-                            if (!StatueData.statueUIList.Contains(moveObject.transform.position)) {
-                                StatueData.statueUIList.Add(moveObject.transform.position);
-                            }
-                        }
-                    }
 
                     foreach (var asjk in StatueData.statueUIList) {
                         Debug.Log(asjk);
