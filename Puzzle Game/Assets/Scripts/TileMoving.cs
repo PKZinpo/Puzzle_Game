@@ -64,22 +64,28 @@ public class TileMoving : MonoBehaviour {
                             color.a += fadeSpeed * Time.deltaTime;
                             item.GetComponent<SpriteRenderer>().color = color;
                         }
-                        if (i == GameObject.FindGameObjectsWithTag("Tile").Length - 1) {
-                            if (item.transform.position == destinations[i]) {
-                                NewTiles();
-                                foreach (var tileObject in GameObject.FindGameObjectsWithTag("TileTemp")) {
-                                    Destroy(tileObject);
-                                }
-                                destinations.Clear();
-                                isMoving = false;
-                            }
-                        }
                     }
                     else {
                         var color = item.GetComponent<SpriteRenderer>().color;
                         if (color.a > 0) {
                             color.a -= fadeSpeed * Time.deltaTime;
                             item.GetComponent<SpriteRenderer>().color = color;
+                        }
+                    }
+                    var wallNum = 0;
+                    foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
+                        if (wall.GetComponent<SpriteRenderer>().sprite.name == "Isometric Wall") {
+                            wallNum++;
+                        }
+                    }
+                    if (i == GameObject.FindGameObjectsWithTag("Tile").Length - (1 + wallNum)) {
+                        if (item.transform.position == destinations[i]) {
+                            NewTiles();
+                            foreach (var tileObject in GameObject.FindGameObjectsWithTag("TileTemp")) {
+                                Destroy(tileObject);
+                            }
+                            destinations.Clear();
+                            isMoving = false;
                         }
                     }
                 }
@@ -111,19 +117,24 @@ public class TileMoving : MonoBehaviour {
             }
             else if (ground.HasTile(tilePos[i])) {
                 tileType = ground.GetTile(tilePos[i]).name;
-                ground.SetTile(tilePos[i], null);
-                foreach (var item in StatueData.tileSprites) {
-                    if (tileType == item.name) {
-                        temp = new GameObject();
-                        temp.tag = "TileTemp";
-                        temp.AddComponent<SortingGroup>();
-                        temp.GetComponent<SortingGroup>().sortingLayerName = "Ground";
-                        tile = Instantiate(tileTemp);
-                        tile.transform.SetParent(temp.transform);
-                        temp.transform.position = ground.CellToWorld(tilePos[i]);
-                        tile.transform.position = temp.transform.position;
-                        tile.GetComponent<SpriteRenderer>().sprite = item;
-                        break;
+                if (tileType == "Isometric Unmovable Tile") {
+                    Debug.Log("Cannot move Tile");
+                }
+                else {
+                    ground.SetTile(tilePos[i], null);
+                    foreach (var item in StatueData.tileSprites) {
+                        if (tileType == item.name) {
+                            temp = new GameObject();
+                            temp.tag = "TileTemp";
+                            temp.AddComponent<SortingGroup>();
+                            temp.GetComponent<SortingGroup>().sortingLayerName = "Ground";
+                            tile = Instantiate(tileTemp);
+                            tile.transform.SetParent(temp.transform);
+                            temp.transform.position = ground.CellToWorld(tilePos[i]);
+                            tile.transform.position = temp.transform.position;
+                            tile.GetComponent<SpriteRenderer>().sprite = item;
+                            break;
+                        }
                     }
                 }
             }

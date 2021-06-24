@@ -816,7 +816,7 @@ PrefabInstance:
     - target: {fileID: 136623554572419366, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: fda91fe97aab77b4c9411770d2b8fecf, type: 2}
+      objectReference: {fileID: 9100000, guid: 7056379082fc875498048fb3d80e5603, type: 2}
     - target: {fileID: 136623554572419367, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: m_Size.x
       value: 0.64
@@ -835,7 +835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136623554572419384, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: statueType
-      value: Ice3Line
+      value: 3Line
       objectReference: {fileID: 0}
     - target: {fileID: 136623554572419385, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: m_RootOrder

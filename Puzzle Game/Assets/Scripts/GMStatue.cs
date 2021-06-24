@@ -103,7 +103,6 @@ public class GMStatue : MonoBehaviour {
                     #region Set New Position in Statue Array
 
                     StatueData.PopulateStatueList();
-                    //StatueData.PopulateStatueUIList();
 
                     List<Vector3> tempStatue = new List<Vector3>();
                     foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
@@ -148,10 +147,6 @@ public class GMStatue : MonoBehaviour {
                     #endregion
 
                     movetoDest = false;
-
-                    foreach (var asjk in StatueData.statueUIList) {
-                        Debug.Log(asjk);
-                    }
                 }
             }
         }

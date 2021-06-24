@@ -41,14 +41,6 @@ public class StatueData : MonoBehaviour {
             }
         }
     }
-    public static void PopulateStatueUIList() {
-        //statueUIList.Clear();
-        //foreach (var item in statueList) {
-        //    if (GMStatue.GetActivatorPositions().Contains(item.Key)) {
-        //        statueUIList.Add(item.Key);
-        //    }
-        //}
-    }
     public static Vector3[] GetStatuePositions() {
         Vector3[] tempPos = new Vector3[statueList.Count];
         int i = 0;
@@ -63,7 +55,7 @@ public class StatueData : MonoBehaviour {
         for (int i = 0; i < iconData.Length; i++) {
             iconSprites.Add(iconData[i]);
         }
-        Sprite[] tileData = Resources.LoadAll<Sprite>("PuzzleGameTileSheet");
+        Sprite[] tileData = Resources.LoadAll<Sprite>("TileSheet");
         for (int i = 0; i < tileData.Length; i++) {
             tileSprites.Add(tileData[i]);
         }
