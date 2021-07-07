@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class StatueIcon {
     public string type;
+    public string animationName;
     public bool isTurned;
 }
 
@@ -55,7 +56,7 @@ public class StatueData : MonoBehaviour {
         for (int i = 0; i < iconData.Length; i++) {
             iconSprites.Add(iconData[i]);
         }
-        Sprite[] tileData = Resources.LoadAll<Sprite>("TileSheet");
+        Sprite[] tileData = Resources.LoadAll<Sprite>("PuzzleGameTileSheet");
         for (int i = 0; i < tileData.Length; i++) {
             tileSprites.Add(tileData[i]);
         }

@@ -1,0 +1,48 @@
+using UnityEngine;
+
+public class TileProperties : MonoBehaviour {
+
+    public Animator anim;
+
+    public bool moveUp = false;
+    public bool disappearing = false;
+    public string animationName;
+
+    void Start() {
+        animationName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+        if (name.Contains("Ground")) {
+            moveUp = true;
+        }
+    }
+
+    void Update() {
+        if (name.Contains("Broken")) {
+            anim.SetBool("Moving Up", moveUp);
+        }
+        anim.SetBool("Disappearing", disappearing);
+        
+    }
+    public void ChangeMoveUp () {
+        moveUp = true;
+    }
+    public void ChangeDisappearing() {
+        disappearing = true;
+    }
+    public void RemoveTile() {
+        if (disappearing) {
+            Debug.Log("Disappear");
+            Destroy(gameObject);
+        }
+        else if (moveUp) {
+            TileMoving.PlaceTiles(transform.position, "Wall", name);
+            Debug.Log("Move Up");
+            Destroy(gameObject);
+        }
+        else {
+            TileMoving.PlaceTiles(transform.position, "Ground", name);
+            Debug.Log("Appear");
+            Destroy(gameObject);
+        }
+    }
+
+}

@@ -11,12 +11,14 @@ public class GMStatue : MonoBehaviour {
     public float movementSpeed = 1f;
     public string playerScene;
 
+    public static int numStatue;
+
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
-    private static int numStatue;
     private static GameObject moveObject;
     private static bool movetoDest = false;
     private static Vector3 destination;
+    private static string sceneSwitchTo;
 
     private static GameObject[] Statues;
     private static List<Vector3> activatorPosition = new List<Vector3>();
@@ -29,6 +31,7 @@ public class GMStatue : MonoBehaviour {
     #endregion
 
     void Awake() {
+        sceneSwitchTo = playerScene;
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
             foreach (var position in activatorPosition) {
@@ -113,7 +116,6 @@ public class GMStatue : MonoBehaviour {
                             }
                         }
                     }
-
                     if (activatorPosition.Contains(moveObject.transform.position)) {
                         if (numStatue < tempStatue.Count) {
                             StatueData.statueUIList.Add(moveObject.transform.position);
@@ -150,7 +152,6 @@ public class GMStatue : MonoBehaviour {
                 }
             }
         }
-
     }
 
     #region ArrowMovement
@@ -211,6 +212,9 @@ public class GMStatue : MonoBehaviour {
             SelectionManager.selected = false;
         }
         SceneManager.LoadScene(playerScene);
+    }
+    public static string GetPlayerScene() {
+        return sceneSwitchTo;
     }
     public static List<Vector3> GetActivatorPositions() {
         return activatorPosition;

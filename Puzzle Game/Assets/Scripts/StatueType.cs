@@ -13,6 +13,13 @@ public class StatueType : MonoBehaviour {
 
     #endregion
 
+    void Start() {
+        if (yAxis) {
+            yAxis = !yAxis;
+            turn = !turn;
+        }
+    }
+
     void Update() {
         anim.SetBool("Turn", turn);
         anim.SetBool("yAxis", yAxis);

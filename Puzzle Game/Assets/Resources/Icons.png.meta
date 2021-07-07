@@ -130,10 +130,10 @@ TextureImporter:
       name: 3Line
       rect:
         serializedVersion: 2
-        x: 0
-        y: 48
-        width: 32
-        height: 16
+        x: 1
+        y: 41
+        width: 29
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 755e173cf60646ae0800000000000000
-      internalID: -1557013538026691241
+      spriteID: aa8d9280a4a6d1010800000000000000
+      internalID: 1161201145128540330
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: 3LineY
       rect:
         serializedVersion: 2
-        x: 32
-        y: 48
-        width: 32
-        height: 16
+        x: 34
+        y: 41
+        width: 29
+        height: 23
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78dbda97e36d52100800000000000000
-      internalID: 82707731993968007
+      spriteID: b6c0435581f219d10800000000000000
+      internalID: 2130535880278150251
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice3Line
+      name: Icons_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 16
+        x: 4
+        y: 17
+        width: 24
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b10cc935c0ddffe00800000000000000
-      internalID: 1080825480604336155
+      spriteID: 112f6dc7ab3119200800000000000000
+      internalID: 184950751378207249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ice3LineY
+      name: Icons_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 16
+        x: 36
+        y: 17
+        width: 24
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +204,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 187754eda00643180800000000000000
-      internalID: -9136572144232859775
+      spriteID: 09979b0c37cd1b010800000000000000
+      internalID: 1202984965197363600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_4
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760e5b1608900fc40800000000000000
+      internalID: 5543941588292853863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_5
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 1
+        width: 24
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58aff01f5ed3226e0800000000000000
+      internalID: -1863859237976802683
       vertices: []
       indices: 
       edges: []

@@ -20,6 +20,7 @@ public class GMPlayer : MonoBehaviour {
     public static int highlightVal;
     public static int stepVal;
     private Vector3Int direction;
+    private static string sceneSwitchTo;
 
     public GameObject tileHighlightPrefab;
     public static GameObject tileHighlight;
@@ -39,6 +40,7 @@ public class GMPlayer : MonoBehaviour {
     #endregion
 
     void Awake() {
+        sceneSwitchTo = statueScene;
         stepVal = 0;
         highlightVal = -1;
     }
@@ -77,11 +79,15 @@ public class GMPlayer : MonoBehaviour {
     public void ToStatueScene() {
         SceneManager.LoadScene(statueScene);
     }
+    public static string GetStatueScene() {
+        return sceneSwitchTo;
+    }
     private void ToNextLevel() {
         SceneManager.LoadScene(nextlevelScene);
         StatueData.statueList.Clear();
         StatueData.statueUIList.Clear();
         GMStatue.ClearActivatorPositions();
+        GMStatue.numStatue = 0;
     }
     public void NextStep() {
         if (!TileMoving.isMoving) {
