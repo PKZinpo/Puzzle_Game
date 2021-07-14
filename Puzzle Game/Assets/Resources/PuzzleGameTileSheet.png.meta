@@ -35,6 +35,9 @@ TextureImporter:
   - first:
       213: -4557375427250453517
     second: Ground Exit Tile
+  - first:
+      213: 7763473068154355040
+    second: Ground Exit Glow
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -374,6 +377,27 @@ TextureImporter:
       bones: []
       spriteID: 3f384a6e133f0c0c0800000000000000
       internalID: -4557375427250453517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground Exit Glow
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06df6a27f956dbb60800000000000000
+      internalID: 7763473068154355040
       vertices: []
       indices: 
       edges: []

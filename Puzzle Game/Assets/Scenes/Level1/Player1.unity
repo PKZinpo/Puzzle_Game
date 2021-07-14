@@ -1392,6 +1392,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 234287850}
     - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
+      propertyPath: exitGlow
+      value: 
+      objectReference: {fileID: 4936369618830085649}
+    - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
       propertyPath: nextLevel
       value: 
       objectReference: {fileID: 154154071}
@@ -1487,6 +1491,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: NextLevel
       objectReference: {fileID: 0}
+    - target: {fileID: 4936369618711607880, guid: 44430db230a8ea24f96fdef687f6b1a5, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936369618711607880, guid: 44430db230a8ea24f96fdef687f6b1a5, type: 3}
+      propertyPath: m_SortingLayer
+      value: -7
+      objectReference: {fileID: 0}
     - target: {fileID: 4936369618711607881, guid: 44430db230a8ea24f96fdef687f6b1a5, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1533,3 +1545,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44430db230a8ea24f96fdef687f6b1a5, type: 3}
+--- !u!95 &4936369618830085649 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1864322098800759291, guid: 44430db230a8ea24f96fdef687f6b1a5, type: 3}
+  m_PrefabInstance: {fileID: 4936369618830085648}
+  m_PrefabAsset: {fileID: 0}

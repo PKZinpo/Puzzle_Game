@@ -82,13 +82,6 @@ public class GMPlayer : MonoBehaviour {
     public static string GetStatueScene() {
         return sceneSwitchTo;
     }
-    private void ToNextLevel() {
-        SceneManager.LoadScene(nextlevelScene);
-        StatueData.statueList.Clear();
-        StatueData.statueUIList.Clear();
-        GMStatue.ClearActivatorPositions();
-        GMStatue.numStatue = 0;
-    }
     public void NextStep() {
         if (!TileMoving.isMoving) {
             if (stepVal > StatueData.statueUIList.Count - 1) {
@@ -171,4 +164,12 @@ public class GMPlayer : MonoBehaviour {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+    private void ToNextLevel() {
+        SceneManager.LoadScene(nextlevelScene);
+        StatueData.statueList.Clear();
+        StatueData.statueUIList.Clear();
+        GMStatue.ClearActivatorPositions();
+        GMStatue.numStatue = 0;
+    }
+    
 }

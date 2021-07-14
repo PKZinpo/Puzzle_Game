@@ -1094,7 +1094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590875413984838356, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 95.28869
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4590875413984838356, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1128,23 +1128,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 4590875414856473032, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4590875415260668867, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 170951500}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
---- !u!114 &1128854766 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4590875413984838357, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
-  m_PrefabInstance: {fileID: 1128854765}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6aa11ca299f2eb49a235b804e57631c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1386477996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1454,7 +1447,7 @@ PrefabInstance:
     - target: {fileID: 459359087979498374, guid: 8e35b471ce6036e4093c37e0974dca4c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1128854766}
+      objectReference: {fileID: 3709024689210679091}
     - target: {fileID: 459359088091796787, guid: 8e35b471ce6036e4093c37e0974dca4c, type: 3}
       propertyPath: m_Name
       value: Canvas
