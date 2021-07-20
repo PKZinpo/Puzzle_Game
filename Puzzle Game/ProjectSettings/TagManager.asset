@@ -10,6 +10,7 @@ TagManager:
   - TileTemp
   - Activator
   - StatueIcon
+  - Wall
   layers:
   - Default
   - TransparentFX

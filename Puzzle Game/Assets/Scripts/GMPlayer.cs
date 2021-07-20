@@ -142,14 +142,19 @@ public class GMPlayer : MonoBehaviour {
                         for (int i = 0; i < ThreeLine().Length; i++) {
                             tileHighlight = Instantiate(tileHighlightPrefab);
                             var wallCheck = new Vector3Int(ThreeLine()[i].x + 1, ThreeLine()[i].y + 1, 0);
-                            if (currentWall.HasTile(wallCheck)) {
+                            bool isWall = false;
+                            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
+                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine()[i])) {
+                                    isWall = true;
+                                }
+                            }
+                            if (isWall) {
                                 tileHighlight.transform.position = currentWall.CellToWorld(wallCheck);
-                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor Shadow";
+                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
                             }
                             else {
                                 tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine()[i]);
                             }
-                            
                         }
                         break;
 

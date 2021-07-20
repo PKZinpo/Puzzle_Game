@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TileProperties : MonoBehaviour {
 
@@ -13,6 +14,9 @@ public class TileProperties : MonoBehaviour {
         if (name.Contains("Ground")) {
             moveUp = true;
         }
+        //if (GetComponentInParent<SortingGroup>().sortingLayerName == "Ground") {
+        //    anim.SetTrigger("IsTile");
+        //}
     }
 
     void Update() {
@@ -31,7 +35,7 @@ public class TileProperties : MonoBehaviour {
     public void RemoveTile() {
         if (disappearing) {
             Debug.Log("Disappear");
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
         else if (moveUp) {
             TileMoving.PlaceTiles(transform.position, "Wall", name);
@@ -44,5 +48,8 @@ public class TileProperties : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
+    public void StartTile() {
+        TileMoving.PlaceTiles(transform.position, "Wall", name);
+        Destroy(gameObject);
+    }
 }
