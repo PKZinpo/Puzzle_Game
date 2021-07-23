@@ -156,7 +156,7 @@ public class GMStatue : MonoBehaviour {
 
     #region ArrowMovement
     public void movestatueTL() {
-        if (SelectionManager.selected) {
+        if (SelectionManager.selected && !movetoDest) {
             selectedgridPos = currentMap.WorldToCell(moveObject.transform.position);
             togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y + 1, 0);
             if (currentMap.HasTile(togridPos)) {
@@ -167,7 +167,7 @@ public class GMStatue : MonoBehaviour {
         }
     }
     public void movestatueTR() {
-        if (SelectionManager.selected) {
+        if (SelectionManager.selected && !movetoDest) {
             selectedgridPos = currentMap.WorldToCell(moveObject.transform.position);
             togridPos = new Vector3Int(selectedgridPos.x + 1, selectedgridPos.y, 0);
             if (currentMap.HasTile(togridPos)) {
@@ -178,7 +178,7 @@ public class GMStatue : MonoBehaviour {
         }
     }
     public void movestatueBR() {
-        if (SelectionManager.selected) {
+        if (SelectionManager.selected && !movetoDest) {
             selectedgridPos = currentMap.WorldToCell(moveObject.transform.position);
             togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y - 1, 0);
             if (currentMap.HasTile(togridPos)) {
@@ -189,7 +189,7 @@ public class GMStatue : MonoBehaviour {
         }
     }
     public void movestatueBL() {
-        if (SelectionManager.selected) {
+        if (SelectionManager.selected && !movetoDest) {
             selectedgridPos = currentMap.WorldToCell(moveObject.transform.position);
             togridPos = new Vector3Int(selectedgridPos.x - 1, selectedgridPos.y, 0);
             if (currentMap.HasTile(togridPos)) {

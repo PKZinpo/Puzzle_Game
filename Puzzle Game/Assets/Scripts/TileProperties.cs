@@ -14,9 +14,6 @@ public class TileProperties : MonoBehaviour {
         if (name.Contains("Ground")) {
             moveUp = true;
         }
-        //if (GetComponentInParent<SortingGroup>().sortingLayerName == "Ground") {
-        //    anim.SetTrigger("IsTile");
-        //}
     }
 
     void Update() {
@@ -35,7 +32,7 @@ public class TileProperties : MonoBehaviour {
     public void RemoveTile() {
         if (disappearing) {
             Debug.Log("Disappear");
-            Destroy(gameObject.transform.parent.gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else if (moveUp) {
             TileMoving.PlaceTiles(transform.position, "Wall", name);

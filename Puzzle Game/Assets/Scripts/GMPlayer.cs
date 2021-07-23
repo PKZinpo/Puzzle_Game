@@ -144,7 +144,7 @@ public class GMPlayer : MonoBehaviour {
                             var wallCheck = new Vector3Int(ThreeLine()[i].x + 1, ThreeLine()[i].y + 1, 0);
                             bool isWall = false;
                             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
-                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine()[i])) {
+                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine()[i]) + TileMoving.wallOffset) {
                                     isWall = true;
                                 }
                             }

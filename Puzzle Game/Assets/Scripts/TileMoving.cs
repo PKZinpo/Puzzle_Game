@@ -7,18 +7,17 @@ public class TileMoving : MonoBehaviour {
     #region Variables
 
     public Tilemap currentGround;
-    public Tilemap currentWall;
     public Tile brokenPlatform;
     public Tile groundFullTile;
     public Tile groundHalfTile;
-    public Tile groundTile;
-    public Tile wallTile;
     public GameObject brokenTile;
     public GameObject fullTile;
     public GameObject halfTile;
     public GameObject tempWall;
+    public GameObject playerObj;
 
     public static bool isMoving = false;
+    public static Vector3 wallOffset = new Vector3(0.0f, -0.02f, 0.0f);
 
     private static GameObject brokengroundTile;
     private static GameObject fullgroundTile;
@@ -27,8 +26,8 @@ public class TileMoving : MonoBehaviour {
     private static GameObject wallTileTemp = null;
     private static GameObject wallObject = null;
     private static GameObject tempWallObject = null;
+    private static GameObject player;
     private static Tilemap ground;
-    private static Tilemap wall;
     private static Tile brokenPlat;
     private static Tile groundFullPlat;
     private static Tile groundHalfPlat;
@@ -40,17 +39,18 @@ public class TileMoving : MonoBehaviour {
         halfgroundTile = halfTile;
         brokengroundTile = brokenTile;
         ground = currentGround;
-        wall = currentWall;
         brokenPlat = brokenPlatform;
         groundFullPlat = groundFullTile;
         groundHalfPlat = groundHalfTile;
         tempWallObject = tempWall;
+        player = playerObj;
 
         if (GameObject.FindGameObjectsWithTag("Wall").Length != 0) {
             foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
                 if (item.transform.position != currentGround.CellToWorld(currentGround.WorldToCell(item.transform.position))) {
                     Vector3 newPos = new Vector3(item.transform.position.x, item.transform.position.y, 0);
-                    item.transform.position = currentGround.CellToWorld(currentGround.WorldToCell(newPos));
+                    item.transform.position = currentGround.CellToWorld(currentGround.WorldToCell(newPos)) + wallOffset;
+                    item.transform.GetChild(0).transform.position += new Vector3 (wallOffset.x, Mathf.Abs(wallOffset.y), wallOffset.z);
                 }
             }
         }
@@ -79,7 +79,7 @@ public class TileMoving : MonoBehaviour {
             string tileType;
             bool isWall = false;
             foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
-                if (item.transform.position == ground.CellToWorld(tilePos[i])) {
+                if (item.transform.position == ground.CellToWorld(tilePos[i]) + wallOffset) {
                     isWall = true;
                     wallObject = item;
                 }
@@ -103,8 +103,7 @@ public class TileMoving : MonoBehaviour {
                             tile = Instantiate(brokengroundTile);
                             break;
                     }
-                    GameObject tempObject = wallObject.transform.GetChild(0).gameObject;
-                    Destroy(tempObject);
+                    Destroy(wallObject.transform.GetChild(0).gameObject);
                     tile.transform.SetParent(wallObject.transform);
                     tile.GetComponent<TileProperties>().ChangeDisappearing();
                     tile.transform.localPosition = new Vector3 (0.0f, 0.16f, 0.0f);
@@ -133,6 +132,9 @@ public class TileMoving : MonoBehaviour {
                     }
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
                     tile.transform.position = ground.CellToWorld(tilePos[i]);
+                    if (ground.WorldToCell(player.transform.position) == tilePos[i]) {
+                        PlayerMovement.MovePlayerUp();
+                    }
                 }
             }
             else {
@@ -146,10 +148,10 @@ public class TileMoving : MonoBehaviour {
     }
     public static void PlaceTiles(Vector3 position, string layer, string type) {
         if (layer == "Wall") {
-            var gridPos = wall.WorldToCell(position);
+            var gridPos = ground.WorldToCell(position);
             var wallPos = new Vector3Int(gridPos.x + 1, gridPos.y + 1, 0);
             GameObject temp = Instantiate(tempWallObject);
-            temp.transform.position = position;
+            temp.transform.position = position + wallOffset;
             if (type.Contains("Ground Full")) {
                 wallTileTemp = Instantiate(fullgroundTile);
             }
