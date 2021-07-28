@@ -4,7 +4,9 @@ public class Wall : MonoBehaviour {
 
     void Awake() {
         if (transform.childCount > 0) {
-            GetComponentInChildren<Animator>().SetTrigger("IsTile");
+            if (GetComponentInChildren<SpriteRenderer>().sprite.name != "Ground Exit Tile") {
+                GetComponentInChildren<Animator>().SetTrigger("IsTile");
+            }
         }
     }
 }

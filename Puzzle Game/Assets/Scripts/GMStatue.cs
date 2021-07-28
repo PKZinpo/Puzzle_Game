@@ -120,14 +120,14 @@ public class GMStatue : MonoBehaviour {
                         if (numStatue < tempStatue.Count) {
                             StatueData.statueUIList.Add(moveObject.transform.position);
                             numStatue++;
-                            Debug.Log("Added position " + moveObject.transform.position);
+                            Debug.Log("Added position " + currentMap.WorldToCell(moveObject.transform.position));
                         }
                         else {
                             for (int i = 0; i < tempStatue.Count; i++) {
                                 if (!tempStatue.Contains(StatueData.statueUIList[i])) {
                                     for (int j = 0; j < tempStatue.Count; j++) {
                                         if (!StatueData.statueUIList.Contains(tempStatue[j])) {
-                                            Debug.Log("Switched position " + StatueData.statueUIList[i] + " to " + tempStatue[j]);
+                                            Debug.Log("Switched position " + currentMap.WorldToCell(StatueData.statueUIList[i]) + " to " + currentMap.WorldToCell(tempStatue[j]));
                                             StatueData.statueUIList[i] = tempStatue[j];
                                             
                                         }
@@ -139,7 +139,7 @@ public class GMStatue : MonoBehaviour {
                     else {
                         foreach (var item in StatueData.statueUIList) {
                             if (!tempStatue.Contains(item)) {
-                                Debug.Log("Removed position " + item);
+                                Debug.Log("Removed position " + currentMap.WorldToCell(item));
                                 StatueData.statueUIList.Remove(item);
                                 numStatue--;
                                 break;

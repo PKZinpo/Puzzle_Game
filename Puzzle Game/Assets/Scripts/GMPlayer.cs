@@ -12,21 +12,21 @@ public class GMPlayer : MonoBehaviour {
     public string nextlevelScene;
     public GameObject nextLevel;
     public GameObject playerObject;
+    public GameObject tileHighlightPrefab;
+    public GameObject shadowPrefab;
     public Tilemap currentMap;
-    public Tilemap currentWall;
-    public Tile groundTile;
-    public Tile wallTile;
+    public bool nextlevelOnWall;
 
     public static int highlightVal;
     public static int stepVal;
-    private Vector3Int direction;
-    private static string sceneSwitchTo;
-
-    public GameObject tileHighlightPrefab;
     public static GameObject tileHighlight;
-    public GameObject shadowPrefab;
     public static GameObject shadow;
-    
+
+
+    private Vector3Int direction;
+
+    private static string sceneSwitchTo;
+    private static Vector3 nextlevelOffset;
 
     #endregion
 
@@ -43,6 +43,22 @@ public class GMPlayer : MonoBehaviour {
         sceneSwitchTo = statueScene;
         stepVal = 0;
         highlightVal = -1;
+
+        if (nextlevelOnWall) {
+            nextlevelOffset = new Vector3(0.0f, -0.045f, 0.0f);
+        }
+        else {
+            nextlevelOffset = new Vector3(0.0f, -0.005f, 0.0f);
+        }
+        if (nextLevel.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(nextLevel.transform.position))) {
+            Vector3 newPos = new Vector3(nextLevel.transform.position.x, nextLevel.transform.position.y, 0);
+            nextLevel.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(newPos)) + nextlevelOffset;
+            var childOffset = nextlevelOffset;
+            if (nextlevelOnWall) {
+                childOffset = new Vector3(nextlevelOffset.x, nextlevelOffset.y - 0.16f, nextlevelOffset.z);
+            }
+            nextLevel.transform.GetChild(0).transform.position += new Vector3(childOffset.x, Mathf.Abs(childOffset.y), childOffset.z);
+        }
     }
 
     void Start() {
@@ -69,8 +85,8 @@ public class GMPlayer : MonoBehaviour {
             }
         }
 
-        if (GameObject.Find("NextLevel")) {
-            if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.position)) {
+        if (GameObject.FindGameObjectWithTag("NextLevel")) {
+            if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.GetChild(0).transform.position)) {
                 ToNextLevel();
             }
         }
@@ -149,7 +165,7 @@ public class GMPlayer : MonoBehaviour {
                                 }
                             }
                             if (isWall) {
-                                tileHighlight.transform.position = currentWall.CellToWorld(wallCheck);
+                                tileHighlight.transform.position = currentMap.CellToWorld(wallCheck);
                                 tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
                             }
                             else {

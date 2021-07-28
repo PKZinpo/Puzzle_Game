@@ -4,14 +4,12 @@ using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public float moveUpSpeed = 0.01f;
-    public float movementSpeed = 1f;
+    public float moveUpSpeed;
+    public float movementSpeed;
     public Tilemap ground;
-    public Tilemap wall;
 
     public static Vector3 currentPosition;
 
-    private GameObject temp = null;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
     private bool bottomMove = false;
@@ -19,7 +17,6 @@ public class PlayerMovement : MonoBehaviour {
     private bool onSecondFloor = false;
 
     private static Tilemap currentGround;
-    private static Tilemap currentWall;
     private static Vector3 destination;
     private static Vector3 playerOffset;
     private static bool movetoDest = false;
@@ -28,7 +25,6 @@ public class PlayerMovement : MonoBehaviour {
     void Awake() {
         playerOffset = new Vector3(0.0f, -0.01f, 0.0f);
         currentGround = ground;
-        currentWall = wall;
         currentPosition = transform.parent.transform.position;
         if (currentPosition != currentGround.CellToWorld(currentGround.WorldToCell(currentPosition))) {
             currentPosition = currentGround.CellToWorld(currentGround.WorldToCell(currentPosition)) + playerOffset;
@@ -51,38 +47,30 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         if (movetoDest) {
-            var destinationGridPos = currentGround.WorldToCell(destination);
-            var destinationWallPos = new Vector3Int(destinationGridPos.x + 1, destinationGridPos.y + 1, 0);
-            if (currentWall.HasTile(destinationWallPos) && currentGround != currentWall) {
-                Debug.Log("There is a Wall");
-                movetoDest = false;
-            }
-            else {
-                if (topMove) {
-                    currentPosition = Vector3.MoveTowards(currentPosition, destination, movementSpeed * Time.deltaTime);
-                    if (currentPosition == destination) {
-                        transform.parent.transform.position = currentPosition + playerOffset;
-                        transform.position = transform.parent.transform.position - playerOffset;
-                        movetoDest = false;
-                        topMove = false;
-                    }
-                    else {
-                        transform.position = currentPosition;
-                    }
+            if (topMove) {
+                currentPosition = Vector3.MoveTowards(currentPosition, destination, movementSpeed * Time.deltaTime);
+                if (currentPosition == destination) {
+                    transform.parent.transform.position = currentPosition + playerOffset;
+                    transform.position = transform.parent.transform.position - playerOffset;
+                    movetoDest = false;
+                    topMove = false;
                 }
-                else if (bottomMove) {
-                    if (transform.parent.transform.position != destination + playerOffset) {
-                        transform.parent.transform.position = destination + playerOffset;
-                        transform.position = currentPosition;
-                    }
-                    currentPosition = Vector3.MoveTowards(currentPosition, destination, movementSpeed * Time.deltaTime);
-                    if (currentPosition == destination) {
-                        movetoDest = false;
-                        bottomMove = false;
-                    }
-                    else {
-                        transform.position = currentPosition;
-                    }
+                else {
+                    transform.position = currentPosition;
+                }
+            }
+            else if (bottomMove) {
+                if (transform.parent.transform.position != destination + playerOffset) {
+                    transform.parent.transform.position = destination + playerOffset;
+                    transform.position = currentPosition;
+                }
+                currentPosition = Vector3.MoveTowards(currentPosition, destination, movementSpeed * Time.deltaTime);
+                if (currentPosition == destination) {
+                    movetoDest = false;
+                    bottomMove = false;
+                }
+                else {
+                    transform.position = currentPosition;
                 }
             }
         }
