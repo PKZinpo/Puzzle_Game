@@ -100,55 +100,60 @@ public class GMStatue : MonoBehaviour {
         if (SelectionManager.selected) {
             moveObject = SelectionManager.objecttoMove;
             if (movetoDest) {
-                moveObject.transform.position = Vector3.MoveTowards(moveObject.transform.position, destination, movementSpeed * Time.deltaTime);
-                if (moveObject.transform.position == destination) {
-                    
-                    #region Set New Position in Statue Array
+                if (StatueData.statueList.ContainsKey(destination)) {
+                    movetoDest = false;
+                }
+                else {
+                    moveObject.transform.position = Vector3.MoveTowards(moveObject.transform.position, destination, movementSpeed * Time.deltaTime);
+                    if (moveObject.transform.position == destination) {
 
-                    StatueData.PopulateStatueList();
+                        #region Set New Position in Statue Array
 
-                    List<Vector3> tempStatue = new List<Vector3>();
-                    foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
-                        foreach (var position in activatorPosition) {
-                            if (item.transform.position == position) {
-                                tempStatue.Add(position);
-                                
+                        StatueData.PopulateStatueList();
+
+                        List<Vector3> tempStatue = new List<Vector3>();
+                        foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
+                            foreach (var position in activatorPosition) {
+                                if (item.transform.position == position) {
+                                    tempStatue.Add(position);
+
+                                }
                             }
                         }
-                    }
-                    if (activatorPosition.Contains(moveObject.transform.position)) {
-                        if (numStatue < tempStatue.Count) {
-                            StatueData.statueUIList.Add(moveObject.transform.position);
-                            numStatue++;
-                            Debug.Log("Added position " + currentMap.WorldToCell(moveObject.transform.position));
-                        }
-                        else {
-                            for (int i = 0; i < tempStatue.Count; i++) {
-                                if (!tempStatue.Contains(StatueData.statueUIList[i])) {
-                                    for (int j = 0; j < tempStatue.Count; j++) {
-                                        if (!StatueData.statueUIList.Contains(tempStatue[j])) {
-                                            Debug.Log("Switched position " + currentMap.WorldToCell(StatueData.statueUIList[i]) + " to " + currentMap.WorldToCell(tempStatue[j]));
-                                            StatueData.statueUIList[i] = tempStatue[j];
-                                            
+                        if (activatorPosition.Contains(moveObject.transform.position)) {
+                            if (numStatue < tempStatue.Count) {
+                                StatueData.statueUIList.Add(moveObject.transform.position);
+                                numStatue++;
+                                Debug.Log("Added position " + currentMap.WorldToCell(moveObject.transform.position));
+                            }
+                            else {
+                                for (int i = 0; i < tempStatue.Count; i++) {
+                                    if (!tempStatue.Contains(StatueData.statueUIList[i])) {
+                                        for (int j = 0; j < tempStatue.Count; j++) {
+                                            if (!StatueData.statueUIList.Contains(tempStatue[j])) {
+                                                Debug.Log("Switched position " + currentMap.WorldToCell(StatueData.statueUIList[i]) + " to " + currentMap.WorldToCell(tempStatue[j]));
+                                                StatueData.statueUIList[i] = tempStatue[j];
+
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
-                    }
-                    else {
-                        foreach (var item in StatueData.statueUIList) {
-                            if (!tempStatue.Contains(item)) {
-                                Debug.Log("Removed position " + currentMap.WorldToCell(item));
-                                StatueData.statueUIList.Remove(item);
-                                numStatue--;
-                                break;
+                        else {
+                            foreach (var item in StatueData.statueUIList) {
+                                if (!tempStatue.Contains(item)) {
+                                    Debug.Log("Removed position " + currentMap.WorldToCell(item));
+                                    StatueData.statueUIList.Remove(item);
+                                    numStatue--;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    #endregion
+                        #endregion
 
-                    movetoDest = false;
+                        movetoDest = false;
+                    }
                 }
             }
         }

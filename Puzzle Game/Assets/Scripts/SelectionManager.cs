@@ -5,7 +5,6 @@ public class SelectionManager : MonoBehaviour {
     #region Variables
 
     public GameObject highlightPrefab;
-    public static GameObject HL;
     private static GameObject highlight;
     public static GameObject objecttoMove;
 
@@ -15,9 +14,6 @@ public class SelectionManager : MonoBehaviour {
     #endregion
 
     void Update() {
-        if (GameObject.Find("Highlight(Clone)") != null) {
-            highlight.transform.position = objecttoMove.transform.position;
-        }
         if (Input.GetMouseButtonDown(0)) {
             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);

@@ -1472,6 +1472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Selection Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2071791742418259761, guid: ac393dd00b1321944af2ae22bbb04c3e, type: 3}
+      propertyPath: highlightPrefab
+      value: 
+      objectReference: {fileID: 893465021930033999, guid: 799e75c6c270e214ba04bcee89c6dc9b, type: 3}
     m_RemovedComponents:
     - {fileID: 2071791742238899847, guid: ac393dd00b1321944af2ae22bbb04c3e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ac393dd00b1321944af2ae22bbb04c3e, type: 3}
