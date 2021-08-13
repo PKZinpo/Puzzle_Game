@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f04cc97491d7b4ca6731395c0e964e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightPrefab: {fileID: 8774440018648820758, guid: f011b44f5045cb94b8b3fd298c59987b, type: 3}
+  highlightPrefab: {fileID: 893465021930033999, guid: 799e75c6c270e214ba04bcee89c6dc9b, type: 3}

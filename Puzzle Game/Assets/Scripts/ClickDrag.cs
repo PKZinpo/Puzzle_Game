@@ -1,21 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler {
+public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
 
     #region Variables
 
     private GameObject temp = null;
+    private GameObject selectTemp = null;
     private Vector3 firstStatue;
     private Transform returnTo = null;
     private RectTransform rectTransform;
     private static int prevPos;
 
+    public GameObject iconSelect;
+
     #endregion
 
     private void Awake() {
         rectTransform = GetComponent<RectTransform>();
+    }
+    void Update() {
+        if (SelectionManager.objecttoMove != null) {
+            if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
+                MakeIconSelection();
+            }
+            else {
+                if (selectTemp != null) {
+                    DestroyIconSelection();
+                }
+            }
+        }
+        else {
+            if (selectTemp != null) {
+                DestroyIconSelection();
+            }
+        }
+        if (selectTemp != null) {
+            selectTemp.transform.position = new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z);
+        }
+        
     }
     public void OnBeginDrag(PointerEventData eventData) {
         #region Create Placeholder
@@ -41,6 +66,8 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         returnTo = transform.parent;
         transform.SetParent(transform.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        Debug.Log("Dragged");
     }
     public void OnDrag(PointerEventData eventData) {
         rectTransform.anchoredPosition += eventData.delta;
@@ -86,5 +113,21 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(temp);
+    }
+
+    public void OnPointerClick(PointerEventData eventData) {
+        if (SceneManager.GetActiveScene().name.Contains("Statue")) {
+
+        }
+        Debug.Log("Clicked");
+    }
+    public void DestroyIconSelection() {
+        Destroy(selectTemp);
+        selectTemp = null;
+    }
+    public void MakeIconSelection() {
+        if (selectTemp == null) {
+            selectTemp = Instantiate(iconSelect);
+        }
     }
 }

@@ -5,6 +5,7 @@ public class SelectionManager : MonoBehaviour {
     #region Variables
 
     public GameObject highlightPrefab;
+    public GameObject iconList;
     private static GameObject highlight;
     public static GameObject objecttoMove;
 
@@ -26,6 +27,7 @@ public class SelectionManager : MonoBehaviour {
                 }
                 else if (selected) {
                     selectedObject = null;
+                    objecttoMove = null;
                     RemoveHighlight();
                     selected = false;
                 }
@@ -34,9 +36,20 @@ public class SelectionManager : MonoBehaviour {
                     objecttoMove = GameObject.Find(selectedObject);
                     AddHighlight();
                     selected = true;
+                    //if (StatueData.statueUIList.Contains(transform.position)) {
+                    //    for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                    //        if (StatueData.statueUIList[i] == transform.position) {
+                    //            iconList.transform.GetChild(i).GetComponent<ClickDrag>().MakeIconSelection();
+                    //            break;
+                    //        }
+                    //    }
+                    //}
                 }
             }
         }
+        //if (objecttoMove != null) {
+
+        //}
     }
     public void AddHighlight() {
         highlight = Instantiate(highlightPrefab);

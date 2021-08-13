@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f98c882668cb0ba48b1d381a717df619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iconSelect: {fileID: 5535421736391382880, guid: ee398b0e183a77448a18c8f07578cfe2, type: 3}
 --- !u!114 &6289874983271199207
 MonoBehaviour:
   m_ObjectHideFlags: 0
