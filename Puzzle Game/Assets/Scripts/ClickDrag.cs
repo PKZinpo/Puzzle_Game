@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler {
 
@@ -22,19 +22,30 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         rectTransform = GetComponent<RectTransform>();
     }
     void Update() {
-        if (SelectionManager.objecttoMove != null) {
-            if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
-                MakeIconSelection();
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name.Contains("Statue")) {
+            if (SelectionManager.objecttoMove != null) {
+                int i = 0;
+                foreach (var item in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                    if (item.GetComponent<ClickDrag>().temp != null) {
+                        i++;
+                    }
+                }
+                if (i == 0) {
+                    if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
+                        MakeIconSelection();
+                    }
+                    else {
+                        if (selectTemp != null) {
+                            DestroyIconSelection();
+                        }
+                    }
+                }
             }
             else {
                 if (selectTemp != null) {
                     DestroyIconSelection();
                 }
-            }
-        }
-        else {
-            if (selectTemp != null) {
-                DestroyIconSelection();
             }
         }
         if (selectTemp != null) {
@@ -66,8 +77,6 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         returnTo = transform.parent;
         transform.SetParent(transform.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-        Debug.Log("Dragged");
     }
     public void OnDrag(PointerEventData eventData) {
         rectTransform.anchoredPosition += eventData.delta;
@@ -113,13 +122,49 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(temp);
+        temp = null;
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (SceneManager.GetActiveScene().name.Contains("Statue")) {
-
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name.Contains("Player")) {
+            foreach (var item in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                if (item != gameObject) {
+                    if (item.GetComponent<ClickDrag>().selectTemp != null) {
+                        item.GetComponent<ClickDrag>().DestroyIconSelection();
+                    }
+                }
+            }
+            if (selectTemp == null) {
+                MakeIconSelection();
+            }
+            else {
+                DestroyIconSelection();
+            }
         }
-        Debug.Log("Clicked");
+        else if (SelectionManager.objecttoMove != null && SelectionManager.objecttoMove.transform.position != StatueData.statueUIList[transform.GetSiblingIndex()]) {
+            SelectionManager.RemoveHighlight();
+            foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
+                if (StatueData.statueUIList[transform.GetSiblingIndex()] == statue.transform.position) {
+                    SelectionManager.objecttoMove = statue;
+                    SelectionManager.AddHighlight();
+                    break;
+                }
+            }
+        }
+        else if (SelectionManager.objecttoMove == null) {
+            foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
+                if (StatueData.statueUIList[transform.GetSiblingIndex()] == statue.transform.position) {
+                    SelectionManager.objecttoMove = statue;
+                    SelectionManager.AddHighlight();
+                    break;
+                }
+            }
+        }
+        else {
+            SelectionManager.objecttoMove = null;
+            SelectionManager.RemoveHighlight();
+        }
     }
     public void DestroyIconSelection() {
         Destroy(selectTemp);

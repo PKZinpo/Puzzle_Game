@@ -34,10 +34,25 @@ TextureImporter:
     second: Ground Statue Tile
   - first:
       213: -4557375427250453517
-    second: Ground Exit Tile
+    second: Ground Exit TIle
   - first:
       213: 7763473068154355040
     second: Ground Exit Glow
+  - first:
+      213: 7363881875361491753
+    second: Tilemap Ground Full
+  - first:
+      213: -3616994908031497827
+    second: Tilemap Ground Half
+  - first:
+      213: -1894863803569448918
+    second: Tilemap Broken
+  - first:
+      213: -2499085850056691515
+    second: Tilemap Exit
+  - first:
+      213: 3627806819175599296
+    second: Tilemap Ice
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -137,6 +152,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -361,7 +388,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground Exit Tile
+      name: Ground Exit TIle
       rect:
         serializedVersion: 2
         x: 96
@@ -398,6 +425,111 @@ TextureImporter:
       bones: []
       spriteID: 06df6a27f956dbb60800000000000000
       internalID: 7763473068154355040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Ground Full
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92bebd4dc83c13660800000000000000
+      internalID: 7363881875361491753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Ground Half
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d99c2687b4addcdc0800000000000000
+      internalID: -3616994908031497827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Broken
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a285f7af86714b5e0800000000000000
+      internalID: -1894863803569448918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Exit
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c07a2cf8a6715dd0800000000000000
+      internalID: -2499085850056691515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Ice
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cc83b2c41f885230800000000000000
+      internalID: 3627806819175599296
       vertices: []
       indices: 
       edges: []

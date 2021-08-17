@@ -5,15 +5,18 @@ public class SelectionManager : MonoBehaviour {
     #region Variables
 
     public GameObject highlightPrefab;
-    public GameObject iconList;
-    private static GameObject highlight;
-    public static GameObject objecttoMove;
 
+    private static GameObject highlight;
+
+    public static GameObject hlPrefab;
+    public static GameObject objecttoMove;
     public static string selectedObject;
     public static bool selected = false;
 
     #endregion
-
+    void Awake() {
+        hlPrefab = highlightPrefab;
+    }
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
             var ray = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,23 +39,12 @@ public class SelectionManager : MonoBehaviour {
                     objecttoMove = GameObject.Find(selectedObject);
                     AddHighlight();
                     selected = true;
-                    //if (StatueData.statueUIList.Contains(transform.position)) {
-                    //    for (int i = 0; i < StatueData.statueUIList.Count; i++) {
-                    //        if (StatueData.statueUIList[i] == transform.position) {
-                    //            iconList.transform.GetChild(i).GetComponent<ClickDrag>().MakeIconSelection();
-                    //            break;
-                    //        }
-                    //    }
-                    //}
                 }
             }
         }
-        //if (objecttoMove != null) {
-
-        //}
     }
-    public void AddHighlight() {
-        highlight = Instantiate(highlightPrefab);
+    public static void AddHighlight() {
+        highlight = Instantiate(hlPrefab);
     }
     public static void RemoveHighlight() {
         Destroy(highlight.gameObject);

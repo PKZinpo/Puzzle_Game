@@ -22,7 +22,7 @@ public class GMPlayer : MonoBehaviour {
     public static GameObject tileHighlight;
     public static GameObject shadow;
 
-
+    private bool hideWall = false;
     private Vector3Int direction;
 
     private static string sceneSwitchTo;
@@ -81,6 +81,29 @@ public class GMPlayer : MonoBehaviour {
                         AddTileHighlight();
                     }
                     highlightVal = stepVal;
+                }
+            }
+        }
+
+        if (hideWall) {
+            if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
+                foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
+                    Color color = wall.GetComponent<SpriteRenderer>().color;
+                    if (color.a != 0) {
+                        color.a = 0;
+                        wall.GetComponent<SpriteRenderer>().color = color;
+                    }
+                }
+            }        
+        }
+        else if (!hideWall) {
+            if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
+                foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
+                    Color color = wall.GetComponent<SpriteRenderer>().color;
+                    if (color.a != 1) {
+                        color.a = 1;
+                        wall.GetComponent<SpriteRenderer>().color = color;
+                    }
                 }
             }
         }
@@ -192,5 +215,7 @@ public class GMPlayer : MonoBehaviour {
         GMStatue.ClearActivatorPositions();
         GMStatue.numStatue = 0;
     }
-    
+    public void HideWallTiles() {
+        hideWall = !hideWall;
+    }
 }

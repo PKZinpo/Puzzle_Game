@@ -44,14 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentGround: {fileID: 0}
-  currentWall: {fileID: 0}
-  brokenPlatform: {fileID: 11400000, guid: 51b8bb1de0ad2dd4589a1c3e3c4439ef, type: 2}
+  brokenPlatform: {fileID: 11400000, guid: b204c3e6db1fa7e488877c0e1eca4906, type: 2}
   groundFullTile: {fileID: 11400000, guid: 0388f22d15368b2468a370a70eac65de, type: 2}
   groundHalfTile: {fileID: 11400000, guid: ae5379a6fe2271a458f8aba5d4c9705d, type: 2}
-  groundTile: {fileID: 11400000, guid: 38a7a78d713a99643b08e8fb333a2205, type: 2}
-  wallTile: {fileID: 11400000, guid: 05e6cd22fea07fd4fb93e9c1ac3502d1, type: 2}
   brokenTile: {fileID: 5021488285693432604, guid: f154f1a8132b9f64a9c85a32f1c517e2, type: 3}
   fullTile: {fileID: 7826522137618696053, guid: 8c0385f3d65a3b34db225596e0235f62, type: 3}
   halfTile: {fileID: 2040119986914613435, guid: 7c2a8662c5670294093c00fa96c1bf62, type: 3}
   tempWall: {fileID: 161698257690956546, guid: 8fd4e8b9d4c67554c8d5fcb51e66b261, type: 3}
-  wallOffset: {x: 0, y: -0.02, z: 0}
+  playerObj: {fileID: 0}

@@ -86,7 +86,7 @@ public class TileMoving : MonoBehaviour {
             }
             if (isWall) {
                 tileType = wallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
-                if (tileType == "Ground Exit Tile") {
+                if (tileType.Contains("Exit Tile")) {
                     Debug.Log("Cannot move Tile");
                 }
                 else {
@@ -111,21 +111,21 @@ public class TileMoving : MonoBehaviour {
             }
             else if (ground.HasTile(tilePos[i])) {
                 tileType = ground.GetTile(tilePos[i]).name;
-                if (tileType == "Ground Exit Tile") {
+                if (tileType.Contains("Exit Tile")) {
                     Debug.Log("Cannot move Tile");
                 }
                 else {
                     ground.SetTile(tilePos[i], null);
                     switch (tileType) {
-                        case "Ground Full Tile":
+                        case "Tilemap Ground Full":
                             tile = Instantiate(fullgroundTile);
                             break;
 
-                        case "Ground Half Tile":
+                        case "Tilemap Ground Half":
                             tile = Instantiate(halfgroundTile);
                             break;
 
-                        case "Broken Tile":
+                        case "Tilemap Broken":
                             tile = Instantiate(brokengroundTile);
                             tile.GetComponent<TileProperties>().ChangeMoveUp();
                             break;
