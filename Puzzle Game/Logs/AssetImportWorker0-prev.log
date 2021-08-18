@@ -383,3 +383,36 @@ AssetImportParameters requested are different than current active one (requested
   custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 16693.104540 seconds.
+  path: Assets/Resources/Background Player.png
+  artifactKey: Guid(6ad9b7f3909c5d34f8b72cd58944b249) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Background Player.png using Guid(6ad9b7f3909c5d34f8b72cd58944b249) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce5d90d6dab926894af6eb71cacf974f') in 0.061475 seconds 
+  Import took 0.065022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Resources/Background Statue.png
+  artifactKey: Guid(2edd287f4b6b56e42996fa58e6fb9606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Background Statue.png using Guid(2edd287f4b6b56e42996fa58e6fb9606) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d431acc9c4158f906cd8770da4eb544') in 0.011211 seconds 
+  Import took 0.014218 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/Resources/Player Statue-Sheet.png
+  artifactKey: Guid(d10a09639aefdd44b807b18d7f83be14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Player Statue-Sheet.png using Guid(d10a09639aefdd44b807b18d7f83be14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a15aa7cd5028cfa947efaec89582198') in 0.025526 seconds 
+  Import took 0.028661 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 524.920418 seconds.
+  path: Assets/Scenes/Level1/Player1.unity
+  artifactKey: Guid(7a010e31a69f7d04f87b9d635a5dc0c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Level1/Player1.unity using Guid(7a010e31a69f7d04f87b9d635a5dc0c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8c5b9ed170e402e360cac756783625c') in 0.022222 seconds 
+  Import took 0.025511 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
