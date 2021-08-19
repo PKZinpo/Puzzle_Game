@@ -15,6 +15,7 @@ public class GMStatue : MonoBehaviour {
 
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
+    private bool activatorOn = false;
     private static GameObject moveObject;
     private static bool movetoDest = false;
     private static Vector3 destination;
@@ -116,12 +117,18 @@ public class GMStatue : MonoBehaviour {
                             foreach (var position in activatorPosition) {
                                 if (item.transform.position == position) {
                                     tempStatue.Add(position);
-
                                 }
                             }
                         }
                         if (activatorPosition.Contains(moveObject.transform.position)) {
                             if (numStatue < tempStatue.Count) {
+                                foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+                                    if (activator.transform.position == moveObject.transform.position) {
+                                        activator.GetComponent<Animator>().SetTrigger("On");
+                                        SwitchActivator();
+                                    }
+                                    break;
+                                }
                                 StatueData.statueUIList.Add(moveObject.transform.position);
                                 numStatue++;
                                 Debug.Log("Added position " + currentMap.WorldToCell(moveObject.transform.position));
@@ -143,6 +150,12 @@ public class GMStatue : MonoBehaviour {
                         else {
                             foreach (var item in StatueData.statueUIList) {
                                 if (!tempStatue.Contains(item)) {
+                                    foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+                                        if (activator.transform.position == item) {
+                                            activator.GetComponent<Animator>().SetTrigger("Off");
+                                        }
+                                        break;
+                                    }
                                     Debug.Log("Removed position " + currentMap.WorldToCell(item));
                                     StatueData.statueUIList.Remove(item);
                                     numStatue--;
@@ -226,5 +239,8 @@ public class GMStatue : MonoBehaviour {
     }
     public static void ClearActivatorPositions() {
         activatorPosition.Clear();
+    }
+    public void SwitchActivator() {
+        activatorOn = !activatorOn;
     }
 }
