@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class StatueSort : MonoBehaviour, IDropHandler {
+public class StatueSort : MonoBehaviour {
 
     #region Variables
 
@@ -56,13 +55,4 @@ public class StatueSort : MonoBehaviour, IDropHandler {
             listNum = StatueData.statueUIList.Count;
         }
     }
-
-
-
-
-
-    public void OnDrop(PointerEventData eventData) {
-        //Debug.Log("Dropped");
-    }
-
 }

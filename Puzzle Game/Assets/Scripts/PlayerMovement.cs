@@ -4,6 +4,8 @@ using UnityEngine.Rendering;
 
 public class PlayerMovement : MonoBehaviour {
 
+    #region Variables
+
     public float moveUpSpeed;
     public float movementSpeed;
     public Tilemap ground;
@@ -21,6 +23,8 @@ public class PlayerMovement : MonoBehaviour {
     private static Vector3 playerOffset;
     private static bool movetoDest = false;
     private static bool movingUp = false;
+
+    #endregion
 
     void Awake() {
         playerOffset = new Vector3(0.0f, -0.01f, 0.0f);
@@ -74,15 +78,6 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
-        //if (!TileMoving.isMoving) {
-        //    if (!currentGround.HasTile(currentGround.WorldToCell(currentPosition))) {
-        //        GMPlayer.ResetLevel();
-        //    }
-        //    if (temp != null) {
-        //        transform.SetParent(transform.parent.parent);
-        //        Destroy(temp);
-        //    }
-        //}
     }
 
     #region ArrowMovement

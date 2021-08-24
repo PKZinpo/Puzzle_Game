@@ -15,7 +15,6 @@ public class GMStatue : MonoBehaviour {
 
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
-    private bool activatorOn = false;
     private static GameObject moveObject;
     private static bool movetoDest = false;
     private static Vector3 destination;
@@ -61,6 +60,7 @@ public class GMStatue : MonoBehaviour {
                 Statues[i].transform.position = item.Key;
                 Statues[i].GetComponent<StatueType>().statueType = item.Value.type;
                 Statues[i].GetComponent<StatueType>().yAxis = item.Value.isTurned;
+                Statues[i].GetComponent<StatueType>().isOn = item.Value.isActive;
                 i++;
             }
         }
@@ -122,16 +122,11 @@ public class GMStatue : MonoBehaviour {
                         }
                         if (activatorPosition.Contains(moveObject.transform.position)) {
                             if (numStatue < tempStatue.Count) {
-                                foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
-                                    if (activator.transform.position == moveObject.transform.position) {
-                                        activator.GetComponent<Animator>().SetTrigger("On");
-                                        SwitchActivator();
-                                    }
-                                    break;
-                                }
+                                ActivatorSwitchOn();
                                 StatueData.statueUIList.Add(moveObject.transform.position);
                                 numStatue++;
                                 Debug.Log("Added position " + currentMap.WorldToCell(moveObject.transform.position));
+                                moveObject.GetComponent<StatueType>().onSwitch = true;
                             }
                             else {
                                 for (int i = 0; i < tempStatue.Count; i++) {
@@ -139,8 +134,9 @@ public class GMStatue : MonoBehaviour {
                                         for (int j = 0; j < tempStatue.Count; j++) {
                                             if (!StatueData.statueUIList.Contains(tempStatue[j])) {
                                                 Debug.Log("Switched position " + currentMap.WorldToCell(StatueData.statueUIList[i]) + " to " + currentMap.WorldToCell(tempStatue[j]));
+                                                ActivatorSwitchOff(StatueData.statueUIList[i]);
                                                 StatueData.statueUIList[i] = tempStatue[j];
-
+                                                ActivatorSwitchOn();
                                             }
                                         }
                                     }
@@ -150,14 +146,10 @@ public class GMStatue : MonoBehaviour {
                         else {
                             foreach (var item in StatueData.statueUIList) {
                                 if (!tempStatue.Contains(item)) {
-                                    foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
-                                        if (activator.transform.position == item) {
-                                            activator.GetComponent<Animator>().SetTrigger("Off");
-                                        }
-                                        break;
-                                    }
+                                    ActivatorSwitchOff(item);
                                     Debug.Log("Removed position " + currentMap.WorldToCell(item));
                                     StatueData.statueUIList.Remove(item);
+                                    moveObject.GetComponent<StatueType>().onSwitch = true;
                                     numStatue--;
                                     break;
                                 }
@@ -240,7 +232,20 @@ public class GMStatue : MonoBehaviour {
     public static void ClearActivatorPositions() {
         activatorPosition.Clear();
     }
-    public void SwitchActivator() {
-        activatorOn = !activatorOn;
+    public void ActivatorSwitchOn() {
+        foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+            if (activator.transform.position == moveObject.transform.position) {
+                activator.GetComponent<Animator>().SetTrigger("On");            
+                break;
+            }
+        }
+    }
+    public void ActivatorSwitchOff(Vector3 position) {
+        foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+            if (activator.transform.position == position) {
+                activator.GetComponent<Animator>().SetTrigger("Off");
+                break;
+            }
+        }
     }
 }

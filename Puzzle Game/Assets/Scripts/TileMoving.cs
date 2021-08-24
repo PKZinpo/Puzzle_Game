@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.Rendering;
 
 public class TileMoving : MonoBehaviour {
 

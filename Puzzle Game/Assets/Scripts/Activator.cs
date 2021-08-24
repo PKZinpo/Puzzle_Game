@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Activator : MonoBehaviour {
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
 
-    // Update is called once per frame
-    void Update() {
-        
+    private Animator anim;
+    private bool activatorOn = false;
+
+    void Awake() {
+        anim = GetComponent<Animator>();
+    }
+    public void SwitchActivator() {
+        activatorOn = !activatorOn;
+        if (!activatorOn) {
+            anim.SetBool("Activator", activatorOn);
+        }
     }
 }

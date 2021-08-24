@@ -5,6 +5,7 @@ public class StatueIcon {
     public string type;
     public string animationName;
     public bool isTurned;
+    public bool isActive;
 }
 
 public class StatueData : MonoBehaviour {
@@ -37,7 +38,8 @@ public class StatueData : MonoBehaviour {
             for (int i = 0; i < Statues.Length; i++) {
                 statueList.Add(Statues[i].transform.position, new StatueIcon() {
                     type = Statues[i].GetComponent<StatueType>().statueType,
-                    isTurned = Statues[i].GetComponent<StatueType>().yAxis
+                    isTurned = Statues[i].GetComponent<StatueType>().yAxis,
+                    isActive = Statues[i].GetComponent<StatueType>().isOn
                 });
             }
         }

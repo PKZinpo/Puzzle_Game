@@ -32,8 +32,15 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                     }
                 }
                 if (i == 0) {
-                    if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
-                        MakeIconSelection();
+                    if (StatueData.statueUIList.Contains(SelectionManager.objecttoMove.transform.position)) {
+                        if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
+                            MakeIconSelection();
+                        }
+                        else {
+                            if (selectTemp != null) {
+                                DestroyIconSelection();
+                            }
+                        }
                     }
                     else {
                         if (selectTemp != null) {
@@ -51,7 +58,6 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         if (selectTemp != null) {
             selectTemp.transform.position = new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z);
         }
-        
     }
     public void OnBeginDrag(PointerEventData eventData) {
         #region Create Placeholder
