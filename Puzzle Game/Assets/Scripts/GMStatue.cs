@@ -33,14 +33,6 @@ public class GMStatue : MonoBehaviour {
     void Awake() {
         sceneSwitchTo = playerScene;
 
-        foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
-            foreach (var position in activatorPosition) {
-                if (item.transform.position == position) {
-                    numStatue++;
-                }
-            }
-        }
-
         #region Alignment
 
         if (GameObject.FindGameObjectsWithTag("Statue").Length != 0) {
@@ -69,6 +61,7 @@ public class GMStatue : MonoBehaviour {
                 if (activator.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position))) {
                     activator.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position));
                 }
+                Debug.Log(activator.transform.position);
             }
             if (activatorPosition.Count == 0) {
                 foreach (var item in GameObject.FindGameObjectsWithTag("Activator")) {
@@ -80,12 +73,35 @@ public class GMStatue : MonoBehaviour {
 
         #endregion
 
+        List<Vector3> tempStatue = new List<Vector3>();
+
+        foreach (var item in GameObject.FindGameObjectsWithTag("Statue")) {
+            foreach (var position in activatorPosition) {
+                if (item.transform.position == position) {
+                    tempStatue.Add(position);
+                    break;
+                }
+            }
+            if (activatorPosition.Contains(item.transform.position)) {
+                if (numStatue < tempStatue.Count) {
+                    foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
+                        if (activator.transform.position == item.transform.position) {
+                            activator.GetComponent<Animator>().SetTrigger("On");
+                            break;
+                        }
+                    }
+                    StatueData.statueUIList.Add(item.transform.position);
+                    numStatue++;
+                    item.GetComponent<StatueType>().onSwitch = true;
+                }
+            }
+        }
     }
 
     void Start() {
         #region Level1
 
-        
+
 
         #endregion
     }
@@ -117,6 +133,7 @@ public class GMStatue : MonoBehaviour {
                             foreach (var position in activatorPosition) {
                                 if (item.transform.position == position) {
                                     tempStatue.Add(position);
+                                    break;
                                 }
                             }
                         }
