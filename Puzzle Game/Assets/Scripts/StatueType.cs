@@ -26,7 +26,7 @@ public class StatueType : MonoBehaviour {
                 anim.SetTrigger("StartOnX");
             }
         }
-        if (yAxis) {
+        else if (yAxis) {
             anim.SetTrigger("StartOffY");
         }
     }
@@ -65,8 +65,10 @@ public class StatueType : MonoBehaviour {
     }
     public void IdleToOn() {
         anim.SetBool("ToOn", false);
+        StatueData.PopulateStatueList();
     }
     public void IdleToOff() {
         anim.SetBool("ToOff", false);
+        StatueData.PopulateStatueList();
     }
 }
