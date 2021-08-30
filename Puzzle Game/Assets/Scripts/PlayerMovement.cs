@@ -9,11 +9,13 @@ public class PlayerMovement : MonoBehaviour {
     public float moveUpSpeed;
     public float movementSpeed;
     public Tilemap ground;
+    public GameObject brokenTileObject;
 
     public static Vector3 currentPosition;
 
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
+    private Vector3Int prevgridPos;
     private bool bottomMove = false;
     private bool topMove = false;
     private bool onSecondFloor = false;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         playerOffset = new Vector3(0.0f, -0.01f, 0.0f);
         currentGround = ground;
         currentPosition = transform.parent.transform.position;
+        prevgridPos = currentGround.WorldToCell(currentPosition);
         if (currentPosition != currentGround.CellToWorld(currentGround.WorldToCell(currentPosition))) {
             currentPosition = currentGround.CellToWorld(currentGround.WorldToCell(currentPosition)) + playerOffset;
             transform.parent.transform.position = currentPosition;
@@ -58,6 +61,7 @@ public class PlayerMovement : MonoBehaviour {
                     transform.position = transform.parent.transform.position - playerOffset;
                     movetoDest = false;
                     topMove = false;
+                    CheckBrokenTile();
                 }
                 else {
                     transform.position = currentPosition;
@@ -72,6 +76,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (currentPosition == destination) {
                     movetoDest = false;
                     bottomMove = false;
+                    CheckBrokenTile();
                 }
                 else {
                     transform.position = currentPosition;
@@ -190,6 +195,46 @@ public class PlayerMovement : MonoBehaviour {
     public static void MovePlayerUp() {
         if (!movingUp) {
             movingUp = true;
+        }
+    }
+    public void CheckBrokenTile() {
+        if (onSecondFloor) {
+            foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
+                if (tile.transform.position == currentGround.CellToWorld(prevgridPos)) {
+                    if (tile.name.Contains("Broken")) {
+                        Destroy(tile);
+                        GameObject temp = Instantiate(brokenTileObject);
+                        temp.transform.position = currentGround.CellToWorld(prevgridPos);
+                        temp.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
+                        temp.GetComponent<TileProperties>().ChangeMoveUp();
+                        temp.GetComponent<TileProperties>().ChangeDisappearing();
+                        break;
+                    }
+                }
+            }
+        }
+        else {
+            if (currentGround.GetTile(prevgridPos).name.Contains("Broken")) {
+                currentGround.SetTile(prevgridPos, null);
+                GameObject temp = Instantiate(brokenTileObject);
+                temp.transform.position = currentGround.CellToWorld(prevgridPos);
+                temp.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
+                temp.GetComponent<TileProperties>().ChangeMoveUp();
+                temp.GetComponent<TileProperties>().ChangeDisappearing();
+            }
+        }
+        prevgridPos = currentGround.WorldToCell(currentPosition);
+    }
+    public void CheckIceTile(Vector3 destination) {
+        if (currentGround.GetTile(currentGround.WorldToCell(destination)).name.Contains("Ice")) {
+            Vector3Int currentDestination = currentGround.WorldToCell(destination);
+            Vector3Int newDestination;
+            if (topMove) {
+                
+            }
+            else {
+
+            }
         }
     }
 }

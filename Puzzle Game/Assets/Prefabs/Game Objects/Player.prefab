@@ -142,6 +142,8 @@ MonoBehaviour:
   moveUpSpeed: 0.4
   movementSpeed: 1
   ground: {fileID: 0}
+  brokenTile: {fileID: 11400000, guid: 51b8bb1de0ad2dd4589a1c3e3c4439ef, type: 2}
+  brokenTileObject: {fileID: 5021488285693432604, guid: f154f1a8132b9f64a9c85a32f1c517e2, type: 3}
 --- !u!95 &2672727436874072298
 Animator:
   serializedVersion: 3

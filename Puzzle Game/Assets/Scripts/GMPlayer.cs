@@ -89,23 +89,25 @@ public class GMPlayer : MonoBehaviour {
             if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
                 foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
                     Color color = wall.GetComponent<SpriteRenderer>().color;
-                    if (color.a != 0) {
-                        color.a = 0;
+                    if (color.a >= 0) {
+                        color.a -= 0.01f;
                         wall.GetComponent<SpriteRenderer>().color = color;
                     }
                 }
-            }        
+            }
+            GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOn");
         }
         else if (!hideWall) {
             if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
                 foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
                     Color color = wall.GetComponent<SpriteRenderer>().color;
-                    if (color.a != 1) {
-                        color.a = 1;
+                    if (color.a <= 1) {
+                        color.a += 0.01f;
                         wall.GetComponent<SpriteRenderer>().color = color;
                     }
                 }
             }
+            GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOff");
         }
 
         if (GameObject.FindGameObjectWithTag("NextLevel")) {

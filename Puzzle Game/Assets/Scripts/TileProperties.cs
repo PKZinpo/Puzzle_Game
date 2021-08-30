@@ -31,17 +31,19 @@ public class TileProperties : MonoBehaviour {
     }
     public void RemoveTile() {
         if (disappearing) {
-            //Debug.Log("Disappear");
-            Destroy(transform.parent.gameObject);
+            if (transform.parent != null) {
+                Destroy(transform.parent.gameObject);
+            }
+            else {
+                Destroy(gameObject);
+            }
         }
         else if (moveUp) {
             TileMoving.PlaceTiles(transform.position, "Wall", name);
-            //Debug.Log("Move Up");
             Destroy(gameObject);
         }
         else {
             TileMoving.PlaceTiles(transform.position, "Ground", name);
-            //Debug.Log("Appear");
             Destroy(gameObject);
         }
     }

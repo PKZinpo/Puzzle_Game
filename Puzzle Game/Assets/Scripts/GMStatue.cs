@@ -61,7 +61,6 @@ public class GMStatue : MonoBehaviour {
                 if (activator.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position))) {
                     activator.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(activator.transform.position));
                 }
-                Debug.Log(activator.transform.position);
             }
             if (activatorPosition.Count == 0) {
                 foreach (var item in GameObject.FindGameObjectsWithTag("Activator")) {
