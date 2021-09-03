@@ -49,11 +49,13 @@ public class StatueType : MonoBehaviour {
     }
 
     public void ToTurn() {
-        turn = !turn;
-        if (yAxis) {
-            yAxis = !yAxis;
+        if (!statueType.Contains("Ice")) {
+            turn = !turn;
+            if (yAxis) {
+                yAxis = !yAxis;
+            }
+            StatueData.PopulateStatueList();
         }
-        StatueData.PopulateStatueList();
     }
     public void SwitchAxis() {
         yAxis = !yAxis;
