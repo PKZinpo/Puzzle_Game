@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering;
+using System;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour {
                     movetoDest = false;
                     topMove = false;
                     CheckBrokenTile();
+                    CheckTileUnder();
                 }
                 else {
                     transform.position = currentPosition;
@@ -77,6 +79,7 @@ public class PlayerMovement : MonoBehaviour {
                     movetoDest = false;
                     bottomMove = false;
                     CheckBrokenTile();
+                    CheckTileUnder();
                 }
                 else {
                     transform.position = currentPosition;
@@ -106,6 +109,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (currentGround.HasTile(togridPos)) {
                     destination = currentGround.CellToWorld(togridPos);
                     destination = new Vector3(destination.x, destination.y, 0);
+                    CheckIceTile(destination);
                     movetoDest = true;
                     topMove = true;
                 }
@@ -132,6 +136,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (currentGround.HasTile(togridPos)) {
                     destination = currentGround.CellToWorld(togridPos);
                     destination = new Vector3(destination.x, destination.y, 0);
+                    CheckIceTile(destination);
                     movetoDest = true;
                     topMove = true;
                 }
@@ -158,6 +163,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (currentGround.HasTile(togridPos)) {
                     destination = currentGround.CellToWorld(togridPos);
                     destination = new Vector3(destination.x, destination.y, 0);
+                    CheckIceTile(destination);
                     movetoDest = true;
                     bottomMove = true;
                 }
@@ -184,6 +190,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (currentGround.HasTile(togridPos)) {
                     destination = currentGround.CellToWorld(togridPos);
                     destination = new Vector3(destination.x, destination.y, 0);
+                    CheckIceTile(destination);
                     movetoDest = true;
                     bottomMove = true;
                 }
@@ -225,16 +232,22 @@ public class PlayerMovement : MonoBehaviour {
         }
         prevgridPos = currentGround.WorldToCell(currentPosition);
     }
-    public void CheckIceTile(Vector3 destination) {
-        if (currentGround.GetTile(currentGround.WorldToCell(destination)).name.Contains("Ice")) {
-            Vector3Int currentDestination = currentGround.WorldToCell(destination);
-            Vector3Int newDestination;
-            if (topMove) {
-                
+    public void CheckIceTile(Vector3 dest) {
+        Vector3Int currentPos = currentGround.WorldToCell(transform.position);
+        Vector3Int currentDestination = currentGround.WorldToCell(dest);
+        Vector3Int direction = currentDestination - currentPos;
+        while (currentGround.GetTile(currentDestination).name.Contains("Ice")) {
+            Debug.Log("ICE");
+            currentDestination = currentDestination + direction;
+            if (currentGround.GetTile(currentDestination) == null) {
+                break;
             }
-            else {
-
-            }
+        }
+        destination = currentGround.CellToWorld(currentDestination);
+    }
+    public void CheckTileUnder() {
+        if (currentGround.GetTile(currentGround.WorldToCell(transform.position)) == null) {
+            GMPlayer.ResetLevel();
         }
     }
 }
