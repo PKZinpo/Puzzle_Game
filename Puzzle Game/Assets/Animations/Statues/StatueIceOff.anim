@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StatueIce3Line_XAxis
+  m_Name: StatueIceOff
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 1182ecb1888819e408edcbdd513968d7, type: 3}
+      value: {fileID: -5419892285723742877, guid: e3f8dd635939c2d4d99e0f9de310a4d9, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,7 +40,7 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 1182ecb1888819e408edcbdd513968d7, type: 3}
+    - {fileID: -5419892285723742877, guid: e3f8dd635939c2d4d99e0f9de310a4d9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
