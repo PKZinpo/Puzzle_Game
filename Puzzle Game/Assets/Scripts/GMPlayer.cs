@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
@@ -14,6 +15,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject playerObject;
     public GameObject tileHighlightPrefab;
     public GameObject shadowPrefab;
+    public GameObject iceOverPrefab;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
 
@@ -24,6 +26,8 @@ public class GMPlayer : MonoBehaviour {
 
     private bool hideWall = false;
     private Vector3Int direction;
+    private GameObject tile = null;
+    private GameObject wallObject = null;
 
     private static string sceneSwitchTo;
     private static Vector3 nextlevelOffset;
@@ -150,8 +154,8 @@ public class GMPlayer : MonoBehaviour {
                 TileMoving.MoveTiles(ThreeLine());
                 break;
 
-            case "Ice3Line":
-                IceThreeLine();
+            case "Ice":
+                //IceOver(IceOverPositions());
                 break;
         }
     }
@@ -170,10 +174,74 @@ public class GMPlayer : MonoBehaviour {
         }
         return tilePlaceArray;
     }
-    public void IceThreeLine() {
-        Debug.Log("Ice3Line");
+    private Vector3Int[] IceOverPositions() {
+        var statuePos = currentMap.WorldToCell(StatueData.statueUIList[stepVal]);
+        List<Vector3Int> tempPos = new List<Vector3Int>();
+        var tileAmount = 0;
+        if (currentMap.HasTile(statuePos)) {
+            tempPos.Add(statuePos);
+            tileAmount++;
+        }
+        if (currentMap.HasTile(statuePos + Vector3Int.left)) {
+            tempPos.Add(statuePos + Vector3Int.left);
+            tileAmount++;
+        }
+        if (currentMap.HasTile(statuePos + Vector3Int.up)) {
+            tempPos.Add(statuePos + Vector3Int.up);
+            tileAmount++;
+        }
+        if (currentMap.HasTile(statuePos + Vector3Int.down)) {
+            tempPos.Add(statuePos + Vector3Int.down);
+            tileAmount++;
+        }
+        if (currentMap.HasTile(statuePos + Vector3Int.right)) {
+            tempPos.Add(statuePos + Vector3Int.right);
+            tileAmount++;
+        }
+
+        Vector3Int[] iceTileArray = new Vector3Int[tileAmount];
+        for (int i = 0; i < tileAmount; i++) {
+            iceTileArray[i] = tempPos[i];
+            Debug.Log(iceTileArray[i]);
+        }
 
 
+        return iceTileArray;
+    }
+    private void IceOver(Vector3Int[] positions) {
+        for (int i = 0; i < positions.Length; i++) {
+            string tileType;
+            bool isWall = false;
+            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
+                if (wall.transform.position == currentMap.CellToWorld(positions[i]) + TileMoving.wallOffset) {
+                    isWall = true;
+                    wallObject = wall;
+                }
+            }
+            if (isWall) {
+                tileType = wallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
+                if (tileType.Contains("Exit Tile")) {
+                    Debug.Log("Cannot move Tile");
+                }
+                else {
+                    tile = Instantiate(iceOverPrefab);
+                    switch (tileType) {
+                        case "Ground Half Tile":
+                            tile.GetComponent<Animator>().SetTrigger("GroundHalfWall");
+                            break;
+
+                        case "Broken Tile":
+                            tile.GetComponent<Animator>().SetTrigger("BrokenWall");
+                            break;
+                    }
+                    tile.transform.SetParent(wallObject.transform);
+                    tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
+                }
+            }
+            else {
+
+            }
+        }
     }
     private void AddTileHighlight() {
         foreach (var item in StatueData.statueList) {
@@ -199,8 +267,24 @@ public class GMPlayer : MonoBehaviour {
                         }
                         break;
 
-                    case "Ice3Line":
-                        IceThreeLine();
+                    case "Ice":
+                        for (int i = 0; i < IceOverPositions().Length; i++) {
+                            tileHighlight = Instantiate(tileHighlightPrefab);
+                            var wallCheck = new Vector3Int(IceOverPositions()[i].x + 1, IceOverPositions()[i].y + 1, 0);
+                            bool isWall = false;
+                            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
+                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions()[i]) + TileMoving.wallOffset) {
+                                    isWall = true;
+                                }
+                            }
+                            if (isWall) {
+                                tileHighlight.transform.position = currentMap.CellToWorld(wallCheck);
+                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
+                            }
+                            else {
+                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions()[i]);
+                            }
+                        }
                         break;
                 }
             }
@@ -220,4 +304,5 @@ public class GMPlayer : MonoBehaviour {
     public void HideWallTiles() {
         hideWall = !hideWall;
     }
+    
 }
