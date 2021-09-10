@@ -19,11 +19,16 @@ public class StatueType : MonoBehaviour {
 
     void Start() {
         if (isOn) {
-            if (yAxis) {
-                anim.SetTrigger("StartOnY");
+            if (statueType.Contains("Ice")) {
+                anim.SetTrigger("StartOn");
             }
             else {
-                anim.SetTrigger("StartOnX");
+                if (yAxis) {
+                    anim.SetTrigger("StartOnY");
+                }
+                else {
+                    anim.SetTrigger("StartOnX");
+                }
             }
         }
         else if (yAxis) {
@@ -32,9 +37,10 @@ public class StatueType : MonoBehaviour {
     }
 
     void Update() {
-        anim.SetBool("Turn", turn);
-        anim.SetBool("yAxis", yAxis);
-
+        if (!statueType.Contains("Ice")) {
+            anim.SetBool("Turn", turn);
+            anim.SetBool("yAxis", yAxis);
+        }
         if (onSwitch) {
             if (!isOn) {
                 isOn = true;

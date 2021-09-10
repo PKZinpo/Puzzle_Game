@@ -688,7 +688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136623554572419384, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: statueType
-      value: Ice3Line
+      value: Ice
       objectReference: {fileID: 0}
     - target: {fileID: 136623554572419384, guid: cb6b67dfc68b2b743b47beddeca03ad8, type: 3}
       propertyPath: StatueXAxis
@@ -1299,7 +1299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8028940861147489036, guid: bd2b2a405fd8a3a43be94ef4b035b95c, type: 3}
       propertyPath: playerScene
-      value: Player5
+      value: Player6
       objectReference: {fileID: 0}
     - target: {fileID: 8028940861147489036, guid: bd2b2a405fd8a3a43be94ef4b035b95c, type: 3}
       propertyPath: lvl1Activator
