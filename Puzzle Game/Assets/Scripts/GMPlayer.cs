@@ -19,6 +19,7 @@ public class GMPlayer : MonoBehaviour {
     public Tilemap currentMap;
     public bool nextlevelOnWall;
 
+    public static Tilemap currentMapStatic;
     public static int highlightVal;
     public static int stepVal;
     public static GameObject tileHighlight;
@@ -44,6 +45,7 @@ public class GMPlayer : MonoBehaviour {
     #endregion
 
     void Awake() {
+        currentMapStatic = currentMap;
         sceneSwitchTo = statueScene;
         stepVal = 0;
         highlightVal = -1;
@@ -155,7 +157,7 @@ public class GMPlayer : MonoBehaviour {
                 break;
 
             case "Ice":
-                //IceOver(IceOverPositions());
+                IceOver(IceOverPositions());
                 break;
         }
     }
@@ -255,6 +257,7 @@ public class GMPlayer : MonoBehaviour {
                             break;
                     }
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
+                    tile.transform.position = currentMap.CellToWorld(positions[i]);
                 }
             }
         }

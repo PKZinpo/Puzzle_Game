@@ -53,6 +53,12 @@ TextureImporter:
   - first:
       213: 3627806819175599296
     second: Tilemap Ice
+  - first:
+      213: 8089305431370004894
+    second: Broken Ice Tile
+  - first:
+      213: -873023067968899040
+    second: Tilemap Broken Ice
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -530,6 +536,48 @@ TextureImporter:
       bones: []
       spriteID: 0cc83b2c41f885230800000000000000
       internalID: 3627806819175599296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Broken Ice Tile
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e99727c4e6cf24070800000000000000
+      internalID: 8089305431370004894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap Broken Ice
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 028fdf8252662e3f0800000000000000
+      internalID: -873023067968899040
       vertices: []
       indices: 
       edges: []

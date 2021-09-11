@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7965232987443221102}
   - component: {fileID: 7965232987443221088}
   - component: {fileID: 7965232987443221103}
+  - component: {fileID: 4949900027322734346}
   m_Layer: 0
   m_Name: IceOver
   m_TagString: Untagged
@@ -102,3 +103,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4949900027322734346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965232987443221101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e282a7078743c94c9cd7cc80934fb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenFloor: {fileID: 11400000, guid: 5e4e49d4136cb8b4ebf6a691ee3a5921, type: 2}
+  groundHalfFloor: {fileID: 11400000, guid: cc69dbbc1967b7745af1cf33f29c76da, type: 2}
+  groundHalfWall: {fileID: 0}
+  brokenWall: {fileID: 0}
