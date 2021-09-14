@@ -7,17 +7,15 @@ public class TileProperties : MonoBehaviour {
 
     public bool moveUp = false;
     public bool disappearing = false;
-    public string animationName;
 
     void Start() {
-        animationName = anim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         if (name.Contains("Ground")) {
             moveUp = true;
         }
     }
 
     void Update() {
-        if (name.Contains("Broken")) {
+        if (name.Contains("Broken") && !name.Contains("Ice")) {
             anim.SetBool("Moving Up", moveUp);
         }
         anim.SetBool("Disappearing", disappearing);
@@ -30,6 +28,7 @@ public class TileProperties : MonoBehaviour {
         disappearing = true;
     }
     public void RemoveTile() {
+        Debug.Log(name);
         if (disappearing) {
             if (transform.parent != null) {
                 Destroy(transform.parent.gameObject);

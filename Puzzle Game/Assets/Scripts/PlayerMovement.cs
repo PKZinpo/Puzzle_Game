@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering;
-using System;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -246,7 +245,13 @@ public class PlayerMovement : MonoBehaviour {
         destination = currentGround.CellToWorld(currentDestination);
     }
     public void CheckTileUnder() {
-        if (currentGround.GetTile(currentGround.WorldToCell(transform.position)) == null) {
+        int tileCheck = 0;
+        foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
+            if (tile.transform.position == transform.position) {
+                tileCheck++;
+            }
+        }
+        if (currentGround.GetTile(currentGround.WorldToCell(transform.position)) == null && tileCheck == 0) {
             GMPlayer.ResetLevel();
         }
     }

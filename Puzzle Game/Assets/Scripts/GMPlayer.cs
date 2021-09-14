@@ -237,7 +237,7 @@ public class GMPlayer : MonoBehaviour {
                             break;
                     }
                     tile.transform.SetParent(wallObject.transform);
-                    tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
+                    tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f) - TileMoving.wallOffset;
                 }
             }
             else {
@@ -248,11 +248,11 @@ public class GMPlayer : MonoBehaviour {
                 else {
                     tile = Instantiate(iceOverPrefab);
                     switch (tileType) {
-                        case "Ground Half Tile":
+                        case "Tilemap Ground Half":
                             tile.GetComponent<Animator>().SetTrigger("GroundHalfFloor");
                             break;
 
-                        case "Broken Tile":
+                        case "Tilemap Broken":
                             tile.GetComponent<Animator>().SetTrigger("BrokenFloor");
                             break;
                     }

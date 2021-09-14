@@ -170,6 +170,90 @@ TextureImporter:
   - first:
       213: -757271067865657111
     second: Appearing Platform-Sheet_55
+  - first:
+      213: 5562694812618315267
+    second: Appearing Platform-Sheet_56
+  - first:
+      213: 3835208583511676325
+    second: Appearing Platform-Sheet_57
+  - first:
+      213: -6969194974722943462
+    second: Appearing Platform-Sheet_58
+  - first:
+      213: 7753435939521993845
+    second: Appearing Platform-Sheet_59
+  - first:
+      213: 4159815904544570699
+    second: Appearing Platform-Sheet_60
+  - first:
+      213: 8958906509287161442
+    second: Appearing Platform-Sheet_61
+  - first:
+      213: -5384223184631573074
+    second: Appearing Platform-Sheet_62
+  - first:
+      213: -6648698806320158503
+    second: Appearing Platform-Sheet_63
+  - first:
+      213: -6684139088167778641
+    second: Appearing Platform-Sheet_64
+  - first:
+      213: 2293490026412052869
+    second: Appearing Platform-Sheet_65
+  - first:
+      213: -7980285103966052201
+    second: Appearing Platform-Sheet_66
+  - first:
+      213: -6623793293649026799
+    second: Appearing Platform-Sheet_67
+  - first:
+      213: 6850273622179381472
+    second: Appearing Platform-Sheet_68
+  - first:
+      213: 3979854347978346786
+    second: Appearing Platform-Sheet_69
+  - first:
+      213: -2186359482436145007
+    second: Appearing Platform-Sheet_70
+  - first:
+      213: 5550120490021685909
+    second: Appearing Platform-Sheet_71
+  - first:
+      213: 1193187880311471956
+    second: Appearing Platform-Sheet_72
+  - first:
+      213: -7069836536768994451
+    second: Appearing Platform-Sheet_73
+  - first:
+      213: 7678954236933954334
+    second: Appearing Platform-Sheet_74
+  - first:
+      213: 8059467667164891934
+    second: Appearing Platform-Sheet_75
+  - first:
+      213: 1521203769285561778
+    second: Appearing Platform-Sheet_76
+  - first:
+      213: -5366563197308986984
+    second: Appearing Platform-Sheet_77
+  - first:
+      213: 8245235030435408710
+    second: Appearing Platform-Sheet_78
+  - first:
+      213: 2393403902852070875
+    second: Appearing Platform-Sheet_79
+  - first:
+      213: 1114245422034825730
+    second: Appearing Platform-Sheet_80
+  - first:
+      213: -6276118404774006291
+    second: Appearing Platform-Sheet_81
+  - first:
+      213: -7304901779496887509
+    second: Appearing Platform-Sheet_82
+  - first:
+      213: 3609426956935368018
+    second: Appearing Platform-Sheet_83
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -275,7 +359,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -296,7 +380,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -317,7 +401,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -338,7 +422,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -359,7 +443,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -380,7 +464,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -401,7 +485,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -422,7 +506,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -443,7 +527,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -464,7 +548,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -485,7 +569,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -506,7 +590,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 352
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -527,7 +611,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -548,7 +632,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 416
-        y: 192
+        y: 320
         width: 32
         height: 64
       alignment: 9
@@ -569,7 +653,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -590,7 +674,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -611,7 +695,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -632,7 +716,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -653,7 +737,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -674,7 +758,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -695,7 +779,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -716,7 +800,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -737,7 +821,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -758,7 +842,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -779,7 +863,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -800,7 +884,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 352
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -821,7 +905,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -842,7 +926,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 416
-        y: 128
+        y: 256
         width: 32
         height: 64
       alignment: 9
@@ -863,7 +947,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -884,7 +968,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -905,7 +989,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -926,7 +1010,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -947,7 +1031,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -968,7 +1052,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -989,7 +1073,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1010,7 +1094,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1031,7 +1115,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1052,7 +1136,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1073,7 +1157,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1094,7 +1178,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 352
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1115,7 +1199,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1136,7 +1220,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 416
-        y: 64
+        y: 192
         width: 32
         height: 64
       alignment: 9
@@ -1157,7 +1241,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1178,7 +1262,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1199,7 +1283,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1220,7 +1304,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1241,7 +1325,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1262,7 +1346,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1283,7 +1367,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 192
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1304,7 +1388,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1325,7 +1409,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1346,7 +1430,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 288
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1367,7 +1451,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1388,7 +1472,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 352
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1409,7 +1493,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 384
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1430,7 +1514,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 416
-        y: 0
+        y: 128
         width: 32
         height: 64
       alignment: 9
@@ -1442,6 +1526,594 @@ TextureImporter:
       bones: []
       spriteID: 9e0df29d9f1ad75f0800000000000000
       internalID: -757271067865657111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 306d50ca579a23d40800000000000000
+      internalID: 5562694812618315267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a51ebb03e5693530800000000000000
+      internalID: 3835208583511676325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1693394812784f90800000000000000
+      internalID: -6969194974722943462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57c94f358ecb99b60800000000000000
+      internalID: 7753435939521993845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d36698682aab930800000000000000
+      internalID: 4159815904544570699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26efefdf00e645c70800000000000000
+      internalID: 8958906509287161442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5dc985a856745b0800000000000000
+      internalID: -5384223184631573074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d829b679a31bb3a0800000000000000
+      internalID: -6648698806320158503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6c474d9ea2d33a0800000000000000
+      internalID: -6684139088167778641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5811130170d14df10800000000000000
+      internalID: 2293490026412052869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79023c3baf4504190800000000000000
+      internalID: -7980285103966052201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1116f62081f8314a0800000000000000
+      internalID: -6623793293649026799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e00b38a09f011f50800000000000000
+      internalID: 6850273622179381472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 64
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2211b0d71784b3730800000000000000
+      internalID: 3979854347978346786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190361272ad78a1e0800000000000000
+      internalID: -2186359482436145007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a0c5c0e2df50d40800000000000000
+      internalID: 5550120490021685909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f344c2e0e0f8010800000000000000
+      internalID: 1193187880311471956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d636ecd9025e2ed90800000000000000
+      internalID: -7069836536768994451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bdde29130219a60800000000000000
+      internalID: 7678954236933954334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1b0c14742bf8df60800000000000000
+      internalID: 8059467667164891934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bd404bb4c66c1510800000000000000
+      internalID: 1521203769285561778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89996bf84332685b0800000000000000
+      internalID: -5366563197308986984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ba5b63395fc6270800000000000000
+      internalID: 8245235030435408710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bddf7893b24173120800000000000000
+      internalID: 2393403902852070875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 202bdfcce48967f00800000000000000
+      internalID: 1114245422034825730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de1772b209fb6e8a0800000000000000
+      internalID: -6276118404774006291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b18f9d886cf9a90800000000000000
+      internalID: -7304901779496887509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Appearing Platform-Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d0ada91b2471230800000000000000
+      internalID: 3609426956935368018
       vertices: []
       indices: 
       edges: []
