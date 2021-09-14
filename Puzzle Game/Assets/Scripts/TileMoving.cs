@@ -29,8 +29,10 @@ public class TileMoving : MonoBehaviour {
     private static GameObject brokengroundIceTile;
     private static GameObject halfgroundIceTile;
     private static GameObject tile = null;
+    private static GameObject tileIce = null;
     private static GameObject wallTileTemp = null;
     private static GameObject wallObject = null;
+    private static GameObject icewallObject = null;
     private static GameObject tempWallObject = null;
     private static GameObject player;
     private static Tilemap ground;
@@ -115,14 +117,14 @@ public class TileMoving : MonoBehaviour {
                             tile = Instantiate(brokengroundTile);
                             break;
 
-                        case "Ground Broken Ice Tile":
+                        case "Broken Ice Tile":
                             tile = Instantiate(brokengroundIceTile);
-                            CheckAdjacentIceTiles(tilePos[i], tilePos);
+                            CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
 
-                        case "Ground Ice Tile":
+                        case "Ice Tile":
                             tile = Instantiate(halfgroundIceTile);
-                            CheckAdjacentIceTiles(tilePos[i], tilePos);
+                            CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
                     }
                     Destroy(wallObject.transform.GetChild(0).gameObject);
@@ -154,12 +156,12 @@ public class TileMoving : MonoBehaviour {
 
                         case "Tilemap Broken Ice":
                             tile = Instantiate(brokengroundIceTile);
-                            CheckAdjacentIceTiles(tilePos[i], tilePos);
+                            CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
 
                         case "Tilemap Ice":
                             tile = Instantiate(halfgroundIceTile);
-                            CheckAdjacentIceTiles(tilePos[i], tilePos);
+                            CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
                     }
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
@@ -223,7 +225,7 @@ public class TileMoving : MonoBehaviour {
             }
         }
     }
-    private static void CheckAdjacentIceTiles(Vector3Int currentPos, Vector3Int[] tilePos) {
+    private static void CheckAdjacentIceTiles(Vector3Int currentPos, Vector3Int[] tilePos, bool wall) {
         int limiter = 0, loopCap = 100;
         int prevlistNum;
         bool nomoreIce = false;
@@ -233,73 +235,171 @@ public class TileMoving : MonoBehaviour {
         for (int i = 0; i < tilePos.Length; i++) {
             tempPos.Add(tilePos[i]);
         }
+        if (wall) {
+            if (!tempPos.Contains(currentPos + Vector3Int.right)) {
+                foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                    if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.right) + wallOffset) {
+                        if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                            icePositions.Add(currentPos + Vector3Int.right);
+                            Debug.Log("POS X INITIAL WALL");
+                            break;
+                        }
+                    }
+                }
+            }
+            if (!tempPos.Contains(currentPos + Vector3Int.left)) {
+                foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                    if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.left) + wallOffset) {
+                        if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                            icePositions.Add(currentPos + Vector3Int.left);
+                            Debug.Log("NEG X INITIAL WALL");
+                            break;
+                        }
+                    }
+                }
 
-        if (!tempPos.Contains(currentPos + Vector3Int.right)) {
-            if (ground.HasTile(currentPos + Vector3Int.right)) {
-                if (ground.GetTile(currentPos + Vector3Int.right).name.Contains("Ice")) {
-                    icePositions.Add(currentPos + Vector3Int.right);
-                    Debug.Log("POS X");
+            }
+            if (!tempPos.Contains(currentPos + Vector3Int.up)) {
+                foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                    if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.up) + wallOffset) {
+                        if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                            icePositions.Add(currentPos + Vector3Int.up);
+                            Debug.Log("POS Y INITIAL WALL");
+                            break;
+                        }
+                    }
+                }
+
+            }
+            if (!tempPos.Contains(currentPos + Vector3Int.down)) {
+                foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                    if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.down) + wallOffset) {
+                        if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                            icePositions.Add(currentPos + Vector3Int.down);
+                            Debug.Log("NEG Y INITIAL WALL");
+                            break;
+                        }
+                    }
                 }
             }
         }
-        if (!tempPos.Contains(currentPos + Vector3Int.left)) {
-            if (ground.HasTile(currentPos + Vector3Int.left)) {
-                if (ground.GetTile(currentPos + Vector3Int.left).name.Contains("Ice")) {
-                    icePositions.Add(currentPos + Vector3Int.left);
-                    Debug.Log("NEG X");
+        else {
+            if (!tempPos.Contains(currentPos + Vector3Int.right)) {
+                if (ground.HasTile(currentPos + Vector3Int.right)) {
+                    if (ground.GetTile(currentPos + Vector3Int.right).name.Contains("Ice")) {
+                        icePositions.Add(currentPos + Vector3Int.right);
+                        Debug.Log("POS X INITIAL FLOOR");
+                    }
                 }
             }
-        }
-        if (!tempPos.Contains(currentPos + Vector3Int.up)) {
-            if (ground.HasTile(currentPos + Vector3Int.up)) {
-                if (ground.GetTile(currentPos + Vector3Int.up).name.Contains("Ice")) {
-                    icePositions.Add(currentPos + Vector3Int.up);
-                    Debug.Log("POS Y");
+            if (!tempPos.Contains(currentPos + Vector3Int.left)) {
+                if (ground.HasTile(currentPos + Vector3Int.left)) {
+                    if (ground.GetTile(currentPos + Vector3Int.left).name.Contains("Ice")) {
+                        icePositions.Add(currentPos + Vector3Int.left);
+                        Debug.Log("NEG X INITIAL FLOOR");
+                    }
                 }
             }
-        }
-        if (!tempPos.Contains(currentPos + Vector3Int.down)) {
-            if (ground.HasTile(currentPos + Vector3Int.down)) {
-                if (ground.GetTile(currentPos + Vector3Int.down).name.Contains("Ice")) {
-                    icePositions.Add(currentPos + Vector3Int.down);
-                    Debug.Log("NEG Y");
+            if (!tempPos.Contains(currentPos + Vector3Int.up)) {
+                if (ground.HasTile(currentPos + Vector3Int.up)) {
+                    if (ground.GetTile(currentPos + Vector3Int.up).name.Contains("Ice")) {
+                        icePositions.Add(currentPos + Vector3Int.up);
+                        Debug.Log("POS Y INITIAL FLOOR");
+                    }
+                }
+            }
+            if (!tempPos.Contains(currentPos + Vector3Int.down)) {
+                if (ground.HasTile(currentPos + Vector3Int.down)) {
+                    if (ground.GetTile(currentPos + Vector3Int.down).name.Contains("Ice")) {
+                        icePositions.Add(currentPos + Vector3Int.down);
+                        Debug.Log("NEG Y INITIAL FLOOR");
+                    }
                 }
             }
         }
 
-        
         while (!nomoreIce && limiter < loopCap) {
             prevlistNum = icePositions.Count;
             for (int i = 0; i < icePositions.Count; i++) {
-                if (!tempPos.Contains(icePositions[i] + Vector3Int.right) && !icePositions.Contains(icePositions[i] + Vector3Int.right)) {
-                    if (ground.HasTile(icePositions[i] + Vector3Int.right)) {
-                        if (ground.GetTile(icePositions[i] + Vector3Int.right).name.Contains("Ice")) {
-                            icePositions.Add(icePositions[i] + Vector3Int.right);
-                            Debug.Log("POS X");
+                if (wall) {
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.right) && !icePositions.Contains(icePositions[i] + Vector3Int.right)) {
+                        foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                            if (item.transform.position == ground.CellToWorld(icePositions[i] + Vector3Int.right) + wallOffset) {
+                                if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                                    icePositions.Add(icePositions[i] + Vector3Int.right);
+                                    Debug.Log("POS X WALL");
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.left) && !icePositions.Contains(icePositions[i] + Vector3Int.left)) {
+                        foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                            if (item.transform.position == ground.CellToWorld(icePositions[i] + Vector3Int.left) + wallOffset) {
+                                if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                                    icePositions.Add(icePositions[i] + Vector3Int.left);
+                                    Debug.Log("NEG X WALL");
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.up) && !icePositions.Contains(icePositions[i] + Vector3Int.up)) {
+                        foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                            if (item.transform.position == ground.CellToWorld(icePositions[i] + Vector3Int.up) + wallOffset) {
+                                if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                                    icePositions.Add(icePositions[i] + Vector3Int.up);
+                                    Debug.Log("POS Y WALL");
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.down) && !icePositions.Contains(icePositions[i] + Vector3Int.down)) {
+                        foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
+                            if (item.transform.position == ground.CellToWorld(icePositions[i] + Vector3Int.down) + wallOffset) {
+                                if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
+                                    icePositions.Add(icePositions[i] + Vector3Int.down);
+                                    Debug.Log("NEG Y WALL");
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
-                if (!tempPos.Contains(icePositions[i] + Vector3Int.left) && !icePositions.Contains(icePositions[i] + Vector3Int.left)) {
-                    if (ground.HasTile(icePositions[i] + Vector3Int.left)) {
-                        if (ground.GetTile(icePositions[i] + Vector3Int.left).name.Contains("Ice")) {
-                            icePositions.Add(icePositions[i] + Vector3Int.left);
-                            Debug.Log("NEG X");
+                else {
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.right) && !icePositions.Contains(icePositions[i] + Vector3Int.right)) {
+                        if (ground.HasTile(icePositions[i] + Vector3Int.right)) {
+                            if (ground.GetTile(icePositions[i] + Vector3Int.right).name.Contains("Ice")) {
+                                icePositions.Add(icePositions[i] + Vector3Int.right);
+                                Debug.Log("POS X EXTRA");
+                            }
                         }
                     }
-                }
-                if (!tempPos.Contains(icePositions[i] + Vector3Int.up) && !icePositions.Contains(icePositions[i] + Vector3Int.up)) {
-                    if (ground.HasTile(icePositions[i] + Vector3Int.up)) {
-                        if (ground.GetTile(icePositions[i] + Vector3Int.up).name.Contains("Ice")) {
-                            icePositions.Add(icePositions[i] + Vector3Int.up);
-                            Debug.Log("POS Y");
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.left) && !icePositions.Contains(icePositions[i] + Vector3Int.left)) {
+                        if (ground.HasTile(icePositions[i] + Vector3Int.left)) {
+                            if (ground.GetTile(icePositions[i] + Vector3Int.left).name.Contains("Ice")) {
+                                icePositions.Add(icePositions[i] + Vector3Int.left);
+                                Debug.Log("NEG X EXTRA");
+                            }
                         }
                     }
-                }
-                if (!tempPos.Contains(icePositions[i] + Vector3Int.down) && !icePositions.Contains(icePositions[i] + Vector3Int.down)) {
-                    if (ground.HasTile(icePositions[i] + Vector3Int.down)) {
-                        if (ground.GetTile(icePositions[i] + Vector3Int.down).name.Contains("Ice")) {
-                            icePositions.Add(icePositions[i] + Vector3Int.down);
-                            Debug.Log("NEG Y");
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.up) && !icePositions.Contains(icePositions[i] + Vector3Int.up)) {
+                        if (ground.HasTile(icePositions[i] + Vector3Int.up)) {
+                            if (ground.GetTile(icePositions[i] + Vector3Int.up).name.Contains("Ice")) {
+                                icePositions.Add(icePositions[i] + Vector3Int.up);
+                                Debug.Log("POS Y EXTRA");
+                            }
+                        }
+                    }
+                    if (!tempPos.Contains(icePositions[i] + Vector3Int.down) && !icePositions.Contains(icePositions[i] + Vector3Int.down)) {
+                        if (ground.HasTile(icePositions[i] + Vector3Int.down)) {
+                            if (ground.GetTile(icePositions[i] + Vector3Int.down).name.Contains("Ice")) {
+                                icePositions.Add(icePositions[i] + Vector3Int.down);
+                                Debug.Log("NEG Y EXTRA");
+                            }
                         }
                     }
                 }
@@ -310,7 +410,6 @@ public class TileMoving : MonoBehaviour {
             }
 
             limiter++;
-            Debug.Log(limiter);
         }
 
         for (int i = 0; i < icePositions.Count; i++) {
@@ -319,39 +418,41 @@ public class TileMoving : MonoBehaviour {
             foreach (var item in GameObject.FindGameObjectsWithTag("Wall")) {
                 if (item.transform.position == ground.CellToWorld(icePositions[i]) + wallOffset) {
                     isWall = true;
-                    wallObject = item;
+                    icewallObject = item;
+                    Debug.Log(item);
+                    break;
                 }
             }
             if (isWall) {
-                tileType = wallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
+                tileType = icewallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
                 switch (tileType) {
-                    case "Ground Broken Ice Tile":
-                        tile = Instantiate(brokengroundIceTile);
+                    case "Broken Ice Tile":
+                        tileIce = Instantiate(brokengroundIceTile);
                         break;
 
-                    case "Ground Ice Tile":
-                        tile = Instantiate(halfgroundIceTile);
+                    case "Ice Tile":
+                        tileIce = Instantiate(halfgroundIceTile);
                         break;
                 }
-                Destroy(wallObject.transform.GetChild(0).gameObject);
-                tile.transform.SetParent(wallObject.transform);
-                tile.GetComponent<TileProperties>().ChangeDisappearing();
-                tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
+                Destroy(icewallObject.transform.GetChild(0).gameObject);
+                tileIce.transform.SetParent(icewallObject.transform);
+                tileIce.GetComponent<TileProperties>().ChangeDisappearing();
+                tileIce.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
             }
-            else if (ground.HasTile(icePositions[i])) {
+            if (ground.HasTile(icePositions[i])) {
                 tileType = ground.GetTile(icePositions[i]).name;
                 ground.SetTile(icePositions[i], null);
                 switch (tileType) {
                     case "Tilemap Broken Ice":
-                        tile = Instantiate(brokengroundIceTile);
+                        tileIce = Instantiate(brokengroundIceTile);
                         break;
 
                     case "Tilemap Ice":
-                        tile = Instantiate(halfgroundIceTile);
+                        tileIce = Instantiate(halfgroundIceTile);
                         break;
                 }
-                tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
-                tile.transform.position = ground.CellToWorld(icePositions[i]);
+                tileIce.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
+                tileIce.transform.position = ground.CellToWorld(icePositions[i]);
                 if (ground.WorldToCell(player.transform.position) == icePositions[i]) {
                     PlayerMovement.MovePlayerUp();
                 }

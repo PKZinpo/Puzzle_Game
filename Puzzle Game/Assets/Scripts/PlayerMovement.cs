@@ -236,7 +236,6 @@ public class PlayerMovement : MonoBehaviour {
         Vector3Int currentDestination = currentGround.WorldToCell(dest);
         Vector3Int direction = currentDestination - currentPos;
         while (currentGround.GetTile(currentDestination).name.Contains("Ice")) {
-            Debug.Log("ICE");
             currentDestination = currentDestination + direction;
             if (currentGround.GetTile(currentDestination) == null) {
                 break;

@@ -28,7 +28,6 @@ public class TileProperties : MonoBehaviour {
         disappearing = true;
     }
     public void RemoveTile() {
-        Debug.Log(name);
         if (disappearing) {
             if (transform.parent != null) {
                 Destroy(transform.parent.gameObject);
