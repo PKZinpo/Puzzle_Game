@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour {
                 onSecondFloor = true;
                 movingUp = false;
                 transform.GetComponentInParent<SortingGroup>().sortingLayerName = "1st Floor";
+                prevgridPos = currentGround.WorldToCell(currentPosition);
             }
         }
         if (movetoDest) {
@@ -208,10 +209,10 @@ public class PlayerMovement : MonoBehaviour {
             foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
                 if (tile.transform.position == currentGround.CellToWorld(prevgridPos)) {
                     if (tile.name.Contains("Broken")) {
-                        Destroy(tile);
                         GameObject temp = Instantiate(brokenTileObject);
-                        temp.transform.position = currentGround.CellToWorld(prevgridPos);
-                        temp.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
+                        temp.transform.parent = tile.transform.parent;
+                        Destroy(tile);
+                        temp.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
                         temp.GetComponent<TileProperties>().ChangeMoveUp();
                         temp.GetComponent<TileProperties>().ChangeDisappearing();
                         break;

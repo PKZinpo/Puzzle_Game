@@ -12,6 +12,7 @@ TagManager:
   - StatueIcon
   - Wall
   - NextLevel
+  - Collectable
   layers:
   - Default
   - TransparentFX

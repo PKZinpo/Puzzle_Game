@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class GMPlayer : MonoBehaviour {
@@ -27,6 +28,7 @@ public class GMPlayer : MonoBehaviour {
 
     private bool hideWall = false;
     private Vector3Int direction;
+    private Vector3 collectableOffset = new Vector3(0.0f, -0.005f, 0.0f);
     private GameObject tile = null;
     private GameObject wallObject = null;
 
@@ -65,6 +67,19 @@ public class GMPlayer : MonoBehaviour {
             }
             nextLevel.transform.GetChild(0).transform.position += new Vector3(childOffset.x, Mathf.Abs(childOffset.y), childOffset.z);
         }
+        if (GameObject.FindGameObjectsWithTag("Collectable").Length != 0) {
+            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                if (collectable.transform.position != currentMap.CellToWorld(currentMap.WorldToCell(collectable.transform.position))) {
+                    collectable.transform.position = currentMap.CellToWorld(currentMap.WorldToCell(collectable.transform.position)) + collectableOffset;
+                }
+                if (!collectable.GetComponent<Collectable>().isOnWall) {
+                    collectable.GetComponent<SortingGroup>().sortingLayerName = "Ground";
+                }
+                else {
+                    collectable.GetComponent<SortingGroup>().sortingLayerName = "1st Floor";
+                }
+            }
+        }
     }
 
     void Start() {
@@ -101,7 +116,18 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
-            GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOn");
+            if (nextLevel.activeSelf) {
+                GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOn");
+            }
+            if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
+                foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                    Color color = highlight.GetComponent<SpriteRenderer>().color;
+                    if (color.a >= 0) {
+                        color.a -= 0.01f;
+                        highlight.GetComponent<SpriteRenderer>().color = color;
+                    }
+                }
+            }
         }
         else if (!hideWall) {
             if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
@@ -113,12 +139,38 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
-            GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOff");
+            if (nextLevel.activeSelf) {
+                GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOff");
+            }
+            if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
+                foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                    Color color = highlight.GetComponent<SpriteRenderer>().color;
+                    if (color.a <= 0.59f) {
+                        color.a += 0.01f;
+                        highlight.GetComponent<SpriteRenderer>().color = color;
+                    }
+                }
+            }
         }
 
-        if (GameObject.FindGameObjectWithTag("NextLevel")) {
-            if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.GetChild(0).transform.position)) {
-                ToNextLevel();
+        if (GameObject.FindGameObjectsWithTag("Collectable").Length != 0) {
+            if (nextLevel.activeSelf) {
+                nextLevel.SetActive(false);
+            }
+            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
+                    Destroy(collectable);
+                }
+            }
+        }
+        else {
+            if (!nextLevel.activeSelf) {
+                nextLevel.SetActive(true);
+            }
+            if (GameObject.FindGameObjectWithTag("NextLevel")) {
+                if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.GetChild(0).transform.position)) {
+                    ToNextLevel();
+                }
             }
         }
     }
