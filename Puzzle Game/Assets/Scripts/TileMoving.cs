@@ -115,6 +115,7 @@ public class TileMoving : MonoBehaviour {
 
                         case "Broken Tile":
                             tile = Instantiate(brokengroundTile);
+                            tile.GetComponent<TileProperties>().ChangeMoveUp();
                             break;
 
                         case "Broken Ice Tile":
