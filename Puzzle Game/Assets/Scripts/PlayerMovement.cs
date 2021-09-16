@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     public GameObject brokenTileObject;
 
     public static Vector3 currentPosition;
+    public static bool movetoDest = false;
 
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
@@ -23,7 +24,6 @@ public class PlayerMovement : MonoBehaviour {
     private static Tilemap currentGround;
     private static Vector3 destination;
     private static Vector3 playerOffset;
-    private static bool movetoDest = false;
     private static bool movingUp = false;
 
     #endregion

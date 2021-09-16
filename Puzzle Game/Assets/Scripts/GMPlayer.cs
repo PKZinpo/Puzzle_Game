@@ -116,8 +116,10 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
-            if (nextLevel.activeSelf) {
-                GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOn");
+            if (nextlevelOnWall) {
+                if (nextLevel.activeSelf) {
+                    GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOn");
+                }
             }
             if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
                 foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
@@ -125,6 +127,20 @@ public class GMPlayer : MonoBehaviour {
                     if (color.a >= 0) {
                         color.a -= 0.01f;
                         highlight.GetComponent<SpriteRenderer>().color = color;
+                    }
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("Collectable").Length != 0) {
+                foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                    if (collectable.GetComponent<Collectable>().isOnWall) {
+                        Color color = collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+                        Color shadowColor = collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
+                        if (color.a >= 0) {
+                            color.a -= 0.01f;
+                            shadowColor.a -= 0.01f;
+                            collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
+                            collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color = shadowColor;
+                        }
                     }
                 }
             }
@@ -139,8 +155,10 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
-            if (nextLevel.activeSelf) {
-                GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOff");
+            if (nextlevelOnWall) {
+                if (nextLevel.activeSelf) {
+                    GameObject.FindGameObjectWithTag("NextLevel").GetComponentInChildren<Animator>().SetTrigger("HideOff");
+                }
             }
             if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
                 foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
@@ -151,15 +169,31 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
+            if (GameObject.FindGameObjectsWithTag("Collectable").Length != 0) {
+                foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                    if (collectable.GetComponent<Collectable>().isOnWall) {
+                        Color color = collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+                        Color shadowColor = collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
+                        if (color.a <= 1) {
+                            color.a += 0.01f;
+                            shadowColor.a += 0.01f;
+                            collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
+                            collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color = shadowColor;
+                        }
+                    }
+                }
+            }
         }
 
         if (GameObject.FindGameObjectsWithTag("Collectable").Length != 0) {
             if (nextLevel.activeSelf) {
                 nextLevel.SetActive(false);
             }
-            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
-                if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
-                    Destroy(collectable);
+            if (!PlayerMovement.movetoDest) {
+                foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                    if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
+                        Destroy(collectable);
+                    }
                 }
             }
         }
@@ -167,9 +201,11 @@ public class GMPlayer : MonoBehaviour {
             if (!nextLevel.activeSelf) {
                 nextLevel.SetActive(true);
             }
-            if (GameObject.FindGameObjectWithTag("NextLevel")) {
-                if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.GetChild(0).transform.position)) {
-                    ToNextLevel();
+            if (!PlayerMovement.movetoDest) {
+                if (GameObject.FindGameObjectWithTag("NextLevel")) {
+                    if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(nextLevel.transform.GetChild(0).transform.position)) {
+                        ToNextLevel();
+                    }
                 }
             }
         }
