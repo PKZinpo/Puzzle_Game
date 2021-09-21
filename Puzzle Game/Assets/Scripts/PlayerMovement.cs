@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour {
                     if (item.transform.position == currentGround.CellToWorld(togridPos)) {
                         destination = currentGround.CellToWorld(togridPos);
                         destination = new Vector3(destination.x, destination.y, 0);
+                        CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
                     }
@@ -125,6 +126,7 @@ public class PlayerMovement : MonoBehaviour {
                     if (item.transform.position == currentGround.CellToWorld(togridPos)) {
                         destination = currentGround.CellToWorld(togridPos);
                         destination = new Vector3(destination.x, destination.y, 0);
+                        CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
                     }
@@ -152,6 +154,7 @@ public class PlayerMovement : MonoBehaviour {
                     if (item.transform.position == currentGround.CellToWorld(togridPos)) {
                         destination = currentGround.CellToWorld(togridPos);
                         destination = new Vector3(destination.x, destination.y, 0);
+                        CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
                     }
@@ -179,6 +182,7 @@ public class PlayerMovement : MonoBehaviour {
                     if (item.transform.position == currentGround.CellToWorld(togridPos)) {
                         destination = currentGround.CellToWorld(togridPos);
                         destination = new Vector3(destination.x, destination.y, 0);
+                        CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
                     }
@@ -208,7 +212,7 @@ public class PlayerMovement : MonoBehaviour {
         if (onSecondFloor) {
             foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
                 if (tile.transform.position == currentGround.CellToWorld(prevgridPos)) {
-                    if (tile.name.Contains("Broken")) {
+                    if (tile.name.Contains("Broken") && !tile.name.Contains("Ice")) {
                         GameObject temp = Instantiate(brokenTileObject);
                         temp.transform.parent = tile.transform.parent;
                         Destroy(tile);
@@ -221,7 +225,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         else {
-            if (currentGround.GetTile(prevgridPos).name.Contains("Broken")) {
+            if (currentGround.GetTile(prevgridPos).name.Contains("Broken") && !currentGround.GetTile(prevgridPos).name.Contains("Ice")) {
                 currentGround.SetTile(prevgridPos, null);
                 GameObject temp = Instantiate(brokenTileObject);
                 temp.transform.position = currentGround.CellToWorld(prevgridPos);
@@ -236,10 +240,28 @@ public class PlayerMovement : MonoBehaviour {
         Vector3Int currentPos = currentGround.WorldToCell(transform.position);
         Vector3Int currentDestination = currentGround.WorldToCell(dest);
         Vector3Int direction = currentDestination - currentPos;
-        while (currentGround.GetTile(currentDestination).name.Contains("Ice")) {
-            currentDestination = currentDestination + direction;
-            if (currentGround.GetTile(currentDestination) == null) {
-                break;
+        if (onSecondFloor) {
+            bool noIce = false;
+            while (!noIce) {
+                foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
+                    if (tile.transform.position == currentGround.CellToWorld(currentDestination)) {
+                        if (tile.name.Contains("Ice")) {
+                            currentDestination = currentDestination + direction;
+                            break;
+                        }
+                        else {
+                            noIce = true;
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            while (currentGround.GetTile(currentDestination).name.Contains("Ice")) {
+                currentDestination = currentDestination + direction;
+                if (currentGround.GetTile(currentDestination) == null) {
+                    break;
+                }
             }
         }
         destination = currentGround.CellToWorld(currentDestination);

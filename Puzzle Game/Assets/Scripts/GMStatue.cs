@@ -49,11 +49,21 @@ public class GMStatue : MonoBehaviour {
             Statues = GameObject.FindGameObjectsWithTag("Statue");
             int i = 0;
             foreach (var item in StatueData.statueList) {
-                Statues[i].transform.position = item.Key;
-                Statues[i].GetComponent<StatueType>().statueType = item.Value.type;
-                Statues[i].GetComponent<StatueType>().yAxis = item.Value.isTurned;
-                Statues[i].GetComponent<StatueType>().isOn = item.Value.isActive;
-                i++;
+                foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
+                    if (statue.GetComponent<StatueType>().statueType == item.Value.type) {
+                        statue.transform.position = item.Key;
+                        statue.GetComponent<StatueType>().yAxis = item.Value.isTurned;
+                        statue.GetComponent<StatueType>().isOn = item.Value.isActive;
+                        i++;
+                        break;
+                    }
+                    //Statues[i].transform.position = item.Key;
+                    //Statues[i].GetComponent<StatueType>().statueType = item.Value.type;
+                    //Statues[i].GetComponent<StatueType>().yAxis = item.Value.isTurned;
+                    //Statues[i].GetComponent<StatueType>().isOn = item.Value.isActive;
+                    //i++;
+                }
+                
             }
         }
         if (GameObject.FindGameObjectsWithTag("Activator").Length != 0) {

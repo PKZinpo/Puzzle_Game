@@ -189,11 +189,9 @@ public class GMPlayer : MonoBehaviour {
             if (nextLevel.activeSelf) {
                 nextLevel.SetActive(false);
             }
-            if (!PlayerMovement.movetoDest) {
-                foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
-                    if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
-                        Destroy(collectable);
-                    }
+            foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
+                if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
+                    Destroy(collectable);
                 }
             }
         }
