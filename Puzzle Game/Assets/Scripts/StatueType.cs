@@ -11,6 +11,7 @@ public class StatueType : MonoBehaviour {
     public bool yAxis = false;
     public bool onSwitch = false;
     public bool isOn = false;
+    public bool isPlaced = false;
 
     private bool turn = false;
     
