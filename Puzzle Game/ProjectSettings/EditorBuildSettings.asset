@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level7/Statue7.unity
     guid: da8faee80171c6a44a56565e2db38c8f
+  - enabled: 1
+    path: Assets/Scenes/Level8/Player8.unity
+    guid: 6f4b4d74813b7e3479bd2de0509d8ce6
+  - enabled: 1
+    path: Assets/Scenes/Level8/Statue8.unity
+    guid: ef28b55e5dce2284fb0fe2c474fc4ecb
   m_configObjects: {}
