@@ -482,47 +482,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -6, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -5, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 1
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -4, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 2
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -550,29 +510,29 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 32fa60257f724bb43b7c08838f8312e4, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 516bf5c0326504945b76f73b6b9b5702, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: b204c3e6db1fa7e488877c0e1eca4906, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: cc69dbbc1967b7745af1cf33f29c76da, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 2
-    m_Data: {fileID: 7363881875361491753, guid: 953d40590150b614bba0e5624946fe8d, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: -3616994908031497827, guid: 953d40590150b614bba0e5624946fe8d, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
+    m_Data: {fileID: 7363881875361491753, guid: 953d40590150b614bba0e5624946fe8d, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: -1894863803569448918, guid: 953d40590150b614bba0e5624946fe8d, type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 3627806819175599296, guid: 953d40590150b614bba0e5624946fe8d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 7
+  - m_RefCount: 3
     m_Data:
       e00: 1
       e01: 0
@@ -591,7 +551,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 7
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -1630,11 +1590,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5133316536778872006, guid: 15441d9848e5669449ed214bb30fb38f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.254
+      value: -0.744
       objectReference: {fileID: 0}
     - target: {fileID: 5133316536778872006, guid: 15441d9848e5669449ed214bb30fb38f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.123
+      value: -0.038
       objectReference: {fileID: 0}
     - target: {fileID: 5133316536778872006, guid: 15441d9848e5669449ed214bb30fb38f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2724,10 +2684,6 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 1463648122}
-    - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
-      propertyPath: nextlevelScene
-      value: Player9
-      objectReference: {fileID: 0}
     - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
       propertyPath: nextlevelOnWall
       value: 1
