@@ -13,6 +13,7 @@ TagManager:
   - Wall
   - NextLevel
   - Collectable
+  - SelectHighlight
   layers:
   - Default
   - TransparentFX

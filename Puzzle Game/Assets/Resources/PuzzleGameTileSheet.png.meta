@@ -59,6 +59,9 @@ TextureImporter:
   - first:
       213: -873023067968899040
     second: Tilemap Broken Ice
+  - first:
+      213: -5314466228028627773
+    second: Isometric Tile Select Highlight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -578,6 +581,27 @@ TextureImporter:
       bones: []
       spriteID: 028fdf8252662e3f0800000000000000
       internalID: -873023067968899040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Isometric Tile Select Highlight
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 199
+        width: 32
+        height: 17
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5294118}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c42b837f193f36b0800000000000000
+      internalID: -5314466228028627773
       vertices: []
       indices: 
       edges: []

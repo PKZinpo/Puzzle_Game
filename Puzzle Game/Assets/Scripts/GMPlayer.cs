@@ -15,6 +15,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject nextLevel;
     public GameObject playerObject;
     public GameObject tileHighlightPrefab;
+    public GameObject tileselectHighlightPrefab;
     public GameObject shadowPrefab;
     public GameObject iceOverPrefab;
     public Tilemap currentMap;
@@ -106,6 +107,18 @@ public class GMPlayer : MonoBehaviour {
             }
         }
 
+        if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
+            foreach (var icon in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                if (icon.GetComponent<ClickDrag>().selectTemp != null) {
+                    if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length == 0) {
+                        AddSelectTileHighlight(icon.transform.GetSiblingIndex());
+                        break;
+                    }
+                }
+            }
+
+        }
+
         if (hideWall) {
             if (GameObject.FindGameObjectsWithTag("Tile").Length != 0) {
                 foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
@@ -123,10 +136,23 @@ public class GMPlayer : MonoBehaviour {
             }
             if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
                 foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                    Color color = highlight.GetComponent<SpriteRenderer>().color;
-                    if (color.a >= 0) {
-                        color.a -= 0.01f;
-                        highlight.GetComponent<SpriteRenderer>().color = color;
+                    if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
+                        Color color = highlight.GetComponent<SpriteRenderer>().color;
+                        if (color.a >= 0) {
+                            color.a -= 0.01f;
+                            highlight.GetComponent<SpriteRenderer>().color = color;
+                        }
+                    }
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
+                foreach (var highlight in GameObject.FindGameObjectsWithTag("SelectHighlight")) {
+                    if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
+                        Color color = highlight.GetComponent<SpriteRenderer>().color;
+                        if (color.a >= 0) {
+                            color.a -= 0.01f;
+                            highlight.GetComponent<SpriteRenderer>().color = color;
+                        }
                     }
                 }
             }
@@ -162,10 +188,23 @@ public class GMPlayer : MonoBehaviour {
             }
             if (GameObject.FindGameObjectsWithTag("TileHighlight").Length != 0) {
                 foreach (var highlight in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                    Color color = highlight.GetComponent<SpriteRenderer>().color;
-                    if (color.a <= 0.59f) {
-                        color.a += 0.01f;
-                        highlight.GetComponent<SpriteRenderer>().color = color;
+                    if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
+                        Color color = highlight.GetComponent<SpriteRenderer>().color;
+                        if (color.a <= 0.59f) {
+                            color.a += 0.01f;
+                            highlight.GetComponent<SpriteRenderer>().color = color;
+                        }
+                    }
+                }
+            }
+            if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
+                foreach (var highlight in GameObject.FindGameObjectsWithTag("SelectHighlight")) {
+                    if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
+                        Color color = highlight.GetComponent<SpriteRenderer>().color;
+                        if (color.a <= 0.59f) {
+                            color.a += 0.01f;
+                            highlight.GetComponent<SpriteRenderer>().color = color;
+                        }
                     }
                 }
             }
@@ -228,7 +267,7 @@ public class GMPlayer : MonoBehaviour {
                 }
                 foreach (var item in StatueData.statueList) {
                     if (StatueData.statueUIList[stepVal] == item.Key) {
-                        ChooseType(item.Value.type);
+                        ChooseType(item.Value.type, stepVal);
                         stepVal++;
                         break;
                     }
@@ -236,10 +275,10 @@ public class GMPlayer : MonoBehaviour {
             }
         }
     }
-    public void ChooseType(string type) {
+    public void ChooseType(string type, int stepNum) {
         switch (type) {
             case "3Line":
-                TileMoving.MoveTiles(ThreeLine());
+                TileMoving.MoveTiles(ThreeLine(stepNum));
                 break;
 
             case "Ice":
@@ -247,9 +286,9 @@ public class GMPlayer : MonoBehaviour {
                 break;
         }
     }
-    public Vector3Int[] ThreeLine() {
+    public Vector3Int[] ThreeLine(int num) {
         Vector3Int[] tilePlaceArray = new Vector3Int[3];
-        var statue = StatueData.statueUIList[stepVal];
+        var statue = StatueData.statueUIList[num];
         foreach (var item in StatueData.statueList) {
             if (statue == item.Key) {
                 var statueGridPos = currentMap.WorldToCell(item.Key);
@@ -353,12 +392,12 @@ public class GMPlayer : MonoBehaviour {
             if (StatueData.statueUIList[stepVal] == item.Key) {
                 switch (item.Value.type) {
                     case "3Line":
-                        for (int i = 0; i < ThreeLine().Length; i++) {
+                        for (int i = 0; i < ThreeLine(stepVal).Length; i++) {
                             tileHighlight = Instantiate(tileHighlightPrefab);
-                            var wallCheck = new Vector3Int(ThreeLine()[i].x + 1, ThreeLine()[i].y + 1, 0);
+                            var wallCheck = new Vector3Int(ThreeLine(stepVal)[i].x + 1, ThreeLine(stepVal)[i].y + 1, 0);
                             bool isWall = false;
                             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
-                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine()[i]) + TileMoving.wallOffset) {
+                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine(stepVal)[i]) + TileMoving.wallOffset) {
                                     isWall = true;
                                 }
                             }
@@ -367,7 +406,7 @@ public class GMPlayer : MonoBehaviour {
                                 tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
                             }
                             else {
-                                tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine()[i]);
+                                tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine(stepVal)[i]);
                             }
                         }
                         break;
@@ -375,6 +414,54 @@ public class GMPlayer : MonoBehaviour {
                     case "Ice":
                         for (int i = 0; i < IceOverPositions().Length; i++) {
                             tileHighlight = Instantiate(tileHighlightPrefab);
+                            var wallCheck = new Vector3Int(IceOverPositions()[i].x + 1, IceOverPositions()[i].y + 1, 0);
+                            bool isWall = false;
+                            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
+                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions()[i]) + TileMoving.wallOffset) {
+                                    isWall = true;
+                                    break;
+                                }
+                            }
+                            if (isWall) {
+                                tileHighlight.transform.position = currentMap.CellToWorld(wallCheck);
+                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
+                            }
+                            else {
+                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions()[i]);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+    }
+    public void AddSelectTileHighlight(int siblingIndex) {
+        foreach (var item in StatueData.statueList) {
+            if (StatueData.statueUIList[siblingIndex] == item.Key) {
+                switch (item.Value.type) {
+                    case "3Line":
+                        for (int i = 0; i < ThreeLine(siblingIndex).Length; i++) {
+                            tileHighlight = Instantiate(tileselectHighlightPrefab);
+                            var wallCheck = new Vector3Int(ThreeLine(siblingIndex)[i].x + 1, ThreeLine(siblingIndex)[i].y + 1, 0);
+                            bool isWall = false;
+                            foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
+                                if (wall.transform.position == currentMap.CellToWorld(ThreeLine(siblingIndex)[i]) + TileMoving.wallOffset) {
+                                    isWall = true;
+                                }
+                            }
+                            if (isWall) {
+                                tileHighlight.transform.position = currentMap.CellToWorld(wallCheck);
+                                tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
+                            }
+                            else {
+                                tileHighlight.transform.position = currentMap.CellToWorld(ThreeLine(siblingIndex)[i]);
+                            }
+                        }
+                        break;
+
+                    case "Ice":
+                        for (int i = 0; i < IceOverPositions().Length; i++) {
+                            tileHighlight = Instantiate(tileselectHighlightPrefab);
                             var wallCheck = new Vector3Int(IceOverPositions()[i].x + 1, IceOverPositions()[i].y + 1, 0);
                             bool isWall = false;
                             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {

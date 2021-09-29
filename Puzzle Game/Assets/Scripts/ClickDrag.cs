@@ -8,12 +8,12 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     #region Variables
 
     private GameObject temp = null;
-    private GameObject selectTemp = null;
     private Vector3 firstStatue;
     private Transform returnTo = null;
     private RectTransform rectTransform;
     private static int prevPos;
 
+    public GameObject selectTemp = null;
     public GameObject iconSelect;
 
     #endregion
@@ -103,9 +103,11 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         transform.SetParent(returnTo);
         if (GMPlayer.stepVal == 0) {
             transform.SetSiblingIndex(temp.transform.GetSiblingIndex());
-            if (GameObject.Find("TileHighlight(Clone)")) {
-                foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                    Destroy(tile);
+            if (temp.transform.GetSiblingIndex() != prevPos + 1) {
+                if (GameObject.Find("TileHighlight(Clone)")) {
+                    foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                        Destroy(tile);
+                    }
                 }
             }
         }
@@ -173,6 +175,11 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         }
     }
     public void DestroyIconSelection() {
+        if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
+            foreach (var highlight in GameObject.FindGameObjectsWithTag("SelectHighlight")) {
+                Destroy(highlight);
+            }
+        }
         Destroy(selectTemp);
         selectTemp = null;
     }

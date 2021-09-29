@@ -49,6 +49,7 @@ MonoBehaviour:
   nextLevel: {fileID: 0}
   playerObject: {fileID: 0}
   tileHighlightPrefab: {fileID: 2164833561575569336, guid: 1e3c2bf9a6df58d4195f213cea56efb6, type: 3}
+  tileselectHighlightPrefab: {fileID: 3518494612615510350, guid: b1e8c00c6e9f39442a9c70bc5be90e4e, type: 3}
   shadowPrefab: {fileID: 5486258814373082205, guid: 278492d020b1521489fe570bbed9f0e9, type: 3}
   iceOverPrefab: {fileID: 7965232987443221101, guid: 61e4630e5f2224b4791415fa278f992b, type: 3}
   currentMap: {fileID: 0}

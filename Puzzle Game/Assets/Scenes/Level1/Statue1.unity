@@ -1247,10 +1247,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneSwitch
       objectReference: {fileID: 0}
-    - target: {fileID: 4111567238856902657, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 295
-      objectReference: {fileID: 0}
     - target: {fileID: 4111567238856902662, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1274,14 +1270,6 @@ PrefabInstance:
     - target: {fileID: 4111567239111693219, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GMStatue, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111567239886419575, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 818
-      objectReference: {fileID: 0}
-    - target: {fileID: 4111567239886419575, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -380
       objectReference: {fileID: 0}
     - target: {fileID: 4111567239960103829, guid: c56e931fb8e1d1145a58fabf6673feb6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
