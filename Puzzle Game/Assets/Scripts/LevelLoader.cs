@@ -9,7 +9,7 @@ public class LevelLoader : MonoBehaviour {
         LoadLevel(GMPlayer.GetStatueScene());
     }
     public void ToPlayerScene() {
-        if (GameObject.Find("Highlight(Clone)") != null) {
+        if (GameObject.Find("Selected(Clone)") != null) {
             SelectionManager.selectedObject = null;
             SelectionManager.RemoveHighlight();
             SelectionManager.selected = false;

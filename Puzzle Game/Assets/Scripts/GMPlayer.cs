@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tileselectHighlightPrefab;
     public GameObject shadowPrefab;
     public GameObject iceOverPrefab;
+    public GameObject currentStep;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
 
@@ -27,6 +29,7 @@ public class GMPlayer : MonoBehaviour {
     public static GameObject tileHighlight;
     public static GameObject shadow;
 
+    private int prevStepVal;
     private bool hideWall = false;
     private Vector3Int direction;
     private Vector3 collectableOffset = new Vector3(0.0f, -0.005f, 0.0f);
@@ -51,6 +54,7 @@ public class GMPlayer : MonoBehaviour {
         currentMapStatic = currentMap;
         sceneSwitchTo = statueScene;
         stepVal = 0;
+        prevStepVal = stepVal;
         highlightVal = -1;
 
         if (nextlevelOnWall) {
@@ -80,6 +84,9 @@ public class GMPlayer : MonoBehaviour {
                     collectable.GetComponent<SortingGroup>().sortingLayerName = "1st Floor";
                 }
             }
+        }
+        if (StatueData.statueUIList.Count != 0) {
+            Instantiate(currentStep, GameObject.FindGameObjectWithTag("CurrentStep").transform, false);
         }
     }
 
@@ -116,7 +123,6 @@ public class GMPlayer : MonoBehaviour {
                     }
                 }
             }
-
         }
 
         if (hideWall) {
@@ -246,6 +252,28 @@ public class GMPlayer : MonoBehaviour {
                 }
             }
         }
+
+        if (prevStepVal != stepVal) {
+            foreach (var step in GameObject.FindGameObjectsWithTag("NextStep")) {
+                Destroy(step);
+            }
+            if (stepVal != StatueData.statueUIList.Count) {
+                for (int i = 0; i < stepVal + 1; i++) {
+                    GameObject step = Instantiate(currentStep, GameObject.FindGameObjectWithTag("CurrentStep").transform, false);
+                    if (i != stepVal) {
+                        Color stepColor = step.GetComponent<Image>().color;
+                        stepColor.a = 0;
+                        step.GetComponent<Image>().color = stepColor;
+                    }
+                    else {
+                        prevStepVal = stepVal;
+                    }
+                }
+            }
+            else {
+                prevStepVal = stepVal;
+            }
+        }
     }
 
     public void ToStatueScene() {
@@ -256,6 +284,11 @@ public class GMPlayer : MonoBehaviour {
     }
     public void NextStep() {
         if (!TileMoving.isMoving) {
+            if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
+                foreach (var tile in GameObject.FindGameObjectsWithTag("SelectHighlight")) {
+                    Destroy(tile);
+                }
+            }
             if (stepVal > StatueData.statueUIList.Count - 1) {
                 Debug.Log("All Statues Have Been Activated");
             }
@@ -268,6 +301,16 @@ public class GMPlayer : MonoBehaviour {
                 foreach (var item in StatueData.statueList) {
                     if (StatueData.statueUIList[stepVal] == item.Key) {
                         ChooseType(item.Value.type, stepVal);
+                        foreach (var icon in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                            if (icon.GetComponent<ClickDrag>().selectTemp != null) {
+                                Destroy(icon.GetComponent<ClickDrag>().selectTemp);
+                            }
+                            if (icon.transform.GetSiblingIndex() == stepVal) {
+                                icon.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                                icon.GetComponent<CanvasGroup>().interactable = false;
+                                icon.GetComponent<CanvasGroup>().alpha = 0.3f;
+                            }
+                        }
                         stepVal++;
                         break;
                     }
@@ -282,7 +325,7 @@ public class GMPlayer : MonoBehaviour {
                 break;
 
             case "Ice":
-                IceOver(IceOverPositions());
+                IceOver(IceOverPositions(stepNum));
                 break;
         }
     }
@@ -301,8 +344,8 @@ public class GMPlayer : MonoBehaviour {
         }
         return tilePlaceArray;
     }
-    private Vector3Int[] IceOverPositions() {
-        var statuePos = currentMap.WorldToCell(StatueData.statueUIList[stepVal]);
+    private Vector3Int[] IceOverPositions(int num) {
+        var statuePos = currentMap.WorldToCell(StatueData.statueUIList[num]);
         List<Vector3Int> tempPos = new List<Vector3Int>();
         var tileAmount = 0;
 
@@ -412,12 +455,12 @@ public class GMPlayer : MonoBehaviour {
                         break;
 
                     case "Ice":
-                        for (int i = 0; i < IceOverPositions().Length; i++) {
+                        for (int i = 0; i < IceOverPositions(stepVal).Length; i++) {
                             tileHighlight = Instantiate(tileHighlightPrefab);
-                            var wallCheck = new Vector3Int(IceOverPositions()[i].x + 1, IceOverPositions()[i].y + 1, 0);
+                            var wallCheck = new Vector3Int(IceOverPositions(stepVal)[i].x + 1, IceOverPositions(stepVal)[i].y + 1, 0);
                             bool isWall = false;
                             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
-                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions()[i]) + TileMoving.wallOffset) {
+                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions(stepVal)[i]) + TileMoving.wallOffset) {
                                     isWall = true;
                                     break;
                                 }
@@ -427,7 +470,7 @@ public class GMPlayer : MonoBehaviour {
                                 tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
                             }
                             else {
-                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions()[i]);
+                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions(stepVal)[i]);
                             }
                         }
                         break;
@@ -460,12 +503,12 @@ public class GMPlayer : MonoBehaviour {
                         break;
 
                     case "Ice":
-                        for (int i = 0; i < IceOverPositions().Length; i++) {
+                        for (int i = 0; i < IceOverPositions(siblingIndex).Length; i++) {
                             tileHighlight = Instantiate(tileselectHighlightPrefab);
-                            var wallCheck = new Vector3Int(IceOverPositions()[i].x + 1, IceOverPositions()[i].y + 1, 0);
+                            var wallCheck = new Vector3Int(IceOverPositions(siblingIndex)[i].x + 1, IceOverPositions(siblingIndex)[i].y + 1, 0);
                             bool isWall = false;
                             foreach (var wall in GameObject.FindGameObjectsWithTag("Wall")) {
-                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions()[i]) + TileMoving.wallOffset) {
+                                if (wall.transform.position == currentMap.CellToWorld(IceOverPositions(siblingIndex)[i]) + TileMoving.wallOffset) {
                                     isWall = true;
                                     break;
                                 }
@@ -475,7 +518,7 @@ public class GMPlayer : MonoBehaviour {
                                 tileHighlight.GetComponent<SpriteRenderer>().sortingLayerName = "1st Floor";
                             }
                             else {
-                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions()[i]);
+                                tileHighlight.transform.position = currentMap.CellToWorld(IceOverPositions(siblingIndex)[i]);
                             }
                         }
                         break;

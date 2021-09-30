@@ -52,5 +52,6 @@ MonoBehaviour:
   tileselectHighlightPrefab: {fileID: 3518494612615510350, guid: b1e8c00c6e9f39442a9c70bc5be90e4e, type: 3}
   shadowPrefab: {fileID: 5486258814373082205, guid: 278492d020b1521489fe570bbed9f0e9, type: 3}
   iceOverPrefab: {fileID: 7965232987443221101, guid: 61e4630e5f2224b4791415fa278f992b, type: 3}
+  currentStep: {fileID: 2464247154129263900, guid: 6bbd995d53d16e54cb2fb38bbd1d563c, type: 3}
   currentMap: {fileID: 0}
   nextlevelOnWall: 0
