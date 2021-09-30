@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 92b23c23ae5dd4647bb85d8f3631dcff
+guid: 0f21b930f6c86db4997fd0cb4bdd42c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5649950803000643510
-    second: Play Button-Sheet_0
+      213: -1542418332044344113
+    second: Switch Button-Sheet_0
   - first:
-      213: -4745281339441967576
-    second: Play Button-Sheet_1
+      213: -8028466142964163147
+    second: Switch Button-Sheet_1
   - first:
-      213: -3782562060762281294
-    second: Play Button-Sheet_2
+      213: 5156459226378519029
+    second: Switch Button-Sheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,11 +96,35 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Play Button-Sheet_0
+      name: Switch Button-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a40b6bceda75791b0800000000000000
-      internalID: -5649950803000643510
+      spriteID: fc44277f2ba389ae0800000000000000
+      internalID: -1542418332044344113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_1
+      name: Switch Button-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -135,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82e854b63cf552eb0800000000000000
-      internalID: -4745281339441967576
+      spriteID: 5bdde516498259090800000000000000
+      internalID: -8028466142964163147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_2
+      name: Switch Button-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -156,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ba056bb8d3a18bc0800000000000000
-      internalID: -3782562060762281294
+      spriteID: 5f1c317a85c6f8740800000000000000
+      internalID: 5156459226378519029
       vertices: []
       indices: 
       edges: []

@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 92b23c23ae5dd4647bb85d8f3631dcff
+guid: 576f1117db2667441ba341104208ccec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5649950803000643510
-    second: Play Button-Sheet_0
+      213: -6633983290750911476
+    second: Down Arrow-Sheet_0
   - first:
-      213: -4745281339441967576
-    second: Play Button-Sheet_1
+      213: -3198507865104504720
+    second: Down Arrow-Sheet_1
   - first:
-      213: -3782562060762281294
-    second: Play Button-Sheet_2
+      213: -4441516821722139292
+    second: Down Arrow-Sheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,17 +96,41 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Play Button-Sheet_0
+      name: Down Arrow-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 16
+        width: 59
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a40b6bceda75791b0800000000000000
-      internalID: -5649950803000643510
+      spriteID: c0c3aec685b5fe3a0800000000000000
+      internalID: -6633983290750911476
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_1
+      name: Down Arrow-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 59
         y: 0
-        width: 64
-        height: 16
+        width: 59
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -135,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82e854b63cf552eb0800000000000000
-      internalID: -4745281339441967576
+      spriteID: 07827290b0e9c93d0800000000000000
+      internalID: -3198507865104504720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_2
+      name: Down Arrow-Sheet_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 118
         y: 0
-        width: 64
-        height: 16
+        width: 59
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ba056bb8d3a18bc0800000000000000
-      internalID: -3782562060762281294
+      spriteID: 46574599bff8c52c0800000000000000
+      internalID: -4441516821722139292
       vertices: []
       indices: 
       edges: []

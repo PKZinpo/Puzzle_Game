@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 92b23c23ae5dd4647bb85d8f3631dcff
+guid: fb2f569d306643443995f3cda1bbcba1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5649950803000643510
-    second: Play Button-Sheet_0
+      213: 5920211495630597647
+    second: Hide Button-Sheet_0
   - first:
-      213: -4745281339441967576
-    second: Play Button-Sheet_1
+      213: 3677166016061621196
+    second: Hide Button-Sheet_1
   - first:
-      213: -3782562060762281294
-    second: Play Button-Sheet_2
+      213: 6068171694574810669
+    second: Hide Button-Sheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -96,16 +96,40 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Play Button-Sheet_0
+      name: Hide Button-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
+        width: 14
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -114,19 +138,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a40b6bceda75791b0800000000000000
-      internalID: -5649950803000643510
+      spriteID: f0eee381df0d82250800000000000000
+      internalID: 5920211495630597647
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_1
+      name: Hide Button-Sheet_1
       rect:
         serializedVersion: 2
-        x: 64
+        x: 14
         y: 0
-        width: 64
+        width: 14
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -135,19 +159,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82e854b63cf552eb0800000000000000
-      internalID: -4745281339441967576
+      spriteID: cc3cd77520be70330800000000000000
+      internalID: 3677166016061621196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Play Button-Sheet_2
+      name: Hide Button-Sheet_2
       rect:
         serializedVersion: 2
-        x: 128
+        x: 28
         y: 0
-        width: 64
+        width: 14
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -156,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ba056bb8d3a18bc0800000000000000
-      internalID: -3782562060762281294
+      spriteID: d263633710a763450800000000000000
+      internalID: 6068171694574810669
       vertices: []
       indices: 
       edges: []

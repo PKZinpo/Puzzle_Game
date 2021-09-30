@@ -14,6 +14,7 @@ TagManager:
   - NextLevel
   - Collectable
   - SelectHighlight
+  - TurnButton
   layers:
   - Default
   - TransparentFX

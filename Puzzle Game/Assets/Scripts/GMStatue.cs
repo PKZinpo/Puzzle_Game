@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -118,6 +119,14 @@ public class GMStatue : MonoBehaviour {
 
         if (SelectionManager.selected) {
             moveObject = SelectionManager.objecttoMove;
+            if (GameObject.FindGameObjectsWithTag("TurnButton").Length != 0) {
+                if (moveObject.GetComponent<StatueType>().statueType != "3Line") {
+                    GameObject.FindGameObjectWithTag("TurnButton").GetComponent<Button>().interactable = false;
+                }
+                else {
+                    GameObject.FindGameObjectWithTag("TurnButton").GetComponent<Button>().interactable = true;
+                }
+            }
             if (movetoDest) {
                 if (StatueData.statueList.ContainsKey(destination)) {
                     movetoDest = false;
@@ -179,6 +188,11 @@ public class GMStatue : MonoBehaviour {
                         movetoDest = false;
                     }
                 }
+            }
+        }
+        else {
+            if (GameObject.FindGameObjectsWithTag("TurnButton").Length != 0) {
+                GameObject.FindGameObjectWithTag("TurnButton").GetComponent<Button>().interactable = false;
             }
         }
     }
