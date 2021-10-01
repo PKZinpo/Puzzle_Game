@@ -88,6 +88,7 @@ public class GMPlayer : MonoBehaviour {
         if (StatueData.statueUIList.Count != 0) {
             Instantiate(currentStep, GameObject.FindGameObjectWithTag("CurrentStep").transform, false);
         }
+        Debug.Log(Screen.width + " and " + Screen.height);
     }
 
     void Start() {
