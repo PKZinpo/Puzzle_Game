@@ -248,19 +248,8 @@ public class GMStatue : MonoBehaviour {
 
     #endregion
 
-    public void ToPlayerScene() {
-        if (GameObject.Find("Selected(Clone)") != null) {
-            SelectionManager.selectedObject = null;
-            SelectionManager.RemoveHighlight();
-            SelectionManager.selected = false;
-        }
-        SceneManager.LoadScene(playerScene);
-    }
     public static string GetPlayerScene() {
         return sceneSwitchTo;
-    }
-    public static List<Vector3> GetActivatorPositions() {
-        return activatorPosition;
     }
     public static void ClearActivatorPositions() {
         activatorPosition.Clear();

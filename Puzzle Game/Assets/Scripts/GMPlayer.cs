@@ -20,6 +20,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject shadowPrefab;
     public GameObject iceOverPrefab;
     public GameObject currentStep;
+    public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
 
@@ -30,6 +31,13 @@ public class GMPlayer : MonoBehaviour {
     public static GameObject shadow;
 
     private int prevStepVal;
+    private int tutorialVal;
+    private bool inTutorial = false;
+    private bool lvl1Dialogue = false;
+    private bool playButton = false;
+    private bool arrowButton = false;
+    private bool statueList = false;
+    private bool switchButton = false;
     private bool hideWall = false;
     private Vector3Int direction;
     private Vector3 collectableOffset = new Vector3(0.0f, -0.005f, 0.0f);
@@ -88,19 +96,73 @@ public class GMPlayer : MonoBehaviour {
         if (StatueData.statueUIList.Count != 0) {
             Instantiate(currentStep, GameObject.FindGameObjectWithTag("CurrentStep").transform, false);
         }
-        Debug.Log(Screen.width + " and " + Screen.height);
     }
 
     void Start() {
-        #region Level1
 
-        #endregion
+        if (SceneManager.GetActiveScene().name == "Player1") {
+            if (!inTutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+            }
+        }
     }
 
     void Update() {
 
-        #region Level1
+        #region Level1 Tutorial
 
+        if (tutorialObject.activeSelf) {
+            if (Input.anyKeyDown) {
+                if (SceneManager.GetActiveScene().name == "Player1") {
+                    tutorialVal++;
+                    if (tutorialVal == 1) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    }
+                    else if (tutorialVal == 2) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    }
+                    else if (tutorialVal == 3) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    }
+                    else if (tutorialVal == 4) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    }
+                    else if (tutorialVal == 5) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    }
+                    else {
+
+                    }
+                    //if (!playButton) {
+                    //    tutorialObject.transform.GetChild(0).gameObject.SetActive(true);
+                    //    playButton = true;
+                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    //}
+                    //else if (!arrowButton) {
+                    //    tutorialObject.transform.GetChild(0).gameObject.SetActive(false);
+                    //    tutorialObject.transform.GetChild(1).gameObject.SetActive(true);
+                    //    arrowButton = true;
+                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    //}
+                    //else if (!statueList) {
+                    //    tutorialObject.transform.GetChild(1).gameObject.SetActive(false);
+                    //    tutorialObject.transform.GetChild(2).gameObject.SetActive(true);
+                    //    statueList = true;
+                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    //}
+                    //else if (!switchButton) {
+                    //    tutorialObject.transform.GetChild(2).gameObject.SetActive(false);
+                    //    tutorialObject.transform.GetChild(3).gameObject.SetActive(true);
+                    //    switchButton = true;
+                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    //}
+                    //else {
+                    //    tutorialObject.SetActive(false);
+                    //}
+                }
+            }
+        }
 
         #endregion
 
@@ -277,9 +339,6 @@ public class GMPlayer : MonoBehaviour {
         }
     }
 
-    public void ToStatueScene() {
-        SceneManager.LoadScene(statueScene);
-    }
     public static string GetStatueScene() {
         return sceneSwitchTo;
     }

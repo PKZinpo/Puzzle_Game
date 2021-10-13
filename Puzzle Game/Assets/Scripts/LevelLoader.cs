@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class LevelLoader : MonoBehaviour {
     public Animator transition;
 
     public void ToStatueScene() {
-        LoadLevel(GMPlayer.GetStatueScene());
+        StartCoroutine(LoadLevel(GMPlayer.GetStatueScene()));
     }
     public void ToPlayerScene() {
         if (GameObject.Find("Selected(Clone)") != null) {
@@ -14,12 +15,11 @@ public class LevelLoader : MonoBehaviour {
             SelectionManager.RemoveHighlight();
             SelectionManager.selected = false;
         }
-        LoadLevel(GMStatue.GetPlayerScene());
+        StartCoroutine(LoadLevel(GMStatue.GetPlayerScene()));
     }
-    public void LoadLevel(string levelName) {
-
+    private IEnumerator LoadLevel(string levelName) {
         transition.SetTrigger("Start");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(levelName);
-
     }
 }
