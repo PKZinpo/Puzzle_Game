@@ -34,10 +34,6 @@ public class GMPlayer : MonoBehaviour {
     private int tutorialVal;
     private bool inTutorial = false;
     private bool lvl1Dialogue = false;
-    private bool playButton = false;
-    private bool arrowButton = false;
-    private bool statueList = false;
-    private bool switchButton = false;
     private bool hideWall = false;
     private Vector3Int direction;
     private Vector3 collectableOffset = new Vector3(0.0f, -0.005f, 0.0f);
@@ -46,15 +42,6 @@ public class GMPlayer : MonoBehaviour {
 
     private static string sceneSwitchTo;
     private static Vector3 nextlevelOffset;
-
-    #endregion
-
-    #region Level1Variables
-
-    private static Vector3Int[] tilePositions = new Vector3Int[3];
-    
-    public static bool lvl1Path = false;
-    private Vector3Int lvl1tilePlace;
 
     #endregion
 
@@ -116,50 +103,28 @@ public class GMPlayer : MonoBehaviour {
             if (Input.anyKeyDown) {
                 if (SceneManager.GetActiveScene().name == "Player1") {
                     tutorialVal++;
-                    if (tutorialVal == 1) {
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    }
-                    else if (tutorialVal == 2) {
+                    if (tutorialVal == 1 || tutorialVal == 2) {
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
                     }
                     else if (tutorialVal == 3) {
+                        tutorialObject.transform.GetChild(0).gameObject.SetActive(true);
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
                     }
                     else if (tutorialVal == 4) {
+                        tutorialObject.transform.GetChild(0).gameObject.SetActive(false);
+                        tutorialObject.transform.GetChild(1).gameObject.SetActive(true);
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
                     }
                     else if (tutorialVal == 5) {
+                        tutorialObject.transform.GetChild(1).gameObject.SetActive(false);
+                        tutorialObject.transform.GetChild(2).gameObject.SetActive(true);
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
                     }
-                    else {
-
+                    else if (tutorialVal == 6) {
+                        tutorialObject.transform.GetChild(2).gameObject.SetActive(false);
+                        tutorialObject.transform.GetChild(3).gameObject.SetActive(true);
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
                     }
-                    //if (!playButton) {
-                    //    tutorialObject.transform.GetChild(0).gameObject.SetActive(true);
-                    //    playButton = true;
-                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    //}
-                    //else if (!arrowButton) {
-                    //    tutorialObject.transform.GetChild(0).gameObject.SetActive(false);
-                    //    tutorialObject.transform.GetChild(1).gameObject.SetActive(true);
-                    //    arrowButton = true;
-                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    //}
-                    //else if (!statueList) {
-                    //    tutorialObject.transform.GetChild(1).gameObject.SetActive(false);
-                    //    tutorialObject.transform.GetChild(2).gameObject.SetActive(true);
-                    //    statueList = true;
-                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    //}
-                    //else if (!switchButton) {
-                    //    tutorialObject.transform.GetChild(2).gameObject.SetActive(false);
-                    //    tutorialObject.transform.GetChild(3).gameObject.SetActive(true);
-                    //    switchButton = true;
-                    //    FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    //}
-                    //else {
-                    //    tutorialObject.SetActive(false);
-                    //}
                 }
             }
         }

@@ -204,7 +204,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5613404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1999977814}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: ToStatueScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5613404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1387,11 +1399,12 @@ MonoBehaviour:
   dialogue:
     sentences:
     - WELCOME TO TWO WORLDS
-    - A PUZZLE GAME TO NAVIGATE THE CUBE TO THE EXIT
-    - USE THE ARROW KEYS TO MOVE THE CUBE AROUND
+    - A PUZZLE GAME WHERE YOU MUST NAVIGATE THE CUBE TO THE EXIT
+    - THIS IS THE MAIN WORLD
+    - USE THE ARROW KEYS HERE TO MOVE THE CUBE AROUND
     - USE THIS BUTTON TO ACTIVATE STATUES
-    - WHICH WILL BE SHOWN OVER HERE
-    - CLICK THIS BUTTON TO SWITCH TO THE OTHER WORLD
+    - THAT ARE SHOWN OVER HERE
+    - GO AHEAD AND CLICK THIS BUTTON TO SWITCH TO THE OTHER WORLD
 --- !u!1 &977842006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1983,7 +1996,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1641372145
+  m_SortingLayerID: -450422237
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1501888473
