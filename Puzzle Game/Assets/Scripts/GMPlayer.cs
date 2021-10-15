@@ -23,6 +23,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
+    public bool lvl1Tutorial = false;
 
     public static Tilemap currentMapStatic;
     public static int highlightVal;
@@ -31,9 +32,8 @@ public class GMPlayer : MonoBehaviour {
     public static GameObject shadow;
 
     private int prevStepVal;
-    private int tutorialVal;
+    private int tutorialVal = 0;
     private bool inTutorial = false;
-    private bool lvl1Dialogue = false;
     private bool hideWall = false;
     private Vector3Int direction;
     private Vector3 collectableOffset = new Vector3(0.0f, -0.005f, 0.0f);
@@ -86,11 +86,17 @@ public class GMPlayer : MonoBehaviour {
     }
 
     void Start() {
-
         if (SceneManager.GetActiveScene().name == "Player1") {
             if (!inTutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                if (StatueData.statueUIList.Count != 0) {
+                    while (tutorialVal < 7) {
+                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        tutorialVal++;
+                    }
+                }
+                inTutorial = true;
             }
         }
     }
@@ -99,31 +105,35 @@ public class GMPlayer : MonoBehaviour {
 
         #region Level1 Tutorial
 
-        if (tutorialObject.activeSelf) {
+        if (tutorialObject != null && tutorialObject.activeSelf) {
             if (Input.anyKeyDown) {
                 if (SceneManager.GetActiveScene().name == "Player1") {
                     tutorialVal++;
-                    if (tutorialVal == 1 || tutorialVal == 2) {
+                    if (StatueData.statueUIList.Count != 0) {
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        
                     }
-                    else if (tutorialVal == 3) {
-                        tutorialObject.transform.GetChild(0).gameObject.SetActive(true);
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                    else {
+                        if (tutorialVal >= 3 && tutorialVal <= 6) {
+                            if (tutorialVal - 4 >= 0) {
+                                tutorialObject.transform.GetChild(tutorialVal - 4).gameObject.SetActive(false);
+                            }
+                            tutorialObject.transform.GetChild(tutorialVal - 3).gameObject.SetActive(true);
+                        }
+                        if (tutorialVal <= 6) {
+                            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        }
                     }
-                    else if (tutorialVal == 4) {
-                        tutorialObject.transform.GetChild(0).gameObject.SetActive(false);
-                        tutorialObject.transform.GetChild(1).gameObject.SetActive(true);
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    }
-                    else if (tutorialVal == 5) {
-                        tutorialObject.transform.GetChild(1).gameObject.SetActive(false);
-                        tutorialObject.transform.GetChild(2).gameObject.SetActive(true);
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                    }
-                    else if (tutorialVal == 6) {
-                        tutorialObject.transform.GetChild(2).gameObject.SetActive(false);
-                        tutorialObject.transform.GetChild(3).gameObject.SetActive(true);
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+                if (gameObject.GetComponent<DialogueTrigger>().dialogue.sentences.Length == tutorialVal) {
+                    switch (SceneManager.GetActiveScene().name) {
+
+                        case "Player1":
+
+                            lvl1Tutorial = true;
+                            break;
+
+
                     }
                 }
             }

@@ -8,20 +8,21 @@ public class GMStatue : MonoBehaviour {
 
     #region GeneralVariables
 
+    public GameObject tutorialObject;
     public Tilemap currentMap;
     public float movementSpeed = 1f;
     public string playerScene;
 
     public static int numStatue;
 
+    private bool inTutorial = false;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
+
     private static GameObject moveObject;
     private static bool movetoDest = false;
     private static Vector3 destination;
     private static string sceneSwitchTo;
-
-    private static GameObject[] Statues;
     private static List<Vector3> activatorPosition = new List<Vector3>();
 
     #endregion
@@ -47,7 +48,6 @@ public class GMStatue : MonoBehaviour {
             StatueData.PopulateStatueList();
         }
         if (GameObject.FindGameObjectsWithTag("Statue").Length != 0) {
-            Statues = GameObject.FindGameObjectsWithTag("Statue");
             foreach (var item in StatueData.statueList) {
                 foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
                     if (statue.GetComponent<StatueType>().statueType == item.Value.type && !statue.GetComponent<StatueType>().isPlaced) {
@@ -102,18 +102,26 @@ public class GMStatue : MonoBehaviour {
     }
 
     void Start() {
-        #region Level1
-
-
-
-        #endregion
+        if (SceneManager.GetActiveScene().name == "Statue1") {
+            if (!inTutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                inTutorial = true;
+            }
+        }
     }
 
     void Update() {
 
-        #region Level1
+        #region Level1 Tutorial
 
-        
+        if (tutorialObject != null && tutorialObject.activeSelf) {
+            if (Input.anyKeyDown) {
+                if (SceneManager.GetActiveScene().name == "Statue1") {
+                    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+            }
+        }
 
         #endregion
 

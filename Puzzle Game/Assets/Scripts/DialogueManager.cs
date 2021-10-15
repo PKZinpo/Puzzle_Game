@@ -31,10 +31,9 @@ public class DialogueManager : MonoBehaviour {
 
         string sentence = sentences.Dequeue();
         dialogueText.text = sentence;
-        Debug.Log(sentence);
     }
 
     public void EndDialogue() {
-        Debug.Log("END");
+        GameObject.FindGameObjectWithTag("Tutorial").SetActive(false);
     }
 }
