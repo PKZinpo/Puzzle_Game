@@ -17,6 +17,13 @@ public class LevelLoader : MonoBehaviour {
         }
         StartCoroutine(LoadLevel(GMStatue.GetPlayerScene()));
     }
+    public void ToNextLevel(string nextlevelScene) {
+        StartCoroutine(LoadLevel(nextlevelScene));
+        StatueData.statueList.Clear();
+        StatueData.statueUIList.Clear();
+        GMStatue.ClearActivatorPositions();
+        GMStatue.numStatue = 0;
+    }
     private IEnumerator LoadLevel(string levelName) {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(1f);

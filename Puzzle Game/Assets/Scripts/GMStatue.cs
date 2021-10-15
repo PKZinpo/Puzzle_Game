@@ -102,7 +102,15 @@ public class GMStatue : MonoBehaviour {
     }
 
     void Start() {
-        if (SceneManager.GetActiveScene().name == "Statue1") {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Statue1") {
+            if (!inTutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                inTutorial = true;
+            }
+        }
+        else if (sceneName == "Statue2") {
             if (!inTutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
@@ -113,11 +121,16 @@ public class GMStatue : MonoBehaviour {
 
     void Update() {
 
-        #region Level1 Tutorial
+        #region Tutorial
 
         if (tutorialObject != null && tutorialObject.activeSelf) {
             if (Input.anyKeyDown) {
-                if (SceneManager.GetActiveScene().name == "Statue1") {
+                string sceneName = SceneManager.GetActiveScene().name;
+                if (sceneName == "Statue1") {
+                    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+                else if (sceneName == "Statue2") {
+                    tutorialObject.transform.GetChild(4).gameObject.SetActive(true);
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
             }

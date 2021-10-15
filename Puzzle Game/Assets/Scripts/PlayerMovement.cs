@@ -274,7 +274,7 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         if (currentGround.GetTile(currentGround.WorldToCell(transform.position)) == null && tileCheck == 0) {
-            GMPlayer.ResetLevel();
+            FindObjectOfType<GMPlayer>().ResetLevel();
         }
     }
 }

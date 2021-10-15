@@ -23,7 +23,9 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
-    public bool lvl1Tutorial = false;
+    [HideInInspector] public bool lvl1Tutorial = false;
+    [HideInInspector] public bool lvl2Tutorial = false;
+    [HideInInspector] public bool lvl3Tutorial = false;
 
     public static Tilemap currentMapStatic;
     public static int highlightVal;
@@ -86,8 +88,9 @@ public class GMPlayer : MonoBehaviour {
     }
 
     void Start() {
-        if (SceneManager.GetActiveScene().name == "Player1") {
-            if (!inTutorial) {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName == "Player1") {
+            if (!lvl1Tutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                 if (StatueData.statueUIList.Count != 0) {
@@ -96,22 +99,41 @@ public class GMPlayer : MonoBehaviour {
                         tutorialVal++;
                     }
                 }
-                inTutorial = true;
+                //inTutorial = true;
+            }
+        }
+        else if (sceneName == "Player2") {
+            if (!lvl2Tutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                tutorialObject.transform.GetChild(5).gameObject.SetActive(true);
+            }
+        }
+        else if (sceneName == "Player3") {
+            if (!lvl3Tutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+            }
+        }
+        else if (sceneName == "Player4") {
+            if (!lvl3Tutorial) {
+                tutorialObject.SetActive(true);
+                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
             }
         }
     }
 
     void Update() {
 
-        #region Level1 Tutorial
+        #region Tutorial
 
         if (tutorialObject != null && tutorialObject.activeSelf) {
             if (Input.anyKeyDown) {
-                if (SceneManager.GetActiveScene().name == "Player1") {
-                    tutorialVal++;
+                string sceneName = SceneManager.GetActiveScene().name;
+                tutorialVal++;
+                if (sceneName == "Player1") {
                     if (StatueData.statueUIList.Count != 0) {
                         FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                        
                     }
                     else {
                         if (tutorialVal >= 3 && tutorialVal <= 6) {
@@ -125,14 +147,38 @@ public class GMPlayer : MonoBehaviour {
                         }
                     }
                 }
+                else if (sceneName == "Player2" || sceneName == "Player3") {
+                    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+                else if (sceneName == "Player4") {
+                    if (tutorialVal == 1) {
+                        tutorialObject.transform.GetChild(6).gameObject.SetActive(true);
+                    }
+                    else {
+                        tutorialObject.transform.GetChild(6).gameObject.SetActive(false);
+                    }
+                    FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
                 if (gameObject.GetComponent<DialogueTrigger>().dialogue.sentences.Length == tutorialVal) {
-                    switch (SceneManager.GetActiveScene().name) {
+                    switch (sceneName) {
 
                         case "Player1":
 
                             lvl1Tutorial = true;
+                            Debug.Log("LVL1DONE");
                             break;
 
+                        case "Player2":
+
+                            lvl2Tutorial = true;
+                            Debug.Log("LVL2DONE");
+                            break;
+
+                        case "Player3":
+
+                            lvl3Tutorial = true;
+                            Debug.Log("LVL3DONE");
+                            break;
 
                     }
                 }
@@ -561,16 +607,12 @@ public class GMPlayer : MonoBehaviour {
             }
         }
     }
-    public static void ResetLevel() {
+    public void ResetLevel() {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
     private void ToNextLevel() {
-        SceneManager.LoadScene(nextlevelScene);
-        StatueData.statueList.Clear();
-        StatueData.statueUIList.Clear();
-        GMStatue.ClearActivatorPositions();
-        GMStatue.numStatue = 0;
+        FindObjectOfType<LevelLoader>().ToNextLevel(nextlevelScene);
     }
     public void HideWallTiles() {
         hideWall = !hideWall;
