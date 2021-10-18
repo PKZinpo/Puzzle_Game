@@ -26,6 +26,10 @@ public class GMPlayer : MonoBehaviour {
     [HideInInspector] public bool lvl1Tutorial = false;
     [HideInInspector] public bool lvl2Tutorial = false;
     [HideInInspector] public bool lvl3Tutorial = false;
+    [HideInInspector] public bool lvl4Tutorial = false;
+    [HideInInspector] public bool lvl5Tutorial = false;
+    [HideInInspector] public bool lvl6Tutorial = false;
+    [HideInInspector] public bool lvl7Tutorial = false;
 
     public static Tilemap currentMapStatic;
     public static int highlightVal;
@@ -89,37 +93,63 @@ public class GMPlayer : MonoBehaviour {
 
     void Start() {
         string sceneName = SceneManager.GetActiveScene().name;
-        if (sceneName == "Player1") {
-            if (!lvl1Tutorial) {
-                tutorialObject.SetActive(true);
-                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                if (StatueData.statueUIList.Count != 0) {
-                    while (tutorialVal < 7) {
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
-                        tutorialVal++;
+        switch (sceneName) {
+            case "Player1":
+                if (!lvl1Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                    if (StatueData.statueUIList.Count != 0) {
+                        while (tutorialVal < 7) {
+                            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                            tutorialVal++;
+                        }
                     }
+                    //inTutorial = true;
                 }
-                //inTutorial = true;
-            }
-        }
-        else if (sceneName == "Player2") {
-            if (!lvl2Tutorial) {
-                tutorialObject.SetActive(true);
-                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                tutorialObject.transform.GetChild(5).gameObject.SetActive(true);
-            }
-        }
-        else if (sceneName == "Player3") {
-            if (!lvl3Tutorial) {
-                tutorialObject.SetActive(true);
-                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-            }
-        }
-        else if (sceneName == "Player4") {
-            if (!lvl3Tutorial) {
-                tutorialObject.SetActive(true);
-                gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-            }
+                break;
+
+            case "Player2":
+                if (!lvl2Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                    tutorialObject.transform.GetChild(5).gameObject.SetActive(true);
+                }
+                break;
+
+            case "Player3":
+                if (!lvl3Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                break;
+
+            case "Player4":
+                if (!lvl4Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                break;
+
+            case "Player5":
+                if (!lvl5Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                break;
+
+            case "Player6":
+                if (!lvl6Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                break;
+
+            case "Player7":
+                if (!lvl7Tutorial) {
+                    tutorialObject.SetActive(true);
+                    gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+                }
+                break;
         }
     }
 
@@ -147,7 +177,7 @@ public class GMPlayer : MonoBehaviour {
                         }
                     }
                 }
-                else if (sceneName == "Player2" || sceneName == "Player3") {
+                else if (sceneName == "Player2" || sceneName == "Player3" || sceneName == "Player5" || sceneName == "Player6" || sceneName == "Player7") {
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
                 else if (sceneName == "Player4") {
@@ -163,21 +193,38 @@ public class GMPlayer : MonoBehaviour {
                     switch (sceneName) {
 
                         case "Player1":
-
                             lvl1Tutorial = true;
                             Debug.Log("LVL1DONE");
                             break;
 
                         case "Player2":
-
                             lvl2Tutorial = true;
                             Debug.Log("LVL2DONE");
                             break;
 
                         case "Player3":
-
                             lvl3Tutorial = true;
                             Debug.Log("LVL3DONE");
+                            break;
+
+                        case "Player4":
+                            lvl4Tutorial = true;
+                            Debug.Log("LVL4DONE");
+                            break;
+
+                        case "Player5":
+                            lvl5Tutorial = true;
+                            Debug.Log("LVL5DONE");
+                            break;
+
+                        case "Player6":
+                            lvl6Tutorial = true;
+                            Debug.Log("LVL6DONE");
+                            break;
+
+                        case "Player7":
+                            lvl7Tutorial = true;
+                            Debug.Log("LVL7DONE");
                             break;
 
                     }
