@@ -124,7 +124,8 @@ public class GMStatue : MonoBehaviour {
         #region Tutorial
 
         if (tutorialObject != null && tutorialObject.activeSelf) {
-            if (Input.anyKeyDown) {
+            bool typingCheck = FindObjectOfType<DialogueManager>().isTyping;
+            if (Input.anyKeyDown && !typingCheck) {
                 string sceneName = SceneManager.GetActiveScene().name;
                 if (sceneName == "Statue1") {
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();

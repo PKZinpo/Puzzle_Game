@@ -85,6 +85,9 @@ TagManager:
   - name: Tutorial
     uniqueID: 3844545059
     locked: 0
+  - name: Pause
+    uniqueID: 609917503
+    locked: 0
   - name: Fade
     uniqueID: 2653595151
     locked: 0

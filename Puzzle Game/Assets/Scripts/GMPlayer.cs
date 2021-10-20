@@ -23,6 +23,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
+    [HideInInspector] public int currentLevel;
     [HideInInspector] public bool lvl1Tutorial = false;
     [HideInInspector] public bool lvl2Tutorial = false;
     [HideInInspector] public bool lvl3Tutorial = false;
@@ -52,6 +53,11 @@ public class GMPlayer : MonoBehaviour {
     #endregion
 
     void Awake() {
+
+        string sceneName = SceneManager.GetActiveScene().name;
+        char val = sceneName.ToCharArray()[sceneName.ToCharArray().Length - 1];
+        currentLevel = Int32.Parse(val.ToString());
+
         currentMapStatic = currentMap;
         sceneSwitchTo = statueScene;
         stepVal = 0;
@@ -100,7 +106,7 @@ public class GMPlayer : MonoBehaviour {
                     gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
                     if (StatueData.statueUIList.Count != 0) {
                         while (tutorialVal < 7) {
-                            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                            FindObjectOfType<DialogueManager>().DisplayStartingSentence();
                             tutorialVal++;
                         }
                     }
@@ -158,7 +164,8 @@ public class GMPlayer : MonoBehaviour {
         #region Tutorial
 
         if (tutorialObject != null && tutorialObject.activeSelf) {
-            if (Input.anyKeyDown) {
+            bool typingCheck = FindObjectOfType<DialogueManager>().isTyping;
+            if (Input.anyKeyDown && !typingCheck) {
                 string sceneName = SceneManager.GetActiveScene().name;
                 tutorialVal++;
                 if (sceneName == "Player1") {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour {
 
     public Text dialogueText;
+    public bool isTyping;
 
     private Queue<string> sentences;
 
@@ -20,7 +21,13 @@ public class DialogueManager : MonoBehaviour {
             sentences.Enqueue(sentence);
         }
 
-        DisplayNextSentence();
+        DisplayStartingSentence();
+    }
+
+    public void DisplayStartingSentence() {
+        string sentence = sentences.Dequeue();
+        dialogueText.text = sentence;
+        GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(8).gameObject.SetActive(true);
     }
 
     public void DisplayNextSentence() {
@@ -30,7 +37,21 @@ public class DialogueManager : MonoBehaviour {
         }
 
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        StartCoroutine(TypeSentence(sentence));
+        GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(8).gameObject.SetActive(false);
+    }
+
+    private IEnumerator TypeSentence(string sentence) {
+        dialogueText.text = "";
+        isTyping = true;
+        foreach (char letter in sentence.ToCharArray()) {
+            dialogueText.text += letter;
+            yield return new WaitForSecondsRealtime(0.015f);
+        }
+        isTyping = false;
+        if (!GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(3).gameObject.activeSelf) {
+            GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(8).gameObject.SetActive(true);
+        }
     }
 
     public void EndDialogue() {
