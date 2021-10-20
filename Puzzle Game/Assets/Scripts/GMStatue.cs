@@ -1,8 +1,9 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class GMStatue : MonoBehaviour {
 
@@ -12,9 +13,20 @@ public class GMStatue : MonoBehaviour {
     public Tilemap currentMap;
     public float movementSpeed = 1f;
     public string playerScene;
+    //[HideInInspector] public int currentLevel;
+    //[HideInInspector] public bool lvl1Tutorial = false;
+    //[HideInInspector] public bool lvl1StatueTutorial = false;
+    //[HideInInspector] public bool lvl2Tutorial = false;
+    //[HideInInspector] public bool lvl2StatueTutorial = false;
+    //[HideInInspector] public bool lvl3Tutorial = false;
+    //[HideInInspector] public bool lvl4Tutorial = false;
+    //[HideInInspector] public bool lvl5Tutorial = false;
+    //[HideInInspector] public bool lvl6Tutorial = false;
+    //[HideInInspector] public bool lvl7Tutorial = false;
 
     public static int numStatue;
 
+    private int tutorialVal = 0;
     private bool inTutorial = false;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
@@ -33,6 +45,10 @@ public class GMStatue : MonoBehaviour {
     #endregion
 
     void Awake() {
+        //string sceneName = SceneManager.GetActiveScene().name;
+        //char val = sceneName.ToCharArray()[sceneName.ToCharArray().Length - 1];
+        //currentLevel = Int32.Parse(val.ToString());
+
         sceneSwitchTo = playerScene;
 
         #region Alignment
@@ -104,17 +120,15 @@ public class GMStatue : MonoBehaviour {
     void Start() {
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "Statue1") {
-            if (!inTutorial) {
+            if (!FindObjectOfType<GameObjectData>().lvl1StatueTutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                inTutorial = true;
             }
         }
         else if (sceneName == "Statue2") {
-            if (!inTutorial) {
+            if (!FindObjectOfType<GameObjectData>().lvl2StatueTutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
-                inTutorial = true;
             }
         }
     }
@@ -127,12 +141,26 @@ public class GMStatue : MonoBehaviour {
             bool typingCheck = FindObjectOfType<DialogueManager>().isTyping;
             if (Input.anyKeyDown && !typingCheck) {
                 string sceneName = SceneManager.GetActiveScene().name;
+                tutorialVal++;
                 if (sceneName == "Statue1") {
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
                 }
                 else if (sceneName == "Statue2") {
                     tutorialObject.transform.GetChild(4).gameObject.SetActive(true);
                     FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                }
+                if (gameObject.GetComponent<DialogueTrigger>().dialogue.sentences.Length == tutorialVal) {
+                    switch (sceneName) {
+                        case "Statue1":
+                            FindObjectOfType<GameObjectData>().lvl1StatueTutorial = true;
+                            Debug.Log("LVL1StatueDONE");
+                            break;
+
+                        case "Statue2":
+                            FindObjectOfType<GameObjectData>().lvl2StatueTutorial = true;
+                            Debug.Log("LVL2StatueDONE");
+                            break;
+                    }
                 }
             }
         }

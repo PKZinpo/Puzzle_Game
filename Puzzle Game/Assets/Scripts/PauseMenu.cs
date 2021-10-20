@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
@@ -33,6 +33,17 @@ public class PauseMenu : MonoBehaviour {
         isPaused = true;
     }
     public void Exit() {
+        if (GameObject.Find("Selected(Clone)") != null) {
+            SelectionManager.selectedObject = null;
+            SelectionManager.RemoveHighlight();
+            SelectionManager.selected = false;
+        }
+        StatueData.statueList.Clear();
+        StatueData.statueUIList.Clear();
+        GMStatue.ClearActivatorPositions();
+        GMStatue.numStatue = 0;
+        FindObjectOfType<LevelLoader>().SaveGame();
         FindObjectOfType<LevelLoader>().ToLevelSelection();
+        Debug.Log("EXIT");
     }
 }

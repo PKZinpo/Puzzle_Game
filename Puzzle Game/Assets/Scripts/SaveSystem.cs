@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem {
     
-    public static void SaveGameData(GMPlayer gameData) {
+    public static void SaveGameData(GameObjectData gameData) {
         string path = Application.persistentDataPath + "/level.data";
         using (FileStream stream = new FileStream(path, FileMode.Create)) {
             BinaryFormatter formatter = new BinaryFormatter();
