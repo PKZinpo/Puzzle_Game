@@ -36,6 +36,9 @@ public class StatueSort : MonoBehaviour {
         if (listNum != StatueData.statueUIList.Count) {
             if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
                 foreach (var icon in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                    if (icon.GetComponent<ClickDrag>().selectTemp != null) {
+                        icon.GetComponent<ClickDrag>().DestroyIconSelection();
+                    }
                     Destroy(icon);
                 }
             }
@@ -48,6 +51,9 @@ public class StatueSort : MonoBehaviour {
                             if (typeName == iconItem.name) {
                                 statueIcon.GetComponent<UnityEngine.UI.Image>().sprite = iconItem;
                             }
+                        }
+                        if (UIItem == SelectionManager.objecttoMove.transform.position) {
+                            statueIcon.GetComponent<ClickDrag>().MakeIconSelection();
                         }
                     }
                 }

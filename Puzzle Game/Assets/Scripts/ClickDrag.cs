@@ -22,39 +22,6 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         rectTransform = GetComponent<RectTransform>();
     }
     void Update() {
-        Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name.Contains("Statue")) {
-            if (SelectionManager.objecttoMove != null) {
-                int i = 0;
-                foreach (var item in GameObject.FindGameObjectsWithTag("StatueIcon")) {
-                    if (item.GetComponent<ClickDrag>().temp != null) {
-                        i++;
-                    }
-                }
-                if (i == 0) {
-                    if (StatueData.statueUIList.Contains(SelectionManager.objecttoMove.transform.position)) {
-                        if (StatueData.statueUIList[transform.GetSiblingIndex()] == SelectionManager.objecttoMove.transform.position) {
-                            MakeIconSelection();
-                        }
-                        else {
-                            if (selectTemp != null) {
-                                DestroyIconSelection();
-                            }
-                        }
-                    }
-                    else {
-                        if (selectTemp != null) {
-                            DestroyIconSelection();
-                        }
-                    }
-                }
-            }
-            else {
-                if (selectTemp != null) {
-                    DestroyIconSelection();
-                }
-            }
-        }
         if (selectTemp != null) {
             selectTemp.transform.position = new Vector3(transform.position.x + 0.4f, transform.position.y, transform.position.z);
         }
@@ -152,26 +119,43 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
         }
         else if (SelectionManager.objecttoMove != null && SelectionManager.objecttoMove.transform.position != StatueData.statueUIList[transform.GetSiblingIndex()]) {
             SelectionManager.RemoveHighlight();
+            Debug.Log("Change");
+            foreach (var item in GameObject.FindGameObjectsWithTag("StatueIcon")) {
+                if (item != gameObject) {
+                    if (item.GetComponent<ClickDrag>().selectTemp != null) {
+                        item.GetComponent<ClickDrag>().DestroyIconSelection();
+                    }
+                }
+            }
             foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
                 if (StatueData.statueUIList[transform.GetSiblingIndex()] == statue.transform.position) {
                     SelectionManager.objecttoMove = statue;
+                    SelectionManager.selectedObject = statue.name;
                     SelectionManager.AddHighlight();
                     break;
                 }
             }
+            MakeIconSelection();
         }
         else if (SelectionManager.objecttoMove == null) {
+            Debug.Log("Add");
             foreach (var statue in GameObject.FindGameObjectsWithTag("Statue")) {
                 if (StatueData.statueUIList[transform.GetSiblingIndex()] == statue.transform.position) {
                     SelectionManager.objecttoMove = statue;
                     SelectionManager.AddHighlight();
+                    SelectionManager.selected = true;
                     break;
                 }
             }
+            MakeIconSelection();
         }
         else {
+            Debug.Log("Remove");
             SelectionManager.objecttoMove = null;
+            SelectionManager.selectedObject = null;
+            SelectionManager.selected = false;
             SelectionManager.RemoveHighlight();
+            DestroyIconSelection();
         }
     }
     public void DestroyIconSelection() {

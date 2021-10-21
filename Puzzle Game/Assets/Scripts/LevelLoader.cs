@@ -55,7 +55,6 @@ public class LevelLoader : MonoBehaviour {
     public void LoadGame() {
         
         GameData data = SaveSystem.LoadGameData();
-
         GameObjectData game = FindObjectOfType<GameObjectData>();
 
         game.currentLevel = data.level;
@@ -69,5 +68,9 @@ public class LevelLoader : MonoBehaviour {
         game.lvl6Tutorial = data.lvl6Tutorial;
         game.lvl7Tutorial = data.lvl7Tutorial;
         Debug.Log("LoadGame");
+    }
+
+    public void OnApplicationQuit() {
+        SaveGame();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameObjectData : MonoBehaviour {
 
-    public int currentLevel = 1;
+    public int currentLevel;
     public bool lvl1Tutorial = false;
     public bool lvl1StatueTutorial = false;
     public bool lvl2Tutorial = false;
@@ -16,7 +16,7 @@ public class GameObjectData : MonoBehaviour {
     public bool lvl6Tutorial = false;
     public bool lvl7Tutorial = false;
 
-    void Awake() {
+    void Start() {
         bool levelCheck = SceneManager.GetActiveScene().name.Contains("Player") || SceneManager.GetActiveScene().name.Contains("Statue");
         if (levelCheck) {
             string sceneName = SceneManager.GetActiveScene().name;

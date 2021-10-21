@@ -18,7 +18,9 @@ public class SineMovement : MonoBehaviour {
 
     void Update() {
         if (name.Contains("Selected")) {
-            startPosition = SelectionManager.objecttoMove.transform.position;
+            if (SelectionManager.objecttoMove != null) {
+                startPosition = SelectionManager.objecttoMove.transform.position;
+            }
         }
         transform.position = startPosition + transform.up * Mathf.Sin(Time.time * frequency + offset) * magnitude;
     }

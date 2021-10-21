@@ -13,21 +13,10 @@ public class GMStatue : MonoBehaviour {
     public Tilemap currentMap;
     public float movementSpeed = 1f;
     public string playerScene;
-    //[HideInInspector] public int currentLevel;
-    //[HideInInspector] public bool lvl1Tutorial = false;
-    //[HideInInspector] public bool lvl1StatueTutorial = false;
-    //[HideInInspector] public bool lvl2Tutorial = false;
-    //[HideInInspector] public bool lvl2StatueTutorial = false;
-    //[HideInInspector] public bool lvl3Tutorial = false;
-    //[HideInInspector] public bool lvl4Tutorial = false;
-    //[HideInInspector] public bool lvl5Tutorial = false;
-    //[HideInInspector] public bool lvl6Tutorial = false;
-    //[HideInInspector] public bool lvl7Tutorial = false;
 
     public static int numStatue;
 
     private int tutorialVal = 0;
-    private bool inTutorial = false;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
 
@@ -45,9 +34,6 @@ public class GMStatue : MonoBehaviour {
     #endregion
 
     void Awake() {
-        //string sceneName = SceneManager.GetActiveScene().name;
-        //char val = sceneName.ToCharArray()[sceneName.ToCharArray().Length - 1];
-        //currentLevel = Int32.Parse(val.ToString());
 
         sceneSwitchTo = playerScene;
 

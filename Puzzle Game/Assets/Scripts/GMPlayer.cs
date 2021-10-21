@@ -23,16 +23,6 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
-    //[HideInInspector] public int currentLevel;
-    //[HideInInspector] public bool lvl1Tutorial = false;
-    //[HideInInspector] public bool lvl1StatueTutorial = false;
-    //[HideInInspector] public bool lvl2Tutorial = false;
-    //[HideInInspector] public bool lvl2StatueTutorial = false;
-    //[HideInInspector] public bool lvl3Tutorial = false;
-    //[HideInInspector] public bool lvl4Tutorial = false;
-    //[HideInInspector] public bool lvl5Tutorial = false;
-    //[HideInInspector] public bool lvl6Tutorial = false;
-    //[HideInInspector] public bool lvl7Tutorial = false;
 
     public static Tilemap currentMapStatic;
     public static int highlightVal;
@@ -42,7 +32,6 @@ public class GMPlayer : MonoBehaviour {
 
     private int prevStepVal;
     private int tutorialVal = 0;
-    private bool inTutorial = false;
     private bool hideWall = false;
     private bool changenextLevel = false;
     private Vector3Int direction;
@@ -109,7 +98,6 @@ public class GMPlayer : MonoBehaviour {
                             tutorialVal++;
                         }
                     }
-                    //inTutorial = true;
                 }
                 break;
 

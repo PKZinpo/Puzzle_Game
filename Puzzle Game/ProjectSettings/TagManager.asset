@@ -18,6 +18,7 @@ TagManager:
   - CurrentStep
   - NextStep
   - Tutorial
+  - StatueSelect
   layers:
   - Default
   - TransparentFX

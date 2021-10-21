@@ -23,12 +23,39 @@ public class SelectionManager : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(ray, Vector2.zero);
             if (hit) {
                 if (selected == true && hit.collider.gameObject.name != selectedObject) {
+                    if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
+                        GameObject iconParent = GameObject.FindGameObjectWithTag("StatueIcon").transform.parent.gameObject;
+                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                            if (iconParent.transform.GetChild(i).GetComponent<ClickDrag>().selectTemp != null) {
+                                iconParent.transform.GetChild(i).GetComponent<ClickDrag>().DestroyIconSelection();
+                                break;
+                            }
+                        }
+                    }
                     RemoveHighlight();
                     selectedObject = hit.collider.gameObject.name;
                     objecttoMove = GameObject.Find(selectedObject);
                     AddHighlight();
+                    if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
+                        GameObject iconParent = GameObject.FindGameObjectWithTag("StatueIcon").transform.parent.gameObject;
+                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                            if (objecttoMove.transform.position == StatueData.statueUIList[i]) {
+                                iconParent.transform.GetChild(i).GetComponent<ClickDrag>().MakeIconSelection();
+                                break;
+                            }
+                        }
+                    }
                 }
                 else if (selected) {
+                    if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
+                        GameObject iconParent = GameObject.FindGameObjectWithTag("StatueIcon").transform.parent.gameObject;
+                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                            if (objecttoMove.transform.position == StatueData.statueUIList[i]) {
+                                iconParent.transform.GetChild(i).GetComponent<ClickDrag>().DestroyIconSelection();
+                                break;
+                            }
+                        }
+                    }
                     selectedObject = null;
                     objecttoMove = null;
                     RemoveHighlight();
@@ -37,8 +64,17 @@ public class SelectionManager : MonoBehaviour {
                 else {
                     selectedObject = hit.collider.gameObject.name;
                     objecttoMove = GameObject.Find(selectedObject);
-                    AddHighlight();
                     selected = true;
+                    AddHighlight();
+                    if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
+                        GameObject iconParent = GameObject.FindGameObjectWithTag("StatueIcon").transform.parent.gameObject;
+                        for (int i = 0; i < StatueData.statueUIList.Count; i++) {
+                            if (objecttoMove.transform.position == StatueData.statueUIList[i]) {
+                                iconParent.transform.GetChild(i).GetComponent<ClickDrag>().MakeIconSelection();
+                                break;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -53,5 +89,13 @@ public class SelectionManager : MonoBehaviour {
         if (selected) {
             objecttoMove.GetComponent<StatueType>().ToTurn();
         }
+    }
+    private bool CheckStatueList() {
+        foreach (var pos in StatueData.statueUIList) {
+            if (pos == objecttoMove.transform.position) {
+                return true;
+            }
+        }
+        return false;
     }
 }
