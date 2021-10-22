@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class TileProperties : MonoBehaviour {
 
@@ -38,6 +38,10 @@ public class TileProperties : MonoBehaviour {
         }
         else if (moveUp) {
             TileMoving.PlaceTiles(transform.position, "Wall", name);
+            Destroy(gameObject);
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("Title")) {
+            FindObjectOfType<TitleCube>().PlaceTile(transform.position);
             Destroy(gameObject);
         }
         else {
