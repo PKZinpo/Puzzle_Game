@@ -69,11 +69,14 @@ public class LevelLoader : MonoBehaviour {
         game.lvl7Tutorial = data.lvl7Tutorial;
         Debug.Log("LoadGame");
     }
+    public void ToTitleScreen() {
+        StartCoroutine(LoadLevel("Title Screen"));
+    }
     public void ExitGame() {
         Application.Quit();
     }
     public void OnApplicationQuit() {
-        if (!SceneManager.GetActiveScene().name.Contains("Title") || !SceneManager.GetActiveScene().name.Contains("Level")) {
+        if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
             SaveGame();
         }
     }

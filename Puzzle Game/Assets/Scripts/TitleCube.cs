@@ -11,7 +11,7 @@ public class TitleCube : MonoBehaviour {
     private int moveVal = 0;
     private int brokenVal = 0;
     private float movementSpeed = 1f;
-    private float moveTime = 2f;
+    private float moveTime = 1.5f;
     private Vector3 destination;
     private Vector3Int prevgridPos;
     private bool moving = false;
