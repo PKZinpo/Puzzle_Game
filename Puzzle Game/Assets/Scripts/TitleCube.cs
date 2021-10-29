@@ -15,6 +15,7 @@ public class TitleCube : MonoBehaviour {
     private Vector3 destination;
     private Vector3Int prevgridPos;
     private bool moving = false;
+    private AudioSource windBlow;
 
     void Start() {
         prevgridPos = titleMap.WorldToCell(transform.position);
@@ -23,9 +24,15 @@ public class TitleCube : MonoBehaviour {
         }
         StartCoroutine(MoveTitleCube());
         StartCoroutine(MoveBrokenTile());
+
+        FindObjectOfType<AudioManager>().Play("WindBlowing");
+        windBlow = FindObjectOfType<AudioManager>().GetComponent<AudioSource>();
     }
 
     void Update() {
+        if (windBlow.volume < 0.4f) {
+            windBlow.volume += 0.1f * Time.deltaTime;
+        }
         if (moving) {
             transform.position = Vector3.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime);
             if (transform.position == destination) {
@@ -34,9 +41,8 @@ public class TitleCube : MonoBehaviour {
             }
         }
     }
-
     private IEnumerator MoveTitleCube() {
-        yield return new WaitForSeconds(moveTime);
+        yield return new WaitForSecondsRealtime(moveTime);
         Vector3Int selectedgridPos;
         Vector3Int togridPos;
         switch (moveVal) {
@@ -75,9 +81,8 @@ public class TitleCube : MonoBehaviour {
         }
         StartCoroutine(MoveTitleCube());
     }
-
     private IEnumerator MoveBrokenTile() {
-        yield return new WaitForSeconds(moveTime);
+        yield return new WaitForSecondsRealtime(moveTime);
         Vector3Int brokenPos;
         switch (brokenVal) {
             case 0:
