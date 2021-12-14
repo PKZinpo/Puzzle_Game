@@ -80,4 +80,22 @@ public class LevelLoader : MonoBehaviour {
             SaveGame();
         }
     }
+    public void ResetLevels() {
+        GameObjectData game = FindObjectOfType<GameObjectData>();
+
+        game.currentLevel = 1;
+        game.lvl1Tutorial = false;
+        game.lvl1StatueTutorial = false;
+        game.lvl2Tutorial = false;
+        game.lvl2StatueTutorial = false;
+        game.lvl3Tutorial = false;
+        game.lvl4Tutorial = false;
+        game.lvl5Tutorial = false;
+        game.lvl6Tutorial = false;
+        game.lvl7Tutorial = false;
+
+        SaveSystem.SaveGameData(FindObjectOfType<GameObjectData>());
+        GameObject.Find("Canvas").transform.Find("Level List").GetComponent<LevelList>().UpdateLevels();
+        Debug.Log("Levels Reset");
+    }
 }
