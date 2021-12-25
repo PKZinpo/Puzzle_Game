@@ -14,6 +14,7 @@ public class TitleCube : MonoBehaviour {
     private float moveTime = 1.5f;
     private Vector3 destination;
     private Vector3Int prevgridPos;
+    private bool gameStart = false;
     private bool moving = false;
     private AudioSource windBlow;
 
@@ -26,12 +27,21 @@ public class TitleCube : MonoBehaviour {
         StartCoroutine(MoveBrokenTile());
 
         FindObjectOfType<AudioManager>().Play("WindBlowing");
-        windBlow = FindObjectOfType<AudioManager>().GetComponent<AudioSource>();
+        for (int i = 0; i < FindObjectOfType<AudioManager>().GetComponents<AudioSource>().Length; i++) {
+            if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "Wind Blowing") {
+                windBlow = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
+            }
+        }
+        
     }
 
     void Update() {
-        if (windBlow.volume < 0.4f) {
+        if (windBlow.volume < 0.2f && !gameStart) {
             windBlow.volume += 0.1f * Time.deltaTime;
+            if (windBlow.volume > 0.2f) {
+                FindObjectOfType<AudioManager>().Play("Track1");
+                gameStart = true;
+            }
         }
         if (moving) {
             transform.position = Vector3.MoveTowards(transform.position, destination, movementSpeed * Time.deltaTime);
@@ -140,4 +150,5 @@ public class TitleCube : MonoBehaviour {
     public void PlaceTile(Vector3 position) {
         titleMap.SetTile(titleMap.WorldToCell(position), brokenTile);
     }
+    
 }

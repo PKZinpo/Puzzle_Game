@@ -35,6 +35,8 @@ public class LevelLoader : MonoBehaviour {
         SaveGame();
     }
     public void ToSelectedLevel(string level) {
+        Debug.Log(GameObject.Find("TitleCube"));
+        GameObject.Find("Canvas").transform.Find("Level List").GetComponent<LevelList>().VolumeOff();
         StartCoroutine(LoadLevel(level));
         SaveGame();
     }
