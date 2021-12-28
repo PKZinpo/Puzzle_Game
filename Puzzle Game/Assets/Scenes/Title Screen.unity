@@ -546,11 +546,18 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: Track2Player
-    clip: {fileID: 8300000, guid: 59c7057810907e34398ee85ab98cbcc7, type: 3}
+    clip: {fileID: 8300000, guid: ebed77c5bfd705c4398fa2922904c824, type: 3}
     volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: Track2Statue
+    clip: {fileID: 8300000, guid: 37a1983e5b4f6a04b98f212076268e83, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  titleScreen: 1
 --- !u!4 &828087232
 Transform:
   m_ObjectHideFlags: 0

@@ -11,6 +11,14 @@ public class LevelLoader : MonoBehaviour {
             LoadGame();
         }
         Time.timeScale = 1f;
+        if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+            if (SceneManager.GetActiveScene().name.Contains("Statue")) {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().TrackTwoChange(false);
+            }
+            else {
+                GameObject.Find("AudioManager").GetComponent<AudioManager>().TrackTwoChange(true);
+            }
+        }
     }
 
     public void ToStatueScene() {
@@ -35,14 +43,17 @@ public class LevelLoader : MonoBehaviour {
         SaveGame();
     }
     public void ToSelectedLevel(string level) {
-        Debug.Log(GameObject.Find("TitleCube"));
-        GameObject.Find("Canvas").transform.Find("Level List").GetComponent<LevelList>().VolumeOff();
+        //GameObject.Find("Canvas").transform.Find("Level List").GetComponent<LevelList>().VolumeOff();
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().TitleVolumeOff();
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().ChangeTitleScreen(false);
         StartCoroutine(LoadLevel(level));
         SaveGame();
     }
     public void ToLevelSelection() {
         Time.timeScale = 1f;
         PauseMenu.isPaused = false;
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().MainTrackVolumeOff();
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().ChangeTitleScreen(true);
         StartCoroutine(LoadLevel("Level Screen"));
     }
     private IEnumerator LoadLevel(string levelName) {
