@@ -557,6 +557,12 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: StatueMove
+    clip: {fileID: 8300000, guid: 1a824f64b1d3f6841ba2717e10794d36, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   titleScreen: 1
 --- !u!4 &828087232
 Transform:

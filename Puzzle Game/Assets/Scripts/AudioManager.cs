@@ -4,8 +4,9 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
-    public bool titleScreen = true;
-    
+    [HideInInspector] public bool titleScreen = true;
+    [HideInInspector] public bool toNextLevel = false;
+
     public static AudioManager instance;
 
     private bool gameStart = false;
@@ -61,7 +62,7 @@ public class AudioManager : MonoBehaviour {
             }
             titleTrack.volume = 1f;
         }
-        if (toLevel) {
+        if (toLevel && titleTrack != null) {
             if (titleTrack.volume >= 0f) {
                 titleTrack.volume -= 1f * Time.deltaTime;
                 if (titleTrack.volume == 0f) {
@@ -74,6 +75,8 @@ public class AudioManager : MonoBehaviour {
         if (toTitle && trackTwo != null) {
             if (trackTwo.volume >= 0f) {
                 trackTwo.volume -= 1f * Time.deltaTime;
+                windBlow.pitch = Mathf.Min(windBlow.pitch + (1f * Time.deltaTime), 1f);
+                windBlow.volume = Mathf.Min(windBlow.volume + (1f * Time.deltaTime), 0.2f);
                 if (trackTwo.volume == 0f) {
                     toLevel = false;
                     toTitle = false;
@@ -95,7 +98,6 @@ public class AudioManager : MonoBehaviour {
     public void ChangeTitleScreen(bool isTitle) {
         if (titleScreen == isTitle) return;
         titleScreen = isTitle;
-        Debug.Log(titleScreen);
         if (titleScreen) {
             gameStart = false;
             titleTime = Time.time;
@@ -105,10 +107,15 @@ public class AudioManager : MonoBehaviour {
         toLevel = true;
     }
     public void MainTrackVolumeOff() {
+        if (trackTwo == null) return;
         toTitle = true;
     }
     public void TrackTwoChange(bool toPlayer) {
         float trackTime = 0f;
+        if (toNextLevel) {
+            toNextLevel = false;
+            return;
+        }
         if (toPlayer) {
             Play("Track2Player");
             if (trackTwo != null) {
@@ -120,6 +127,8 @@ public class AudioManager : MonoBehaviour {
                     trackTwo = GetComponents<AudioSource>()[i];
                 }
             }
+            windBlow.pitch = 1f;
+            windBlow.volume = 0.1f;
             trackTwo.time = trackTime;
             trackTwo.volume = 1f;
         }
@@ -134,6 +143,8 @@ public class AudioManager : MonoBehaviour {
                     trackTwo = GetComponents<AudioSource>()[i];
                 }
             }
+            windBlow.pitch = 0.3f;
+            windBlow.volume = 0.1f;
             trackTwo.time = trackTime;
             trackTwo.volume = 1f;
         }

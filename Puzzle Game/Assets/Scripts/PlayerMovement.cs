@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool bottomMove = false;
     private bool topMove = false;
     private bool onSecondFloor = false;
+    private AudioSource playerMove;
 
     private static Tilemap currentGround;
     private static Vector3 destination;
@@ -39,8 +40,15 @@ public class PlayerMovement : MonoBehaviour {
             transform.position -= playerOffset;
         }
     }
-
-    
+    private void Start() {
+        if (playerMove == null) {
+            for (int i = 0; i < FindObjectOfType<AudioManager>().GetComponents<AudioSource>().Length; i++) {
+                if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "Statue Move (TEST)") {
+                    playerMove = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
+                }
+            }
+        }
+    }
     void Update() {
         if (movingUp) {
             var moveUpDis = playerOffset + new Vector3(0.0f, -0.16f, 0.0f);
@@ -101,6 +109,9 @@ public class PlayerMovement : MonoBehaviour {
                         CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
+                        FindObjectOfType<AudioManager>().Play("StatueMove");
+                        playerMove.volume = 0.5f;
+                        playerMove.pitch = 1.1f;
                     }
                 }
             }
@@ -113,6 +124,9 @@ public class PlayerMovement : MonoBehaviour {
                     CheckIceTile(destination);
                     movetoDest = true;
                     topMove = true;
+                    FindObjectOfType<AudioManager>().Play("StatueMove");
+                    playerMove.volume = 0.5f;
+                    playerMove.pitch = 1.1f;
                 }
             }
         }
@@ -129,6 +143,9 @@ public class PlayerMovement : MonoBehaviour {
                         CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
+                        FindObjectOfType<AudioManager>().Play("StatueMove");
+                        playerMove.volume = 0.5f;
+                        playerMove.pitch = 1.1f;
                     }
                 }
             }
@@ -141,6 +158,9 @@ public class PlayerMovement : MonoBehaviour {
                     CheckIceTile(destination);
                     movetoDest = true;
                     topMove = true;
+                    FindObjectOfType<AudioManager>().Play("StatueMove");
+                    playerMove.volume = 0.5f;
+                    playerMove.pitch = 1.1f;
                 }
             }
         }
@@ -157,6 +177,9 @@ public class PlayerMovement : MonoBehaviour {
                         CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
+                        FindObjectOfType<AudioManager>().Play("StatueMove");
+                        playerMove.volume = 0.5f;
+                        playerMove.pitch = 1.1f;
                     }
                 }
             }
@@ -169,6 +192,9 @@ public class PlayerMovement : MonoBehaviour {
                     CheckIceTile(destination);
                     movetoDest = true;
                     bottomMove = true;
+                    FindObjectOfType<AudioManager>().Play("StatueMove");
+                    playerMove.volume = 0.5f;
+                    playerMove.pitch = 1.1f;
                 }
             }
         }
@@ -185,6 +211,9 @@ public class PlayerMovement : MonoBehaviour {
                         CheckIceTile(destination);
                         movetoDest = true;
                         topMove = true;
+                        FindObjectOfType<AudioManager>().Play("StatueMove");
+                        playerMove.volume = 0.5f;
+                        playerMove.pitch = 1.1f;
                     }
                 }
             }
@@ -197,6 +226,9 @@ public class PlayerMovement : MonoBehaviour {
                     CheckIceTile(destination);
                     movetoDest = true;
                     bottomMove = true;
+                    FindObjectOfType<AudioManager>().Play("StatueMove");
+                    playerMove.volume = 0.5f;
+                    playerMove.pitch = 1.1f;
                 }
             }
         }

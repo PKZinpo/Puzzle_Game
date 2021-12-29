@@ -649,6 +649,7 @@ public class GMPlayer : MonoBehaviour {
         }
     }
     public void ResetLevel() {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().toNextLevel = true;
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }

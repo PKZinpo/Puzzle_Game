@@ -19,6 +19,7 @@ public class GMStatue : MonoBehaviour {
     private int tutorialVal = 0;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
+    private AudioSource statueMove;
 
     private static GameObject moveObject;
     private static bool movetoDest = false;
@@ -115,6 +116,12 @@ public class GMStatue : MonoBehaviour {
             if (!FindObjectOfType<GameObjectData>().lvl2StatueTutorial) {
                 tutorialObject.SetActive(true);
                 gameObject.GetComponent<DialogueTrigger>().TriggerDialogue();
+            }
+        }
+
+        for (int i = 0; i < FindObjectOfType<AudioManager>().GetComponents<AudioSource>().Length; i++) {
+            if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "Statue Move (TEST)") {
+                statueMove = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
             }
         }
     }
@@ -242,6 +249,9 @@ public class GMStatue : MonoBehaviour {
                 destination = currentMap.CellToWorld(togridPos);
                 destination = new Vector3(destination.x, destination.y, 0);
                 movetoDest = true;
+                FindObjectOfType<AudioManager>().Play("StatueMove");
+                statueMove.volume = 0.5f;
+                statueMove.pitch = 0.9f;
             }
         }
     }
@@ -253,6 +263,9 @@ public class GMStatue : MonoBehaviour {
                 destination = currentMap.CellToWorld(togridPos);
                 destination = new Vector3(destination.x, destination.y, 0);
                 movetoDest = true;
+                FindObjectOfType<AudioManager>().Play("StatueMove");
+                statueMove.volume = 0.5f;
+                statueMove.pitch = 0.9f;
             }
         }
     }
@@ -264,6 +277,9 @@ public class GMStatue : MonoBehaviour {
                 destination = currentMap.CellToWorld(togridPos);
                 destination = new Vector3(destination.x, destination.y, 0);
                 movetoDest = true;
+                FindObjectOfType<AudioManager>().Play("StatueMove");
+                statueMove.volume = 0.5f;
+                statueMove.pitch = 0.9f;
             }
         }
     }
@@ -275,6 +291,9 @@ public class GMStatue : MonoBehaviour {
                 destination = currentMap.CellToWorld(togridPos);
                 destination = new Vector3(destination.x, destination.y, 0);
                 movetoDest = true;
+                FindObjectOfType<AudioManager>().Play("StatueMove");
+                statueMove.volume = 0.5f;
+                statueMove.pitch = 0.9f;
             }
         }
     }
