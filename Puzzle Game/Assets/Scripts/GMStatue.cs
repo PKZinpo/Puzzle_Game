@@ -222,6 +222,7 @@ public class GMStatue : MonoBehaviour {
                                     StatueData.statueUIList.Remove(item);
                                     moveObject.GetComponent<StatueType>().onSwitch = true;
                                     numStatue--;
+                                    FindObjectOfType<AudioManager>().Play("StatueOff");
                                     break;
                                 }
                             }
@@ -312,7 +313,8 @@ public class GMStatue : MonoBehaviour {
     public void ActivatorSwitchOn() {
         foreach (var activator in GameObject.FindGameObjectsWithTag("Activator")) {
             if (activator.transform.position == moveObject.transform.position) {
-                activator.GetComponent<Animator>().SetTrigger("On");            
+                activator.GetComponent<Animator>().SetTrigger("On");
+                FindObjectOfType<AudioManager>().Play("StatueOn");
                 break;
             }
         }

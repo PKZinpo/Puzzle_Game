@@ -251,6 +251,7 @@ public class PlayerMovement : MonoBehaviour {
                         temp.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f);
                         temp.GetComponent<TileProperties>().ChangeMoveUp();
                         temp.GetComponent<TileProperties>().ChangeDisappearing();
+                        FindObjectOfType<AudioManager>().Play("BrokenTileFall");
                         break;
                     }
                 }
@@ -264,6 +265,7 @@ public class PlayerMovement : MonoBehaviour {
                 temp.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
                 temp.GetComponent<TileProperties>().ChangeMoveUp();
                 temp.GetComponent<TileProperties>().ChangeDisappearing();
+                FindObjectOfType<AudioManager>().Play("BrokenTileFall");
             }
         }
         prevgridPos = currentGround.WorldToCell(currentPosition);

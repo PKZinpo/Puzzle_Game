@@ -35,6 +35,7 @@ public class LevelLoader : MonoBehaviour {
         SaveGame();
     }
     public void ToNextLevel(string nextlevelScene) {
+        FindObjectOfType<AudioManager>().Play("NextLevel");
         StatueData.statueList.Clear();
         StatueData.statueUIList.Clear();
         GMStatue.ClearActivatorPositions();

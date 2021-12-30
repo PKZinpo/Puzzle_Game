@@ -563,7 +563,38 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: StatueOn
+    clip: {fileID: 8300000, guid: 83657a3f17a329e44bf26919fa777456, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StatueOff
+    clip: {fileID: 8300000, guid: a04ca243728487e4cbe6b0d9f2f80451, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: NextLevel
+    clip: {fileID: 8300000, guid: 97470fe815a5d68489c324bf89b7b331, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BrokenTileForm
+    clip: {fileID: 8300000, guid: 70f321a6136f8e249987ac65b9b6db83, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BrokenTileFall
+    clip: {fileID: 8300000, guid: 33a341483d55bc042a14b791d903b58e, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   titleScreen: 1
+  toNextLevel: 0
 --- !u!4 &828087232
 Transform:
   m_ObjectHideFlags: 0
