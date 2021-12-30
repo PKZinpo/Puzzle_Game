@@ -528,6 +528,7 @@ public class GMPlayer : MonoBehaviour {
                     }
                     tile.transform.SetParent(wallObject.transform);
                     tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f) - TileMoving.wallOffset;
+                    FindObjectOfType<AudioManager>().Play("FreezeOver");
                 }
             }
             else {
@@ -548,6 +549,7 @@ public class GMPlayer : MonoBehaviour {
                     }
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
                     tile.transform.position = currentMap.CellToWorld(positions[i]);
+                    FindObjectOfType<AudioManager>().Play("FreezeOver");
                 }
             }
         }

@@ -68,21 +68,23 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
     }
     public void OnEndDrag(PointerEventData eventData) {
         transform.SetParent(returnTo);
-        if (GMPlayer.stepVal == 0) {
-            transform.SetSiblingIndex(temp.transform.GetSiblingIndex());
-            if (temp.transform.GetSiblingIndex() != prevPos + 1) {
-                if (GameObject.Find("TileHighlight(Clone)")) {
-                    foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
-                        Destroy(tile);
+        if (SceneManager.GetActiveScene().name.Contains("Player")) {
+            if (GMPlayer.stepVal == 0) {
+                transform.SetSiblingIndex(temp.transform.GetSiblingIndex());
+                if (temp.transform.GetSiblingIndex() != prevPos + 1) {
+                    if (GameObject.Find("TileHighlight(Clone)")) {
+                        foreach (var tile in GameObject.FindGameObjectsWithTag("TileHighlight")) {
+                            Destroy(tile);
+                        }
                     }
                 }
             }
+            else {
+                transform.SetSiblingIndex(prevPos);
+                Debug.Log("You Must Reset Level Before Moving Icons");
+            }
         }
-        else {
-            transform.SetSiblingIndex(prevPos);
-            Debug.Log("You Must Reset Level Before Moving Icons");
-        }
-
+        
         #region Switch Icon Positions End
 
         Vector3 secondStatue = StatueData.statueUIList[transform.GetSiblingIndex()];
@@ -90,7 +92,7 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             Vector3 tempStatue = secondStatue;
             StatueData.statueUIList[transform.GetSiblingIndex()] = firstStatue;
             StatueData.statueUIList[prevPos] = tempStatue;
-            GMPlayer.highlightVal = -1;
+            if (SceneManager.GetActiveScene().name.Contains("Player")) GMPlayer.highlightVal = -1;
         }
 
         #endregion

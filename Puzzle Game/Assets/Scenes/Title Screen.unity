@@ -582,14 +582,26 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: BrokenTileForm
-    clip: {fileID: 8300000, guid: 70f321a6136f8e249987ac65b9b6db83, type: 3}
-    volume: 0.3
+    clip: {fileID: 8300000, guid: 721a13ad986305c429c6a6a95a60e847, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: BrokenTileFall
-    clip: {fileID: 8300000, guid: 33a341483d55bc042a14b791d903b58e, type: 3}
-    volume: 0.3
+    clip: {fileID: 8300000, guid: cce33737771df5248a4ff6813106108f, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: FreezeOver
+    clip: {fileID: 8300000, guid: d25dead9d7219a74a9f93935bcd761f9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: IceSlide
+    clip: {fileID: 8300000, guid: a5fe5bc5efbfb6643a3c204cb2f65de1, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

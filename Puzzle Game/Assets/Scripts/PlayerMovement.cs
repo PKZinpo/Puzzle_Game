@@ -20,7 +20,9 @@ public class PlayerMovement : MonoBehaviour {
     private bool bottomMove = false;
     private bool topMove = false;
     private bool onSecondFloor = false;
+    private bool onIce = false;
     private AudioSource playerMove;
+    private AudioSource iceSlide;
 
     private static Tilemap currentGround;
     private static Vector3 destination;
@@ -45,6 +47,9 @@ public class PlayerMovement : MonoBehaviour {
             for (int i = 0; i < FindObjectOfType<AudioManager>().GetComponents<AudioSource>().Length; i++) {
                 if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "Statue Move (TEST)") {
                     playerMove = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
+                }
+                if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "IceSlide(TEST)") {
+                    iceSlide = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
                 }
             }
         }
@@ -92,6 +97,10 @@ public class PlayerMovement : MonoBehaviour {
                 else {
                     transform.position = currentPosition;
                 }
+            }
+
+            if (onIce) {
+                
             }
         }
     }
@@ -281,6 +290,8 @@ public class PlayerMovement : MonoBehaviour {
                     if (tile.transform.position == currentGround.CellToWorld(currentDestination)) {
                         if (tile.name.Contains("Ice")) {
                             currentDestination = currentDestination + direction;
+                            onIce = true;
+                            FindObjectOfType<AudioManager>().Play("IceSlide");
                             break;
                         }
                         else {
@@ -293,6 +304,8 @@ public class PlayerMovement : MonoBehaviour {
         else {
             while (currentGround.GetTile(currentDestination).name.Contains("Ice")) {
                 currentDestination = currentDestination + direction;
+                onIce = true;
+                FindObjectOfType<AudioManager>().Play("IceSlide");
                 if (currentGround.GetTile(currentDestination) == null) {
                     break;
                 }
