@@ -9,6 +9,7 @@ public class LevelLoader : MonoBehaviour {
     void Awake() {
         if (!SceneManager.GetActiveScene().name.Contains("Title")) {
             LoadGame();
+            FindObjectOfType<GameObjectData>().CheckLevel();
         }
         Time.timeScale = 1f;
         if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
@@ -71,7 +72,7 @@ public class LevelLoader : MonoBehaviour {
         
         GameData data = SaveSystem.LoadGameData();
         GameObjectData game = FindObjectOfType<GameObjectData>();
-
+        
         game.currentLevel = data.level;
         game.lvl1Tutorial = data.lvl1Tutorial;
         game.lvl1StatueTutorial = data.lvl1StatueTutorial;

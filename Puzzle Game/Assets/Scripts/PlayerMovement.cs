@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
     public static Vector3 currentPosition;
     public static bool movetoDest = false;
 
+    private int slideAmount;
     private Vector3Int togridPos;
     private Vector3Int selectedgridPos;
     private Vector3Int prevgridPos;
@@ -98,9 +99,15 @@ public class PlayerMovement : MonoBehaviour {
                     transform.position = currentPosition;
                 }
             }
-
             if (onIce) {
-                
+                if (iceSlide.time > .18f && slideAmount > 1) {
+                    iceSlide.time = .05f;
+                    slideAmount--;
+                    Debug.Log("SLIDE " + slideAmount);
+                    if (slideAmount == 0) {
+                        onIce = false;
+                    }
+                }
             }
         }
     }
@@ -283,6 +290,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3Int currentPos = currentGround.WorldToCell(transform.position);
         Vector3Int currentDestination = currentGround.WorldToCell(dest);
         Vector3Int direction = currentDestination - currentPos;
+        slideAmount = 0;
         if (onSecondFloor) {
             bool noIce = false;
             while (!noIce) {
@@ -292,6 +300,7 @@ public class PlayerMovement : MonoBehaviour {
                             currentDestination = currentDestination + direction;
                             onIce = true;
                             FindObjectOfType<AudioManager>().Play("IceSlide");
+                            slideAmount++;
                             break;
                         }
                         else {
@@ -306,6 +315,7 @@ public class PlayerMovement : MonoBehaviour {
                 currentDestination = currentDestination + direction;
                 onIce = true;
                 FindObjectOfType<AudioManager>().Play("IceSlide");
+                slideAmount++;
                 if (currentGround.GetTile(currentDestination) == null) {
                     break;
                 }

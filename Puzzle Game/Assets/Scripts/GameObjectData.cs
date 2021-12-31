@@ -16,12 +16,12 @@ public class GameObjectData : MonoBehaviour {
     public bool lvl6Tutorial = false;
     public bool lvl7Tutorial = false;
 
-    void Start() {
+    public void CheckLevel() {
         bool levelCheck = SceneManager.GetActiveScene().name.Contains("Player") || SceneManager.GetActiveScene().name.Contains("Statue");
         if (levelCheck) {
             string sceneName = SceneManager.GetActiveScene().name;
             char val = sceneName.ToCharArray()[sceneName.ToCharArray().Length - 1];
-            currentLevel = Int32.Parse(val.ToString());
+            if (Int32.Parse(val.ToString()) > currentLevel) currentLevel = Int32.Parse(val.ToString());
         }
     }
 }
