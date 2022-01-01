@@ -100,8 +100,8 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
             if (onIce) {
-                if (iceSlide.time > .18f && slideAmount > 1) {
-                    iceSlide.time = .05f;
+                if (iceSlide.time > .3f && slideAmount > 1) {
+                    iceSlide.time = .12f;
                     slideAmount--;
                     Debug.Log("SLIDE " + slideAmount);
                     if (slideAmount == 0) {

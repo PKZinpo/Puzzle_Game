@@ -15,6 +15,8 @@ public class GameData {
     public bool lvl5Tutorial;
     public bool lvl6Tutorial;
     public bool lvl7Tutorial;
+    public bool soundOff;
+    public bool musicOff;
 
     public GameData (GameObjectData data) {
 

@@ -15,6 +15,8 @@ public class GameObjectData : MonoBehaviour {
     public bool lvl5Tutorial = false;
     public bool lvl6Tutorial = false;
     public bool lvl7Tutorial = false;
+    public bool soundOff = false;
+    public bool musicOff = false;
 
     public void CheckLevel() {
         bool levelCheck = SceneManager.GetActiveScene().name.Contains("Player") || SceneManager.GetActiveScene().name.Contains("Statue");

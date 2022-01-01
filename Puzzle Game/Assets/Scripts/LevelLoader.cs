@@ -20,6 +20,19 @@ public class LevelLoader : MonoBehaviour {
                 GameObject.Find("AudioManager").GetComponent<AudioManager>().TrackTwoChange(true);
             }
         }
+        if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+
+        }
+        else {
+            if (FindObjectOfType<GameObjectData>().soundOff) {
+                GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
+                GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(true);
+            }
+            if (FindObjectOfType<GameObjectData>().musicOff) {
+                GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
+                GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(true);
+            }
+        }
     }
 
     public void ToStatueScene() {
@@ -83,6 +96,8 @@ public class LevelLoader : MonoBehaviour {
         game.lvl5Tutorial = data.lvl5Tutorial;
         game.lvl6Tutorial = data.lvl6Tutorial;
         game.lvl7Tutorial = data.lvl7Tutorial;
+        game.soundOff = data.soundOff;
+        game.musicOff = data.musicOff;
         Debug.Log("LoadGame");
     }
     public void ToTitleScreen() {

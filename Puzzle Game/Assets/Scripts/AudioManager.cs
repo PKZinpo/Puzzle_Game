@@ -149,4 +149,48 @@ public class AudioManager : MonoBehaviour {
             trackTwo.volume = 1f;
         }
     }
+    public void MuteSound(bool toOff) {
+        if (toOff) {
+            for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+                if (!GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                    GetComponents<AudioSource>()[i].mute = true;
+                }
+            }
+            GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
+            GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(true);
+            FindObjectOfType<GameObjectData>().soundOff = true;
+        }
+        else {
+            for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+                if (!GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                    GetComponents<AudioSource>()[i].mute = false;
+                }
+            }
+            GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(true);
+            GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(false);
+            FindObjectOfType<GameObjectData>().soundOff = false;
+        }
+    }
+    public void MuteMusic(bool toOff) {
+        if (toOff) {
+            for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+                if (GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                    GetComponents<AudioSource>()[i].mute = true;
+                }
+            }
+            GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
+            GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(true);
+            FindObjectOfType<GameObjectData>().musicOff = true;
+        }
+        else {
+            for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+                if (GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                    GetComponents<AudioSource>()[i].mute = false;
+                }
+            }
+            GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(true);
+            GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(false);
+            FindObjectOfType<GameObjectData>().musicOff = false;
+        }
+    }
 }
