@@ -30,6 +30,7 @@ public class GameData {
         lvl5Tutorial = data.lvl5Tutorial;
         lvl6Tutorial = data.lvl6Tutorial;
         lvl7Tutorial = data.lvl7Tutorial;
-
+        soundOff = data.soundOff;
+        musicOff = data.musicOff;
     }
 }

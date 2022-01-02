@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
 
@@ -156,9 +157,16 @@ public class AudioManager : MonoBehaviour {
                     GetComponents<AudioSource>()[i].mute = true;
                 }
             }
-            GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
-            GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(true);
+            if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(false);
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(true);
+            }
+            else {
+                GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
+                GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(true);
+            }
             FindObjectOfType<GameObjectData>().soundOff = true;
+            Debug.Log("Sound Muted");
         }
         else {
             for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
@@ -166,9 +174,16 @@ public class AudioManager : MonoBehaviour {
                     GetComponents<AudioSource>()[i].mute = false;
                 }
             }
-            GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(true);
-            GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(false);
+            if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(true);
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(false);
+            }
+            else {
+                GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(true);
+                GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(false);
+            }
             FindObjectOfType<GameObjectData>().soundOff = false;
+            Debug.Log("Sound Unmuted");
         }
     }
     public void MuteMusic(bool toOff) {
@@ -178,9 +193,16 @@ public class AudioManager : MonoBehaviour {
                     GetComponents<AudioSource>()[i].mute = true;
                 }
             }
-            GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
-            GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(true);
+            if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(false);
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(true);
+            }
+            else {
+                GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
+                GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(true);
+            }
             FindObjectOfType<GameObjectData>().musicOff = true;
+            Debug.Log("Music Muted");
         }
         else {
             for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
@@ -188,9 +210,30 @@ public class AudioManager : MonoBehaviour {
                     GetComponents<AudioSource>()[i].mute = false;
                 }
             }
-            GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(true);
-            GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(false);
+            if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(true);
+                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(false);
+            }
+            else {
+                GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(true);
+                GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(false);
+            }
             FindObjectOfType<GameObjectData>().musicOff = false;
+            Debug.Log("Music Unmuted");
+        }
+    }
+    public void StartMuteSound() {
+        for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+            if (!GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                GetComponents<AudioSource>()[i].mute = true;
+            }
+        }
+    }
+    public void StartMuteMusic() {
+        for (int i = 0; i < GetComponents<AudioSource>().Length; i++) {
+            if (GetComponents<AudioSource>()[i].clip.name.Contains("Track")) {
+                GetComponents<AudioSource>()[i].mute = true;
+            }
         }
     }
 }

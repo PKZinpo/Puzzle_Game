@@ -46,4 +46,10 @@ public class PauseMenu : MonoBehaviour {
         FindObjectOfType<LevelLoader>().ToLevelSelection();
         Debug.Log("EXIT");
     }
+    public void PMToMuteSound(bool toOff) {
+        FindObjectOfType<AudioManager>().MuteSound(toOff);
+    }
+    public void PMToMuteMusic(bool toOff) {
+        FindObjectOfType<AudioManager>().MuteMusic(toOff);
+    }
 }
