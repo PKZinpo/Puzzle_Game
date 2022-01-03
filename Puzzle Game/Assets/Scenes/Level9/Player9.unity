@@ -1704,7 +1704,7 @@ PrefabInstance:
       objectReference: {fileID: 1463648122}
     - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
       propertyPath: nextlevelScene
-      value: Level Screen
+      value: Credits Screen
       objectReference: {fileID: 0}
     - target: {fileID: 3709024689568401520, guid: 8383818a740613f40bde242aa6127afc, type: 3}
       propertyPath: nextlevelOnWall

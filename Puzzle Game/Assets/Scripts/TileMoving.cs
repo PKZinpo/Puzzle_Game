@@ -116,7 +116,6 @@ public class TileMoving : MonoBehaviour {
                         case "Broken Tile":
                             tile = Instantiate(brokengroundTile);
                             tile.GetComponent<TileProperties>().ChangeMoveUp();
-                            FindObjectOfType<AudioManager>().Play("BrokenTileFall");
                             break;
 
                         case "Broken Ice Tile":
@@ -129,6 +128,7 @@ public class TileMoving : MonoBehaviour {
                             CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
                     }
+                    FindObjectOfType<AudioManager>().Play("BrokenTileFall");
                     Destroy(wallObject.transform.GetChild(0).gameObject);
                     tile.transform.SetParent(wallObject.transform);
                     tile.GetComponent<TileProperties>().ChangeDisappearing();
@@ -154,7 +154,6 @@ public class TileMoving : MonoBehaviour {
                         case "Tilemap Broken":
                             tile = Instantiate(brokengroundTile);
                             tile.GetComponent<TileProperties>().ChangeMoveUp();
-                            FindObjectOfType<AudioManager>().Play("BrokenTileForm");
                             break;
 
                         case "Tilemap Broken Ice":
@@ -167,6 +166,7 @@ public class TileMoving : MonoBehaviour {
                             CheckAdjacentIceTiles(tilePos[i], tilePos, isWall);
                             break;
                     }
+                    FindObjectOfType<AudioManager>().Play("BrokenTileForm");
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
                     tile.transform.position = ground.CellToWorld(tilePos[i]);
                     if (ground.WorldToCell(player.transform.position) == tilePos[i]) {

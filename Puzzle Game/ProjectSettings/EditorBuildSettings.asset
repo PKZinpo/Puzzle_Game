@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level9/Statue9.unity
     guid: 2ba6c7ee43e03f4478a3e4a8f937c0e0
+  - enabled: 1
+    path: Assets/Scenes/Credits Screen.unity
+    guid: 17cef85dd6c04d745b4830ed2a66ce0d
   m_configObjects: {}

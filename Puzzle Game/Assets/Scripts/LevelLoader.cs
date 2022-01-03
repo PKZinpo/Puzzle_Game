@@ -20,37 +20,23 @@ public class LevelLoader : MonoBehaviour {
                 GameObject.Find("AudioManager").GetComponent<AudioManager>().TrackTwoChange(true);
             }
         }
-        if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
-            if (FindObjectOfType<GameObjectData>().soundOff) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(false);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(true);
-                FindObjectOfType<AudioManager>().StartMuteSound();
-                Debug.Log("Sound is off");
-            }
-            if (FindObjectOfType<GameObjectData>().musicOff) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(false);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(true);
-                FindObjectOfType<AudioManager>().StartMuteMusic();
-                Debug.Log("Music is off");
-            }
-            
-        }
-        else {
+    }
+    private void Start() {
+        if (SceneManager.GetActiveScene().name.Contains("Title") || SceneManager.GetActiveScene().name.Contains("Level")) {
             if (FindObjectOfType<GameObjectData>().soundOff) {
                 GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
                 GameObject.Find("Canvas").transform.Find("SoundOff").gameObject.SetActive(true);
                 FindObjectOfType<AudioManager>().StartMuteSound();
-                Debug.Log("Sound is off");
+                //Debug.Log("Sound is off");
             }
             if (FindObjectOfType<GameObjectData>().musicOff) {
                 GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
                 GameObject.Find("Canvas").transform.Find("MusicOff").gameObject.SetActive(true);
                 FindObjectOfType<AudioManager>().StartMuteMusic();
-                Debug.Log("Music is off");
+                //Debug.Log("Music is off");
             }
         }
     }
-
     public void ToStatueScene() {
         StartCoroutine(LoadLevel(GMPlayer.GetStatueScene()));
         SaveGame();

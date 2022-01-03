@@ -84,7 +84,9 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
                 Debug.Log("You Must Reset Level Before Moving Icons");
             }
         }
-        
+        else {
+            transform.SetSiblingIndex(temp.transform.GetSiblingIndex());
+        }
         #region Switch Icon Positions End
 
         Vector3 secondStatue = StatueData.statueUIList[transform.GetSiblingIndex()];
@@ -94,9 +96,7 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
             StatueData.statueUIList[prevPos] = tempStatue;
             if (SceneManager.GetActiveScene().name.Contains("Player")) GMPlayer.highlightVal = -1;
         }
-
         #endregion
-
         GetComponent<CanvasGroup>().blocksRaycasts = true;
         Destroy(temp);
         temp = null;

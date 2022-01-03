@@ -240,6 +240,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe120cf42524bd446b5d39c28c90824f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &137314326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7735177924574895340, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+  m_PrefabInstance: {fileID: 137314324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &155771412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1045,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4590875413984838357, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 137314326}
     - target: {fileID: 4590875413984838359, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
       propertyPath: m_Name
       value: LevelLoader

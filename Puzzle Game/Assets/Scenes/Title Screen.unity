@@ -644,13 +644,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BrokenTileForm
     clip: {fileID: 8300000, guid: 721a13ad986305c429c6a6a95a60e847, type: 3}
-    volume: 0.5
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: BrokenTileFall
     clip: {fileID: 8300000, guid: cce33737771df5248a4ff6813106108f, type: 3}
-    volume: 0.5
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -663,6 +663,12 @@ MonoBehaviour:
   - name: IceSlide
     clip: {fileID: 8300000, guid: a5fe5bc5efbfb6643a3c204cb2f65de1, type: 3}
     volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Collectable
+    clip: {fileID: 8300000, guid: c11f5fb3852546b4eaa725bf24ecaf44, type: 3}
+    volume: 0.5
     pitch: 1
     loop: 0
     source: {fileID: 0}

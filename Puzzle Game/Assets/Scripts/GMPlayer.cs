@@ -361,6 +361,7 @@ public class GMPlayer : MonoBehaviour {
             foreach (var collectable in GameObject.FindGameObjectsWithTag("Collectable")) {
                 if (currentMap.WorldToCell(playerObject.transform.position) == currentMap.WorldToCell(collectable.transform.position - collectableOffset)) {
                     Destroy(collectable);
+                    FindObjectOfType<AudioManager>().Play("Collectable");
                 }
             }
         }

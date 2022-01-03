@@ -92,3 +92,6 @@ TagManager:
   - name: Fade
     uniqueID: 2653595151
     locked: 0
+  - name: Fade2
+    uniqueID: 3757235735
+    locked: 0

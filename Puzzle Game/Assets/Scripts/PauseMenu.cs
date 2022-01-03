@@ -11,6 +11,18 @@ public class PauseMenu : MonoBehaviour {
         isPaused = false;
     }
 
+    private void Start() {
+        if (FindObjectOfType<GameObjectData>().soundOff) {
+            PMSoundOff();
+            FindObjectOfType<AudioManager>().StartMuteSound();
+            //Debug.Log("Sound is off");
+        }
+        if (FindObjectOfType<GameObjectData>().musicOff) {
+            PMMusicOff();
+            FindObjectOfType<AudioManager>().StartMuteMusic();
+            //Debug.Log("Music is off");
+        }
+    }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if (isPaused) {
@@ -51,5 +63,13 @@ public class PauseMenu : MonoBehaviour {
     }
     public void PMToMuteMusic(bool toOff) {
         FindObjectOfType<AudioManager>().MuteMusic(toOff);
+    }
+    public void PMSoundOff() {
+        pauseMenuUI.transform.Find("Sound").gameObject.SetActive(false);
+        pauseMenuUI.transform.Find("SoundOff").gameObject.SetActive(true);
+    }
+    public void PMMusicOff() {
+        pauseMenuUI.transform.Find("Music").gameObject.SetActive(false);
+        pauseMenuUI.transform.Find("MusicOff").gameObject.SetActive(true);
     }
 }

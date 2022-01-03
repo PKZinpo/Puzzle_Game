@@ -6,7 +6,10 @@ public class SelectionManager : MonoBehaviour {
 
     public GameObject highlightPrefab;
 
+    
+
     private static GameObject highlight;
+    private static AudioSource statueMove;
 
     public static GameObject hlPrefab;
     public static GameObject objecttoMove;
@@ -16,6 +19,12 @@ public class SelectionManager : MonoBehaviour {
     #endregion
     void Awake() {
         hlPrefab = highlightPrefab;
+
+        for (int i = 0; i < FindObjectOfType<AudioManager>().GetComponents<AudioSource>().Length; i++) {
+            if (FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i].clip.name == "Statue Move (TEST)") {
+                statueMove = FindObjectOfType<AudioManager>().GetComponents<AudioSource>()[i];
+            }
+        }
     }
     void Update() {
         if (Input.GetMouseButtonDown(0)) {
@@ -88,6 +97,9 @@ public class SelectionManager : MonoBehaviour {
     public static void TurnStatue() {
         if (selected) {
             objecttoMove.GetComponent<StatueType>().ToTurn();
+            FindObjectOfType<AudioManager>().Play("StatueMove");
+            statueMove.volume = 0.5f;
+            statueMove.pitch = 1f;
         }
     }
     private bool CheckStatueList() {

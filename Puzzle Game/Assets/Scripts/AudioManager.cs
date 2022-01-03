@@ -158,8 +158,8 @@ public class AudioManager : MonoBehaviour {
                 }
             }
             if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(false);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(true);
+                GameObject.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(false);
+                GameObject.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(true);
             }
             else {
                 GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(false);
@@ -175,8 +175,8 @@ public class AudioManager : MonoBehaviour {
                 }
             }
             if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(true);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(false);
+                GameObject.Find("PauseMenu").transform.Find("Sound").gameObject.SetActive(true);
+                GameObject.Find("PauseMenu").transform.Find("SoundOff").gameObject.SetActive(false);
             }
             else {
                 GameObject.Find("Canvas").transform.Find("Sound").gameObject.SetActive(true);
@@ -194,8 +194,8 @@ public class AudioManager : MonoBehaviour {
                 }
             }
             if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(false);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(true);
+                GameObject.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(false);
+                GameObject.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(true);
             }
             else {
                 GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(false);
@@ -211,8 +211,8 @@ public class AudioManager : MonoBehaviour {
                 }
             }
             if (!SceneManager.GetActiveScene().name.Contains("Title") && !SceneManager.GetActiveScene().name.Contains("Level")) {
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(true);
-                GameObject.Find("Pause").transform.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(false);
+                GameObject.Find("PauseMenu").transform.Find("Music").gameObject.SetActive(true);
+                GameObject.Find("PauseMenu").transform.Find("MusicOff").gameObject.SetActive(false);
             }
             else {
                 GameObject.Find("Canvas").transform.Find("Music").gameObject.SetActive(true);

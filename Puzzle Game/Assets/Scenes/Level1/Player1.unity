@@ -798,6 +798,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4590875413984838357, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 7735177923318375054}
     - target: {fileID: 4590875413984838359, guid: 8db04f060d309f041997c8ca60e3718f, type: 3}
       propertyPath: m_Name
       value: LevelLoader
@@ -1854,3 +1858,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+--- !u!1 &7735177923318375054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7735177924574895340, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+  m_PrefabInstance: {fileID: 7735177923318375053}
+  m_PrefabAsset: {fileID: 0}
