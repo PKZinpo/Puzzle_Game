@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour {
 
     private Queue<string> sentences;
 
-    void Start() {
+    void Awake() {
         sentences = new Queue<string>();
     }
 
