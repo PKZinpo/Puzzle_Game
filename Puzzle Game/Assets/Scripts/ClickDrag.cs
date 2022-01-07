@@ -91,9 +91,27 @@ public class ClickDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDra
 
         Vector3 secondStatue = StatueData.statueUIList[transform.GetSiblingIndex()];
         if (secondStatue != firstStatue) {
-            Vector3 tempStatue = secondStatue;
-            StatueData.statueUIList[transform.GetSiblingIndex()] = firstStatue;
-            StatueData.statueUIList[prevPos] = tempStatue;
+            Vector3 tempStatue = firstStatue;
+
+            int j = prevPos;
+            if (transform.GetSiblingIndex() < prevPos) {
+                for (int i = 0; i < prevPos - transform.GetSiblingIndex(); i++) {
+                    StatueData.statueUIList[j] = StatueData.statueUIList[j - 1];
+                    j--;
+                }
+                StatueData.statueUIList[transform.GetSiblingIndex()] = tempStatue;
+            }
+            else {
+                for (int i = 0; i < transform.GetSiblingIndex() - prevPos; i++) {
+                    StatueData.statueUIList[j] = StatueData.statueUIList[j + 1];
+                    j++;
+                }
+                StatueData.statueUIList[transform.GetSiblingIndex()] = tempStatue;
+            }
+            
+            //Vector3 tempStatue = secondStatue;
+            //StatueData.statueUIList[transform.GetSiblingIndex()] = firstStatue;
+            //StatueData.statueUIList[prevPos] = tempStatue;
             if (SceneManager.GetActiveScene().name.Contains("Player")) GMPlayer.highlightVal = -1;
         }
         #endregion

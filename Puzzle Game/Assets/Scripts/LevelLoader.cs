@@ -88,6 +88,22 @@ public class LevelLoader : MonoBehaviour {
         
         GameData data = SaveSystem.LoadGameData();
         GameObjectData game = FindObjectOfType<GameObjectData>();
+        if (data == null) {
+            game.currentLevel = 1;
+            game.lvl1Tutorial = false;
+            game.lvl1StatueTutorial = false;
+            game.lvl2Tutorial = false;
+            game.lvl2StatueTutorial = false;
+            game.lvl3Tutorial = false;
+            game.lvl4Tutorial = false;
+            game.lvl5Tutorial = false;
+            game.lvl6Tutorial = false;
+            game.lvl7Tutorial = false;
+            game.soundOff = false;
+            game.musicOff = false;
+            Debug.Log("NewGame");
+            return;
+        }
         
         game.currentLevel = data.level;
         game.lvl1Tutorial = data.lvl1Tutorial;
