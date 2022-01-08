@@ -38,9 +38,9 @@ public class PlayerMovement : MonoBehaviour {
         currentPosition = transform.parent.transform.position;
         prevgridPos = currentGround.WorldToCell(currentPosition);
         if (currentPosition != currentGround.CellToWorld(currentGround.WorldToCell(currentPosition))) {
-            currentPosition = currentGround.CellToWorld(currentGround.WorldToCell(currentPosition)) + playerOffset;
-            transform.parent.transform.position = currentPosition;
-            transform.position -= playerOffset;
+            currentPosition = currentGround.CellToWorld(currentGround.WorldToCell(currentPosition));
+            transform.parent.transform.position = currentPosition + playerOffset;
+            transform.position = transform.parent.transform.position - playerOffset;
         }
     }
     private void Start() {
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour {
                 if (iceSlide.time > .3f && slideAmount > 1) {
                     iceSlide.time = .12f;
                     slideAmount--;
-                    Debug.Log("SLIDE " + slideAmount);
+                    //Debug.Log("SLIDE " + slideAmount);
                     if (slideAmount == 0) {
                         onIce = false;
                     }
@@ -330,6 +330,7 @@ public class PlayerMovement : MonoBehaviour {
                 tileCheck++;
             }
         }
+
         if (currentGround.GetTile(currentGround.WorldToCell(transform.position)) == null && tileCheck == 0) {
             FindObjectOfType<GMPlayer>().ResetLevel();
         }

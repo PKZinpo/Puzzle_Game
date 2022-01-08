@@ -254,7 +254,7 @@ public class GMPlayer : MonoBehaviour {
                 foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
                     Color color = wall.GetComponent<SpriteRenderer>().color;
                     if (color.a >= 0) {
-                        color.a -= 0.01f;
+                        color.a -= Time.deltaTime * 2.5f;
                         wall.GetComponent<SpriteRenderer>().color = color;
                     }
                 }
@@ -269,7 +269,7 @@ public class GMPlayer : MonoBehaviour {
                     if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
                         Color color = highlight.GetComponent<SpriteRenderer>().color;
                         if (color.a >= 0) {
-                            color.a -= 0.01f;
+                            color.a -= Time.deltaTime * 2.5f;
                             highlight.GetComponent<SpriteRenderer>().color = color;
                         }
                     }
@@ -280,7 +280,7 @@ public class GMPlayer : MonoBehaviour {
                     if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
                         Color color = highlight.GetComponent<SpriteRenderer>().color;
                         if (color.a >= 0) {
-                            color.a -= 0.01f;
+                            color.a -= Time.deltaTime * 2.5f;
                             highlight.GetComponent<SpriteRenderer>().color = color;
                         }
                     }
@@ -292,8 +292,8 @@ public class GMPlayer : MonoBehaviour {
                         Color color = collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
                         Color shadowColor = collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
                         if (color.a >= 0) {
-                            color.a -= 0.01f;
-                            shadowColor.a -= 0.01f;
+                            color.a -= Time.deltaTime * 2.5f;
+                            shadowColor.a -= Time.deltaTime * 2.5f;
                             collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
                             collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color = shadowColor;
                         }
@@ -306,7 +306,7 @@ public class GMPlayer : MonoBehaviour {
                 foreach (var wall in GameObject.FindGameObjectsWithTag("Tile")) {
                     Color color = wall.GetComponent<SpriteRenderer>().color;
                     if (color.a <= 1) {
-                        color.a += 0.01f;
+                        color.a += Time.deltaTime * 2.5f;
                         wall.GetComponent<SpriteRenderer>().color = color;
                     }
                 }
@@ -321,7 +321,7 @@ public class GMPlayer : MonoBehaviour {
                     if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
                         Color color = highlight.GetComponent<SpriteRenderer>().color;
                         if (color.a <= 0.59f) {
-                            color.a += 0.01f;
+                            color.a += Time.deltaTime * 2.5f;
                             highlight.GetComponent<SpriteRenderer>().color = color;
                         }
                     }
@@ -332,7 +332,7 @@ public class GMPlayer : MonoBehaviour {
                     if (highlight.GetComponent<SpriteRenderer>().sortingLayerName == "1st Floor") {
                         Color color = highlight.GetComponent<SpriteRenderer>().color;
                         if (color.a <= 0.59f) {
-                            color.a += 0.01f;
+                            color.a += Time.deltaTime * 2.5f;
                             highlight.GetComponent<SpriteRenderer>().color = color;
                         }
                     }
@@ -344,8 +344,8 @@ public class GMPlayer : MonoBehaviour {
                         Color color = collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color;
                         Color shadowColor = collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color;
                         if (color.a <= 1) {
-                            color.a += 0.01f;
-                            shadowColor.a += 0.01f;
+                            color.a += Time.deltaTime * 2.5f;
+                            shadowColor.a += Time.deltaTime * 2.5f;
                             collectable.transform.GetChild(0).GetComponent<SpriteRenderer>().color = color;
                             collectable.transform.GetChild(1).GetComponent<SpriteRenderer>().color = shadowColor;
                         }

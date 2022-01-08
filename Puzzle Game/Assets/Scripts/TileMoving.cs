@@ -100,7 +100,7 @@ public class TileMoving : MonoBehaviour {
             }
             if (isWall) {
                 tileType = wallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
-                if (tileType.Contains("Exit Tile")) {
+                if (tileType.Contains("Exit")) {
                     Debug.Log("Cannot move Tile");
                 }
                 else {
@@ -137,7 +137,7 @@ public class TileMoving : MonoBehaviour {
             }
             else if (ground.HasTile(tilePos[i])) {
                 tileType = ground.GetTile(tilePos[i]).name;
-                if (tileType.Contains("Exit Tile")) {
+                if (tileType.Contains("Exit")) {
                     Debug.Log("Cannot move Tile");
                 }
                 else {
