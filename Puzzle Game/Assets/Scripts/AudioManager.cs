@@ -89,11 +89,11 @@ public class AudioManager : MonoBehaviour {
     }
     public void Play(string name) {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        Debug.Log("Started playing " + name);
+        //Debug.Log("Started playing " + name);
         s.source.Play();
     }
     public void StopSound(AudioSource sound) {
-        Debug.Log("Stopped playing " + sound.clip.name);
+        //Debug.Log("Stopped playing " + sound.clip.name);
         sound.Stop();
     }
     public void ChangeTitleScreen(bool isTitle) {

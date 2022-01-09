@@ -23,6 +23,7 @@ public class IceOver : MonoBehaviour {
             }
         }
         Destroy(gameObject);
+        IcingOverSwitch();
     }
     private void BrokenWall() {
         foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
@@ -36,15 +37,23 @@ public class IceOver : MonoBehaviour {
             }
         }
         Destroy(gameObject);
+        IcingOverSwitch();
     }
     private void GroundHalfFloor() {
         map.SetTile(map.WorldToCell(transform.position), null);
         map.SetTile(map.WorldToCell(transform.position), groundHalfFloor);
         Destroy(gameObject);
+        IcingOverSwitch();
     }
     private void BrokenFloor() {
         map.SetTile(map.WorldToCell(transform.position), null);
         map.SetTile(map.WorldToCell(transform.position), brokenFloor);
         Destroy(gameObject);
+        IcingOverSwitch();
+    }
+    private void IcingOverSwitch() {
+        if (GameObject.Find("GMPlayer").GetComponent<GMPlayer>().isIcing) {
+            GameObject.Find("GMPlayer").GetComponent<GMPlayer>().isIcing = false;
+        }
     }
 }

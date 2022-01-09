@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public static Vector3 currentPosition;
     public static bool movetoDest = false;
+    public static bool canMove = true;
 
     private int slideAmount;
     private Vector3Int togridPos;
@@ -66,9 +67,10 @@ public class PlayerMovement : MonoBehaviour {
                 movingUp = false;
                 transform.GetComponentInParent<SortingGroup>().sortingLayerName = "1st Floor";
                 prevgridPos = currentGround.WorldToCell(currentPosition);
+                Invoke("ChangeCanMove", 0.5f);
             }
         }
-        if (movetoDest) {
+        if (movetoDest && canMove) {
             if (topMove) {
                 currentPosition = Vector3.MoveTowards(currentPosition, destination, movementSpeed * Time.deltaTime);
                 if (currentPosition == destination) {
@@ -114,7 +116,7 @@ public class PlayerMovement : MonoBehaviour {
 
     #region ArrowMovement
     public void moveplayerTL() {
-        if (!movetoDest && !movingUp) {
+        if (!movetoDest && canMove) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y + 1, 0);
@@ -148,7 +150,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerTR() {
-        if (!movetoDest && !movingUp) {
+        if (!movetoDest && canMove) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x + 1, selectedgridPos.y, 0);
@@ -182,7 +184,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerBR() {
-        if (!movetoDest && !movingUp) {
+        if (!movetoDest && canMove) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y - 1, 0);
@@ -216,7 +218,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerBL() {
-        if (!movetoDest && !movingUp) {
+        if (!movetoDest && canMove) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x - 1, selectedgridPos.y, 0);
@@ -251,9 +253,14 @@ public class PlayerMovement : MonoBehaviour {
     }
     #endregion
 
+    private void ChangeCanMove() {
+        canMove = true;
+        //Debug.Log("CAN MOVE");
+    }
     public static void MovePlayerUp() {
         if (!movingUp) {
             movingUp = true;
+            canMove = false;
         }
     }
     public void CheckBrokenTile() {

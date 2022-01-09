@@ -23,6 +23,7 @@ public class GMPlayer : MonoBehaviour {
     public GameObject tutorialObject;
     public Tilemap currentMap;
     public bool nextlevelOnWall;
+    public bool isIcing = false;
 
     public static Tilemap currentMapStatic;
     public static int highlightVal;
@@ -406,7 +407,7 @@ public class GMPlayer : MonoBehaviour {
         return sceneSwitchTo;
     }
     public void NextStep() {
-        if (!TileMoving.isMoving) {
+        if (!TileMoving.isMoving && !isIcing) {
             if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
                 foreach (var tile in GameObject.FindGameObjectsWithTag("SelectHighlight")) {
                     Destroy(tile);
@@ -513,7 +514,7 @@ public class GMPlayer : MonoBehaviour {
             }
             if (isWall) {
                 tileType = wallObject.GetComponentInChildren<SpriteRenderer>().sprite.name;
-                if (tileType.Contains("Exit Tile")) {
+                if (tileType.Contains("Exit")) {
                     Debug.Log("Cannot freeze Tile");
                 }
                 else {
@@ -530,11 +531,12 @@ public class GMPlayer : MonoBehaviour {
                     tile.transform.SetParent(wallObject.transform);
                     tile.transform.localPosition = new Vector3(0.0f, 0.16f, 0.0f) - TileMoving.wallOffset;
                     FindObjectOfType<AudioManager>().Play("FreezeOver");
+                    isIcing = true;
                 }
             }
             else {
                 tileType = currentMap.GetTile(positions[i]).name;
-                if (tileType.Contains("Exit Tile")) {
+                if (tileType.Contains("Exit")) {
                     Debug.Log("Cannot freeze Tile");
                 }
                 else {
@@ -551,6 +553,7 @@ public class GMPlayer : MonoBehaviour {
                     tile.GetComponent<SpriteRenderer>().sortingLayerName = "Ground";
                     tile.transform.position = currentMap.CellToWorld(positions[i]);
                     FindObjectOfType<AudioManager>().Play("FreezeOver");
+                    isIcing = true;
                 }
             }
         }

@@ -245,7 +245,7 @@ public class TileMoving : MonoBehaviour {
                     if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.right) + wallOffset) {
                         if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
                             icePositions.Add(currentPos + Vector3Int.right);
-                            Debug.Log("POS X INITIAL WALL");
+                            //Debug.Log("POS X INITIAL WALL");
                             break;
                         }
                     }
@@ -256,7 +256,7 @@ public class TileMoving : MonoBehaviour {
                     if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.left) + wallOffset) {
                         if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
                             icePositions.Add(currentPos + Vector3Int.left);
-                            Debug.Log("NEG X INITIAL WALL");
+                            //Debug.Log("NEG X INITIAL WALL");
                             break;
                         }
                     }
@@ -268,7 +268,7 @@ public class TileMoving : MonoBehaviour {
                     if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.up) + wallOffset) {
                         if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
                             icePositions.Add(currentPos + Vector3Int.up);
-                            Debug.Log("POS Y INITIAL WALL");
+                            //Debug.Log("POS Y INITIAL WALL");
                             break;
                         }
                     }
@@ -280,7 +280,7 @@ public class TileMoving : MonoBehaviour {
                     if (item.transform.position == ground.CellToWorld(currentPos + Vector3Int.down) + wallOffset) {
                         if (item.GetComponentInChildren<SpriteRenderer>().name.Contains("Ice")) {
                             icePositions.Add(currentPos + Vector3Int.down);
-                            Debug.Log("NEG Y INITIAL WALL");
+                            //Debug.Log("NEG Y INITIAL WALL");
                             break;
                         }
                     }
