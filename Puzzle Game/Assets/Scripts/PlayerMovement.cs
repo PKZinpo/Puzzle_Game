@@ -114,7 +114,7 @@ public class PlayerMovement : MonoBehaviour {
 
     #region ArrowMovement
     public void moveplayerTL() {
-        if (!movetoDest) {
+        if (!movetoDest && !movingUp) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y + 1, 0);
@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerTR() {
-        if (!movetoDest) {
+        if (!movetoDest && !movingUp) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x + 1, selectedgridPos.y, 0);
@@ -182,7 +182,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerBR() {
-        if (!movetoDest) {
+        if (!movetoDest && !movingUp) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x, selectedgridPos.y - 1, 0);
@@ -216,7 +216,7 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     public void moveplayerBL() {
-        if (!movetoDest) {
+        if (!movetoDest && !movingUp) {
             if (onSecondFloor) {
                 selectedgridPos = currentGround.WorldToCell(transform.parent.transform.position - playerOffset);
                 togridPos = new Vector3Int(selectedgridPos.x - 1, selectedgridPos.y, 0);
