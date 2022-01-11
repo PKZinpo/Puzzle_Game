@@ -158,9 +158,18 @@ public class GMPlayer : MonoBehaviour {
                 tutorialVal++;
                 if (sceneName == "Player1") {
                     if (StatueData.statueUIList.Count != 0) {
-                        FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        if (tutorialVal <= 9) {
+                            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+                        }
+                        if (tutorialVal >= 9) {
+                            tutorialObject.transform.GetChild(9).gameObject.SetActive(true);
+                        }
+                        else {
+                            tutorialObject.transform.GetChild(9).gameObject.SetActive(false);
+                        }
                     }
                     else {
+                        tutorialVal = Mathf.Min(tutorialVal, 7);
                         if (tutorialVal >= 3 && tutorialVal <= 6) {
                             if (tutorialVal - 4 >= 0) {
                                 tutorialObject.transform.GetChild(tutorialVal - 4).gameObject.SetActive(false);
@@ -407,6 +416,9 @@ public class GMPlayer : MonoBehaviour {
         return sceneSwitchTo;
     }
     public void NextStep() {
+        if (tutorialObject.activeSelf) {
+            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+        }
         if (!TileMoving.isMoving && !isIcing) {
             if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
                 foreach (var tile in GameObject.FindGameObjectsWithTag("SelectHighlight")) {

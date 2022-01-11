@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour {
             yield return new WaitForSecondsRealtime(0.015f);
         }
         isTyping = false;
-        if (!GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(3).gameObject.activeSelf) {
+        if (!GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(3).gameObject.activeSelf && !GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(9).gameObject.activeSelf) {
             GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(8).gameObject.SetActive(true);
         }
     }
