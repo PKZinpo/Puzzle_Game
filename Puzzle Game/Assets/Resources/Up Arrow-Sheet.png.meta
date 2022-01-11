@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -3649131928380380729
     second: Up Arrow-Sheet_2
+  - first:
+      213: -4273123774466170148
+    second: Up Arrow-Sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -182,6 +185,27 @@ TextureImporter:
       bones: []
       spriteID: 7c9e95658ddab5dc0800000000000000
       internalID: -3649131928380380729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Arrow-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 0
+        width: 59
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd2eaad2190d2b4c0800000000000000
+      internalID: -4273123774466170148
       vertices: []
       indices: 
       edges: []

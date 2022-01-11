@@ -442,6 +442,20 @@ public class GMPlayer : MonoBehaviour {
             }
         }
     }
+    public void DisableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = false;
+        }
+        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = false;
+    }
+    public void EnableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        }
+        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = true;
+    }
     public void ChooseType(string type, int stepNum) {
         switch (type) {
             case "3Line":
@@ -452,6 +466,7 @@ public class GMPlayer : MonoBehaviour {
                 IceOver(IceOverPositions(stepNum));
                 break;
         }
+        DisableButtons();
     }
     public Vector3Int[] ThreeLine(int num) {
         Vector3Int[] tilePlaceArray = new Vector3Int[3];

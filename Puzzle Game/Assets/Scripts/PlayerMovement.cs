@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using UnityEngine.Rendering;
 
@@ -81,6 +82,7 @@ public class PlayerMovement : MonoBehaviour {
                     topMove = false;
                     CheckBrokenTile();
                     CheckTileUnder();
+                    EnableButtons();
                 }
                 else {
                     transform.position = currentPosition;
@@ -97,6 +99,7 @@ public class PlayerMovement : MonoBehaviour {
                     bottomMove = false;
                     CheckBrokenTile();
                     CheckTileUnder();
+                    EnableButtons();
                 }
                 else {
                     transform.position = currentPosition;
@@ -131,6 +134,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
+                        DisableButtons();
                     }
                 }
             }
@@ -146,6 +150,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
+                    DisableButtons();
                 }
             }
         }
@@ -165,6 +170,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
+                        DisableButtons();
                     }
                 }
             }
@@ -180,6 +186,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
+                    DisableButtons();
                 }
             }
         }
@@ -199,6 +206,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
+                        DisableButtons();
                     }
                 }
             }
@@ -214,6 +222,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
+                    DisableButtons();
                 }
             }
         }
@@ -233,6 +242,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
+                        DisableButtons();
                     }
                 }
             }
@@ -248,12 +258,26 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
+                    DisableButtons();
                 }
             }
         }
     }
     #endregion
-
+    public void DisableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = false;
+        }
+        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = false;
+    }
+    public void EnableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        }
+        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = true;
+    }
     private void ChangeCanMove() {
         canMove = true;
         //Debug.Log("CAN MOVE");

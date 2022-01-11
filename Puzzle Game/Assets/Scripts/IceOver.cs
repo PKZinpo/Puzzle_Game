@@ -55,5 +55,6 @@ public class IceOver : MonoBehaviour {
         if (GameObject.Find("GMPlayer").GetComponent<GMPlayer>().isIcing) {
             GameObject.Find("GMPlayer").GetComponent<GMPlayer>().isIcing = false;
         }
+        GameObject.Find("GMPlayer").GetComponent<GMPlayer>().EnableButtons();
     }
 }

@@ -81,10 +81,12 @@ public class TileMoving : MonoBehaviour {
                 }
                 if (stationaryNum == GameObject.FindGameObjectsWithTag("Tile").Length) {
                     isMoving = false;
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().EnableButtons();
                 }
             }
             else if (GameObject.FindGameObjectsWithTag("Tile").Length == 0) {
                 isMoving = false;
+                GameObject.Find("GMPlayer").GetComponent<GMPlayer>().EnableButtons();
             }
         }
     }

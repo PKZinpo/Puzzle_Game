@@ -130,6 +130,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 414348635256625349, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 782480709497721157, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887278136116672762, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7735177923734918388, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
       propertyPath: m_Camera
       value: 
@@ -225,6 +237,10 @@ PrefabInstance:
     - target: {fileID: 7735177924574895340, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9078894941124297069, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60ee0763fcb0aec47879f6e59fcfbff2, type: 3}

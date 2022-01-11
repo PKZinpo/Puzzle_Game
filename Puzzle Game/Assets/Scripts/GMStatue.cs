@@ -230,6 +230,7 @@ public class GMStatue : MonoBehaviour {
                         #endregion
 
                         movetoDest = false;
+                        EnableButtons();
                     }
                 }
             }
@@ -253,6 +254,7 @@ public class GMStatue : MonoBehaviour {
                 FindObjectOfType<AudioManager>().Play("StatueMove");
                 statueMove.volume = 0.5f;
                 statueMove.pitch = 0.9f;
+                DisableButtons();
             }
         }
     }
@@ -267,6 +269,7 @@ public class GMStatue : MonoBehaviour {
                 FindObjectOfType<AudioManager>().Play("StatueMove");
                 statueMove.volume = 0.5f;
                 statueMove.pitch = 0.9f;
+                DisableButtons();
             }
         }
     }
@@ -281,6 +284,7 @@ public class GMStatue : MonoBehaviour {
                 FindObjectOfType<AudioManager>().Play("StatueMove");
                 statueMove.volume = 0.5f;
                 statueMove.pitch = 0.9f;
+                DisableButtons();
             }
         }
     }
@@ -295,6 +299,7 @@ public class GMStatue : MonoBehaviour {
                 FindObjectOfType<AudioManager>().Play("StatueMove");
                 statueMove.volume = 0.5f;
                 statueMove.pitch = 0.9f;
+                DisableButtons();
             }
         }
     }
@@ -303,7 +308,18 @@ public class GMStatue : MonoBehaviour {
     #region Level1
 
     #endregion
-
+    public void DisableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = false;
+        }
+    }
+    public void EnableButtons() {
+        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
+        for (int i = 0; i < arrows.transform.childCount; i++) {
+            arrows.transform.GetChild(i).GetComponent<Button>().interactable = true;
+        }
+    }
     public static string GetPlayerScene() {
         return sceneSwitchTo;
     }

@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -3782562060762281294
     second: Play Button-Sheet_2
+  - first:
+      213: 5507263705290140892
+    second: Play Button-Sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -158,6 +161,27 @@ TextureImporter:
       bones: []
       spriteID: 2ba056bb8d3a18bc0800000000000000
       internalID: -3782562060762281294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play Button-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdc6836492bbd6c40800000000000000
+      internalID: 5507263705290140892
       vertices: []
       indices: 
       edges: []
