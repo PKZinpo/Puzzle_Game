@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 366717503626716719
     second: Down Right Arrow-Sheet_2
+  - first:
+      213: 5835959549083958742
+    second: Down Right Arrow-Sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -182,6 +185,27 @@ TextureImporter:
       bones: []
       spriteID: f26a69860a7d61500800000000000000
       internalID: 366717503626716719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Down Right Arrow-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 0
+        width: 59
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ddb2b62a4e7df050800000000000000
+      internalID: 5835959549083958742
       vertices: []
       indices: 
       edges: []

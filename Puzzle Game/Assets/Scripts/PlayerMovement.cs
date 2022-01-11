@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
     #endregion
 
     void Awake() {
+        movetoDest = false;
         playerOffset = new Vector3(0.0f, -0.01f, 0.0f);
         currentGround = ground;
         currentPosition = transform.parent.transform.position;
