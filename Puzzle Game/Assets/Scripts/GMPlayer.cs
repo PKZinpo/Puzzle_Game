@@ -248,6 +248,10 @@ public class GMPlayer : MonoBehaviour {
             }
         }
 
+        if (StatueData.statueUIList.Count - 1 < stepVal || StatueData.statueUIList.Count == 0) {
+            GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = false;
+        }
+
         if (GameObject.FindGameObjectsWithTag("StatueIcon").Length != 0) {
             foreach (var icon in GameObject.FindGameObjectsWithTag("StatueIcon")) {
                 if (icon.GetComponent<ClickDrag>().selectTemp != null) {
@@ -466,7 +470,9 @@ public class GMPlayer : MonoBehaviour {
         for (int i = 0; i < arrows.transform.childCount; i++) {
             arrows.transform.GetChild(i).GetComponent<Button>().interactable = true;
         }
-        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = true;
+        if (StatueData.statueUIList.Count - 1 >= stepVal) {
+            GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = true;
+        }
     }
     public void ChooseType(string type, int stepNum) {
         switch (type) {
