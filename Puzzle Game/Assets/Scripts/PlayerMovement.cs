@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour {
                 movingUp = false;
                 transform.GetComponentInParent<SortingGroup>().sortingLayerName = "1st Floor";
                 prevgridPos = currentGround.WorldToCell(currentPosition);
-                Invoke("ChangeCanMove", 0.5f);
+                Invoke("ChangeCanMove", 0.2f);
             }
         }
         if (movetoDest && canMove) {
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
                     topMove = false;
                     CheckBrokenTile();
                     CheckTileUnder();
-                    EnableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().EnableButtons();
                 }
                 else {
                     transform.position = currentPosition;
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour {
                     bottomMove = false;
                     CheckBrokenTile();
                     CheckTileUnder();
-                    EnableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().EnableButtons();
                 }
                 else {
                     transform.position = currentPosition;
@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
-                        DisableButtons();
+                        GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                     }
                 }
             }
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
-                    DisableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                 }
             }
         }
@@ -170,7 +170,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
-                        DisableButtons();
+                        GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                     }
                 }
             }
@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
-                    DisableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                 }
             }
         }
@@ -206,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
-                        DisableButtons();
+                        GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                     }
                 }
             }
@@ -222,7 +222,7 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
-                    DisableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                 }
             }
         }
@@ -242,7 +242,7 @@ public class PlayerMovement : MonoBehaviour {
                         FindObjectOfType<AudioManager>().Play("StatueMove");
                         playerMove.volume = 0.5f;
                         playerMove.pitch = 1.1f;
-                        DisableButtons();
+                        GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                     }
                 }
             }
@@ -258,26 +258,12 @@ public class PlayerMovement : MonoBehaviour {
                     FindObjectOfType<AudioManager>().Play("StatueMove");
                     playerMove.volume = 0.5f;
                     playerMove.pitch = 1.1f;
-                    DisableButtons();
+                    GameObject.Find("GMPlayer").GetComponent<GMPlayer>().DisableButtons();
                 }
             }
         }
     }
     #endregion
-    public void DisableButtons() {
-        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
-        for (int i = 0; i < arrows.transform.childCount; i++) {
-            arrows.transform.GetChild(i).GetComponent<Button>().interactable = false;
-        }
-        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = false;
-    }
-    public void EnableButtons() {
-        GameObject arrows = GameObject.Find("Canvas").transform.Find("Arrows").gameObject;
-        for (int i = 0; i < arrows.transform.childCount; i++) {
-            arrows.transform.GetChild(i).GetComponent<Button>().interactable = true;
-        }
-        GameObject.Find("Canvas").transform.Find("Play").GetComponent<Button>().interactable = true;
-    }
     private void ChangeCanMove() {
         canMove = true;
         //Debug.Log("CAN MOVE");

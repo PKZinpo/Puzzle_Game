@@ -420,8 +420,10 @@ public class GMPlayer : MonoBehaviour {
         return sceneSwitchTo;
     }
     public void NextStep() {
-        if (tutorialObject.activeSelf) {
-            FindObjectOfType<DialogueManager>().DisplayNextSentence();
+        if (tutorialObject != null) {
+            if (tutorialObject.activeSelf) {
+                FindObjectOfType<DialogueManager>().DisplayNextSentence();
+            }
         }
         if (!TileMoving.isMoving && !isIcing) {
             if (GameObject.FindGameObjectsWithTag("SelectHighlight").Length != 0) {
